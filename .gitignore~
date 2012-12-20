@@ -1,0 +1,26 @@
+web/bundles/
+app/bootstrap.php.cache
+app/cache/*
+app/logs/*
+build/
+vendor
+composer.phar
+ui/.metadata
+
+#for GWT
+*.class
+
+# Package Files #
+*.jar
+*.war
+
+# gwt caches and compiled units #
+ui/Cigogne/war/gwt_bree/
+ui/Cigogne/gwt-unitCache/
+
+# boilerplate generated classes #
+ui/Cigogne/.apt_generated/
+
+# more caches and things from deploy #
+ui/Cigogne/war/WEB-INF/deploy/
+ui/Cigogne/war/WEB-INF/classes/
