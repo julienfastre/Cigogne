@@ -1,3 +1,5 @@
-fastre_cigogne_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: FastreCigogneBundle:Default:index }
+fastre_cigogne_listing_get:
+  pattern: /listing/get/{id}.{_format}
+  defaults: {_controller: FastreCigogneBundle:Listing:getListing }
+  requirements:
+    _format: json

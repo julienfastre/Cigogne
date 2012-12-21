@@ -65,7 +65,7 @@ class Item
     private $creationDate;
 
     /**
-     * @var Fastre\CigogneBundle\Entity\List
+     * @var Fastre\CigogneBundle\Entity\Listing
      */
     private $listing;
     
@@ -324,9 +324,9 @@ class Item
 
 
     /**
-     * Get list
+     * Get listing
      *
-     * @return Fastre\CigogneBundle\Entity\List 
+     * @return Fastre\CigogneBundle\Entity\Listing 
      */
     public function getListing()
     {

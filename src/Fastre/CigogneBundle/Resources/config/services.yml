@@ -7,3 +7,18 @@ services:
     arguments: [%fos_user.model.user.class%]
     tags:
       - { name: form.type, alias: fastre_cigogne_registration }
+      
+  cigogne.normalizer.serializer:
+    class: Fastre\CigogneBundle\Services\Normalizer\Serializer
+    arguments:
+      normalizers: 
+          - "@cigogne.normalizer.listing_normalizer"
+          - "@cigogne.normalizer.item_normalizer"
+  
+  cigogne.normalizer.item_normalizer:
+    class: Fastre\CigogneBundle\Services\Normalizer\ItemNormalizer
+  
+  cigogne.normalizer.listing_normalizer:
+    class: Fastre\CigogneBundle\Services\Normalizer\ListingNormalizer
+    arguments:
+      itemNormalizer: "@cigogne.normalizer.item_normalizer"
