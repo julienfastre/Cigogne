@@ -4,6 +4,8 @@ Fastre\CigogneBundle\Entity\Code:
     id:
       type: integer
       generator: {strategy: AUTO}
+  indexes:
+    - {name: code_word_idx, columns: word}
   fields:
     word:
       type: string
