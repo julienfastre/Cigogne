@@ -10,10 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends BaseUser
 {
-    /**
-     * @var integer $id
-     */
-    private $id;
 
     /**
      * @var string $phonenumber
