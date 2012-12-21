@@ -58,13 +58,14 @@ class Code
         return $this->word;
     }
 
+
     /**
      * Set list
      *
-     * @param Fastre\CigogneBundle\Entity\List $list
+     * @param Fastre\CigogneBundle\Entity\Listing $list
      * @return Code
      */
-    public function setList(\Fastre\CigogneBundle\Entity\List $list = null)
+    public function setList(\Fastre\CigogneBundle\Entity\Listing $list = null)
     {
         $this->list = $list;
     
@@ -74,7 +75,7 @@ class Code
     /**
      * Get list
      *
-     * @return Fastre\CigogneBundle\Entity\List 
+     * @return Fastre\CigogneBundle\Entity\Listing 
      */
     public function getList()
     {

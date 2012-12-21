@@ -5,9 +5,9 @@ namespace Fastre\CigogneBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Fastre\CigogneBundle\Entity\List
+ * Fastre\CigogneBundle\Entity\Listing
  */
-class List
+class Listing
 {
     /**
      * @var integer $id
@@ -72,7 +72,7 @@ class List
      * Set dateOfBirth
      *
      * @param \DateTime $dateOfBirth
-     * @return List
+     * @return Listing
      */
     public function setDateOfBirth($dateOfBirth)
     {
@@ -95,7 +95,7 @@ class List
      * Set name
      *
      * @param string $name
-     * @return List
+     * @return Listing
      */
     public function setName($name)
     {
@@ -118,7 +118,7 @@ class List
      * Set description
      *
      * @param string $description
-     * @return List
+     * @return Listing
      */
     public function setDescription($description)
     {
@@ -141,7 +141,7 @@ class List
      * Set creationDate
      *
      * @param \DateTime $creationDate
-     * @return List
+     * @return Listing
      */
     public function setCreationDate($creationDate)
     {
@@ -164,7 +164,7 @@ class List
      * Add codes
      *
      * @param Fastre\CigogneBundle\Entity\Code $codes
-     * @return List
+     * @return Listing
      */
     public function addCode(\Fastre\CigogneBundle\Entity\Code $codes)
     {
@@ -197,7 +197,7 @@ class List
      * Add items
      *
      * @param Fastre\CigogneBundle\Entity\Item $items
-     * @return List
+     * @return Listing
      */
     public function addItem(\Fastre\CigogneBundle\Entity\Item $items)
     {
@@ -230,7 +230,7 @@ class List
      * Set creator
      *
      * @param Fastre\CigogneBundle\Entity\User $creator
-     * @return List
+     * @return Listing
      */
     public function setCreator(\Fastre\CigogneBundle\Entity\User $creator = null)
     {

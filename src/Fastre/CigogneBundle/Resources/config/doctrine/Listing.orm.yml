@@ -1,4 +1,4 @@
-Fastre\CigogneBundle\Entity\List:
+Fastre\CigogneBundle\Entity\Listing:
   type: entity
   id:
     id:

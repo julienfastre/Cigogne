@@ -31,7 +31,7 @@ Fastre\CigogneBundle\Entity\Item:
     creationDate:
       type: datetime
   manyToOne:
-    list:
-      targetEntity: List
+    listing:
+      targetEntity: Listing
       inversedBy: items
     

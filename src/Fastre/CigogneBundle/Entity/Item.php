@@ -67,7 +67,7 @@ class Item
     /**
      * @var Fastre\CigogneBundle\Entity\List
      */
-    private $list;
+    private $listing;
 
 
     /**
@@ -310,15 +310,16 @@ class Item
         return $this->creationDate;
     }
 
+
     /**
      * Set list
      *
-     * @param Fastre\CigogneBundle\Entity\List $list
+     * @param Fastre\CigogneBundle\Entity\Listing $list
      * @return Item
      */
-    public function setList(\Fastre\CigogneBundle\Entity\List $list = null)
+    public function setList(\Fastre\CigogneBundle\Entity\Listing $listing = null)
     {
-        $this->list = $list;
+        $this->listing = $listing;
     
         return $this;
     }
@@ -328,8 +329,8 @@ class Item
      *
      * @return Fastre\CigogneBundle\Entity\List 
      */
-    public function getList()
+    public function getListing()
     {
-        return $this->list;
+        return $this->listing;
     }
 }

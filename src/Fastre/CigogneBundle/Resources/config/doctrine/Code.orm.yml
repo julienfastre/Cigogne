@@ -9,5 +9,5 @@ Fastre\CigogneBundle\Entity\Code:
       type: string
   manyToOne:
     list:
-      targetEntity: List
+      targetEntity: Listing
       inversedBy: codes
