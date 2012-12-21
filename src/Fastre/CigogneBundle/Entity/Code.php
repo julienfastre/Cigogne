@@ -23,6 +23,10 @@ class Code
      * @var Fastre\CigogneBundle\Entity\List
      */
     private $list;
+    
+    public function __construct($word) {
+        $this->word = $word;
+    }
 
 
     /**

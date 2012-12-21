@@ -20,9 +20,11 @@ Fastre\CigogneBundle\Entity\Listing:
     codes:
       targetEntity: Code
       mappedBy: list
+      cascade: [persist, remove]
     items:
       targetEntity: Item
       mappedBy: list
+      cascade: [persist, remove]
   manyToOne:
     creator:
       targetEntity: User

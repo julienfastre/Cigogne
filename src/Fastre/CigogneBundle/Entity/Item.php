@@ -30,7 +30,7 @@ class Item
     private $type;
 
     /**
-     * @var float $quantity
+     * @var integer $quantity
      */
     private $quantity;
 
@@ -68,6 +68,18 @@ class Item
      * @var Fastre\CigogneBundle\Entity\List
      */
     private $listing;
+    
+    
+    const FURNITURE_SECOND_HAND = 'second';
+    const FURNITURE_NEW = 'new';
+    
+    const TYPE_GOOD = 'good';
+    const TYPE_SERVICE = 'service';
+    
+    public function __construct()
+    {
+        $this->setCreationDate(new \DateTime());
+    }
 
 
     /**
@@ -152,7 +164,7 @@ class Item
     /**
      * Set quantity
      *
-     * @param float $quantity
+     * @param integer $quantity
      * @return Item
      */
     public function setQuantity($quantity)
@@ -165,7 +177,7 @@ class Item
     /**
      * Get quantity
      *
-     * @return float 
+     * @return integer 
      */
     public function getQuantity()
     {
@@ -293,7 +305,7 @@ class Item
      * @param \DateTime $creationDate
      * @return Item
      */
-    public function setCreationDate($creationDate)
+    private function setCreationDate($creationDate)
     {
         $this->creationDate = $creationDate;
     
@@ -312,19 +324,6 @@ class Item
 
 
     /**
-     * Set list
-     *
-     * @param Fastre\CigogneBundle\Entity\Listing $list
-     * @return Item
-     */
-    public function setList(\Fastre\CigogneBundle\Entity\Listing $listing = null)
-    {
-        $this->listing = $listing;
-    
-        return $this;
-    }
-
-    /**
      * Get list
      *
      * @return Fastre\CigogneBundle\Entity\List 
@@ -332,5 +331,46 @@ class Item
     public function getListing()
     {
         return $this->listing;
+    }
+    /**
+     * @var float
+     */
+    private $price;
+
+
+    /**
+     * Set price
+     *
+     * @param float $price
+     * @return Item
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float 
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set listing
+     *
+     * @param \Fastre\CigogneBundle\Entity\Listing $listing
+     * @return Item
+     */
+    public function setListing(\Fastre\CigogneBundle\Entity\Listing $listing = null)
+    {
+        $this->listing = $listing;
+    
+        return $this;
     }
 }

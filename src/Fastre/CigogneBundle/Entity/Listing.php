@@ -56,6 +56,7 @@ class Listing
     {
         $this->codes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->items = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setCreationDate(new \DateTime());
     }
     
     /**
@@ -143,7 +144,7 @@ class Listing
      * @param \DateTime $creationDate
      * @return Listing
      */
-    public function setCreationDate($creationDate)
+    private function setCreationDate($creationDate)
     {
         $this->creationDate = $creationDate;
     
@@ -168,6 +169,8 @@ class Listing
      */
     public function addCode(\Fastre\CigogneBundle\Entity\Code $codes)
     {
+        $codes->setList($this);
+        
         $this->codes[] = $codes;
     
         return $this;
@@ -201,6 +204,8 @@ class Listing
      */
     public function addItem(\Fastre\CigogneBundle\Entity\Item $items)
     {
+        $items->setListing($this);
+        
         $this->items[] = $items;
     
         return $this;
