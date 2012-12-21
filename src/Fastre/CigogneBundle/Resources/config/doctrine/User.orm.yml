@@ -1,0 +1,19 @@
+Fastre\CigogneBundle\Entity\User:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: {strategy: AUTO}
+  fields:
+    phonenumber:
+      type: string
+      length: 30
+    paymentAccepted:
+      type: array
+    paymentPaypalAccount:
+      type: string
+    paymentBankAccountNumber:
+      type: string
+    paymentBitcoinAddress:
+      type: string
+      

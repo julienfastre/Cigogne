@@ -1,0 +1,37 @@
+Fastre\CigogneBundle\Entity\Item:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: {strategy: AUTO}
+  fields:
+    title:
+      type: text
+    description:
+      type: text
+    type:
+      type: string
+      length: 10
+    quantity:
+      type: decimal
+      precision: 2
+    furniture:
+      type: array
+    furnitureDetails:
+      type: text
+      nullable: true
+    furniturePlace:
+      type: string
+      nullable: true
+    furnitureShop:
+      type: string
+      nullable: true
+    priority:
+      type: integer
+    creationDate:
+      type: datetime
+  manyToOne:
+    list:
+      targetEntity: List
+      inversedBy: items
+    

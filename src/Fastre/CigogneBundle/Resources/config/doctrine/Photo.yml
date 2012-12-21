@@ -1,0 +1,19 @@
+Fastre\CigogneBundle\Entity\Photo:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: {strategy: AUTO}
+  fields:
+    file:
+      type: string
+    type:
+      type: string
+      length: 5
+    creationDate:
+      type: datetime
+  manyToOne:
+    creator:
+      targetEntity: User
+      inversedBy: photos
+      

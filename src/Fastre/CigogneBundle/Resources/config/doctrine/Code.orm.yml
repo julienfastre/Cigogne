@@ -1,0 +1,13 @@
+Fastre\CigogneBundle\Entity\Code:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: {strategy: AUTO}
+  fields:
+    word:
+      type: string
+  manyToOne:
+    list:
+      targetEntity: List
+      inversedBy: codes

@@ -1,0 +1,29 @@
+Fastre\CigogneBundle\Entity\List:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: {strategy: AUTO}
+  fields:
+    dateOfBirth:
+      type: date
+      nullable: true
+    name:
+      type: string
+      nullable: true
+    description:
+      type: text
+      nullable: true
+    creationDate:
+      type: datetime
+  oneToMany:
+    codes:
+      targetEntity: Code
+      mappedBy: list
+    items:
+      targetEntity: Item
+      mappedBy: list
+  manyToOne:
+    creator:
+      targetEntity: User
+      inversedBy: lists
