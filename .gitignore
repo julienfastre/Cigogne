@@ -6,8 +6,9 @@ build/
 vendor
 composer.phar
 src/Acme
-
+app/config/parameters.yml
 ui/.metadata
+*.php~
 
 #for GWT
 *.class
