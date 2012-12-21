@@ -17,11 +17,6 @@ class User extends BaseUser
     private $phonenumber;
 
     /**
-     * @var array $paymentAccepted
-     */
-    private $paymentAccepted;
-
-    /**
      * @var string $paymentPaypalAccount
      */
     private $paymentPaypalAccount;
@@ -36,16 +31,22 @@ class User extends BaseUser
      */
     private $paymentBitcoinAddress;
 
+    
+    /**
+     * @var boolean $paymentPaypalAccepted
+     */
+    private $paymentPaypalAccepted = false;
 
     /**
-     * Get id
-     *
-     * @return integer 
+     * @var boolean $paymentBankAccepted
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $paymentBankAccepted = true;
+
+    /**
+     * @var boolean $paymentBitcoinAccepted
+     */
+    private $paymentBitcoinAccepted = false;
+
 
     /**
      * Set phonenumber
@@ -160,5 +161,76 @@ class User extends BaseUser
     public function getPaymentBitcoinAddress()
     {
         return $this->paymentBitcoinAddress;
+    }
+
+
+
+    /**
+     * Set paymentPaypalAccepted
+     *
+     * @param boolean $paymentPaypalAccepted
+     * @return User
+     */
+    public function setPaymentPaypalAccepted($paymentPaypalAccepted)
+    {
+        $this->paymentPaypalAccepted = $paymentPaypalAccepted;
+    
+        return $this;
+    }
+
+    /**
+     * Get paymentPaypalAccepted
+     *
+     * @return boolean 
+     */
+    public function getPaymentPaypalAccepted()
+    {
+        return $this->paymentPaypalAccepted;
+    }
+
+    /**
+     * Set paymentBankAccepted
+     *
+     * @param boolean $paymentBankAccepted
+     * @return User
+     */
+    public function setPaymentBankAccepted($paymentBankAccepted)
+    {
+        $this->paymentBankAccepted = $paymentBankAccepted;
+    
+        return $this;
+    }
+
+    /**
+     * Get paymentBankAccepted
+     *
+     * @return boolean 
+     */
+    public function getPaymentBankAccepted()
+    {
+        return $this->paymentBankAccepted;
+    }
+
+    /**
+     * Set paymentBitcoinAccepted
+     *
+     * @param boolean $paymentBitcoinAccepted
+     * @return User
+     */
+    public function setPaymentBitcoinAccepted($paymentBitcoinAccepted)
+    {
+        $this->paymentBitcoinAccepted = $paymentBitcoinAccepted;
+    
+        return $this;
+    }
+
+    /**
+     * Get paymentBitcoinAccepted
+     *
+     * @return boolean 
+     */
+    public function getPaymentBitcoinAccepted()
+    {
+        return $this->paymentBitcoinAccepted;
     }
 }

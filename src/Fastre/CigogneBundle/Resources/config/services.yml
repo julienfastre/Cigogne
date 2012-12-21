@@ -2,6 +2,8 @@ parameters:
 #    fastre_cigogne.example.class: Fastre\CigogneBundle\Example
 
 services:
-#    fastre_cigogne.example:
-#        class: %fastre_cigogne.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+  cigogne.registration.form_type:
+    class: Fastre\CigogneBundle\Form\Type\RegistrationFormType
+    arguments: [%fos_user.model.user.class%]
+    tags:
+      - { name: form.type, alias: fastre_cigogne_registration }

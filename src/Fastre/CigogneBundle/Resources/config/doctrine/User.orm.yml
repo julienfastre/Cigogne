@@ -1,6 +1,6 @@
 Fastre\CigogneBundle\Entity\User:
   type: entity
-  table: user
+  table: user_table
   id:
     id:
       type: integer
@@ -9,12 +9,20 @@ Fastre\CigogneBundle\Entity\User:
     phonenumber:
       type: string
       length: 30
-    paymentAccepted:
-      type: array
+      nullable: true
+    paymentPaypalAccepted:
+      type: boolean
     paymentPaypalAccount:
       type: string
+      nullable: true
+    paymentBankAccepted:
+      type: boolean
     paymentBankAccountNumber:
       type: string
+      nullable: true
+    paymentBitcoinAccepted:
+      type: boolean
     paymentBitcoinAddress:
       type: string
+      nullable: true
       
