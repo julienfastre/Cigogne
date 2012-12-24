@@ -24,6 +24,9 @@ ui/Cigogne/gwt-unitCache/
 # boilerplate generated classes #
 ui/Cigogne/.apt_generated/
 
+ui/Cigogne/.gwt/.gwt-log
+
+ui/Cigogne/war/org.fastre.cigogne.CigogneModule/org.fastre.cigogne.CigogneModule.nocache.js
 # more caches and things from deploy #
 ui/Cigogne/war/WEB-INF/deploy/
 ui/Cigogne/war/WEB-INF/classes/
