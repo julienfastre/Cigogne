@@ -22,5 +22,10 @@ public class ClientFactory {
 	{
 		return this.eventBus;
 	}
+
+
+	public PlaceController getPlaceController() {
+		return placeController;
+	}
 	
 }
