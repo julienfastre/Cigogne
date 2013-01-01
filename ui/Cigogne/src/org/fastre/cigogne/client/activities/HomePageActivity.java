@@ -4,9 +4,13 @@
 package org.fastre.cigogne.client.activities;
 
 import org.fastre.cigogne.client.ClientFactory;
+import org.fastre.cigogne.client.view.HomePageView;
 
 import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.core.shared.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.regexp.shared.SplitResult;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
@@ -18,13 +22,17 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 public class HomePageActivity extends AbstractActivity {
 	
 	public interface HomePageActivityView {
-		
+		void setPresenter(HomePageActivity presenter);
 	}
 	
 	private ClientFactory clientFactory;
+	private HomePageView view;
 
 	public HomePageActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
+		this.view = this.clientFactory.getHomePage();
+		this.view.setPresenter(this);
+		
 	}
 
 	/* (non-Javadoc)
@@ -32,8 +40,17 @@ public class HomePageActivity extends AbstractActivity {
 	 */
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		Window.alert("hello");
+		panel.setWidget(clientFactory.getHomePage());
 
 	}
+
+	public void doSearch(ClickEvent e) {
+		String code = this.view.getCode();
+		
+		
+		
+	}
+	
+	
 
 }

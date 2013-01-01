@@ -2,6 +2,7 @@ package org.fastre.cigogne.client.mvp;
 
 import org.fastre.cigogne.client.ClientFactory;
 import org.fastre.cigogne.client.activities.HomePageActivity;
+import org.fastre.cigogne.client.place.HomePagePlace;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -17,7 +18,13 @@ public class AppActivityMapper implements ActivityMapper {
 
 	@Override
 	public Activity getActivity(Place place) {
-		return new HomePageActivity(this.clientFactory);
+		if (place instanceof HomePagePlace) {
+			return new HomePageActivity(this.clientFactory);
+		} else {
+			return null;
+		}
+		
+		
 	}
 
 }
