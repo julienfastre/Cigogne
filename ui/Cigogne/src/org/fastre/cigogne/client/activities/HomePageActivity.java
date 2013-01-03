@@ -10,6 +10,7 @@ import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.regexp.shared.SplitResult;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -40,12 +41,26 @@ public class HomePageActivity extends AbstractActivity {
 	 */
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		panel.setWidget(clientFactory.getHomePage());
+		this.view.reset();
+		panel.setWidget(this.view);
 
 	}
 
 	public void doSearch(ClickEvent e) {
-		String code = this.view.getCode();
+		String str = this.view.getCode();
+		String[] codes = str.split("\\s+");
+		
+		
+		if (str.length() <= 3) {
+			clientFactory.sendFlashMessage("code trop court");
+			return;
+		}
+		
+		GWT.log(str);
+		
+		this.view.prepareForSearching();
+		
+		
 		
 		
 		

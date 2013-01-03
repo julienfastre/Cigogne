@@ -51,6 +51,15 @@ public class HomePageView extends Composite {
 	public String getCode() {
 		return codeInput.getText();
 	}
+
+	public void prepareForSearching() {
+		this.actionButton.setEnabled(false);
+		
+	}
+	
+	public void reset() {
+		this.actionButton.setEnabled(true);
+	}
 	
 	
 
