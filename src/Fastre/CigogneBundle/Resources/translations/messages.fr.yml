@@ -1,0 +1,17 @@
+cigogne:
+  futur_parent_?: Futur Parent ?
+  register: Créer un compte
+  connect: Se connecter
+  logout: Se déconnecter
+  homepage:
+    send_code: Rechercher !
+    code_validation_message: Veuillez n'indiquer que des caractères alphabétiques ou numériques
+    who_are_we: Qui sommes-nous ?
+    future_parent: Futur Parent ? Créez votre liste de naissance !
+    make_a_gift: Vous faites un cadeau ?
+    slogan: Pour les parents qui ne mettent pas au monde des produits commerciaux.
+  listing:
+    pick_from_code:
+      not_found: La liste n'a pas été trouvée. Vérifiez l'orthographe du mot code qui vous a été envoyé.
+        
+    
