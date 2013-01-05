@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        
+        <script type="text/javascript" src="{{ asset('js/jquery-1.8.3.js') }}" ></script>
+        {% block javascript %}
+          
+        {% endblock %}
+        
+        {% block css %}
+        
+        {% endblock %}
+    
+    
+    
+    </head>
+    <body>
+        <div id="header">
+            <nav>
+                <ul id="top-menu">
+                    {% if not app.user %} 
+                        <li><a href="{{url('fos_user_security_login') }}">{% trans %}cigogne.connect{% endtrans %}</a></li>
+                        <li>{% trans %}cigogne.future_parent_?{% endtrans %}<a href="{{url('fos_user_registration_register') }}">{% trans %}cigogne.register{% endtrans %}</a></li>
+                    {% else %}
+                        <li>Bonjour {{app.user.username}}</li>
+                        <li><a href="{{url('fos_user_security_logout') }}">{% trans %}cigogne.logout{% endtrans %}</a></li>
+                    {% endif %}
+                </ul>
+           </nav>
+        </div>
+            
+        <div id="flash-messages">
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">
+                        {{ flashMessage }}
+                </div>
+            {% endfor %}
+
+            {% for flashMessage in app.session.flashbag.get('warn') %}
+                <div class="flash-notice">
+                        {{ flashMessage }}
+                </div>
+            {% endfor %}
+
+        </div>
+
+            
+            {% block content %}
+            <p>Surchargez ce contenu</p>
+            {% endblock %}
+    
+    
+    
+    
+    
+    </body>
+
+</html>
