@@ -5,11 +5,13 @@ cigogne:
   logout: Se déconnecter
   homepage:
     send_code: Rechercher !
-    code_validation_message: Veuillez n'indiquer que des caractères alphabétiques ou numériques
+    code_validation_message: Veuillez n'indiquer que des chiffres ou des lettres
+    code_validation_message_title: Indiquez uniquement des chiffres ou des lettres
     who_are_we: Qui sommes-nous ?
     future_parent: Futur Parent ? Créez votre liste de naissance !
     make_a_gift: Vous faites un cadeau ?
     slogan: Pour les parents qui ne mettent pas au monde des produits commerciaux.
+    write_code: Inscrivez le code fourni par les futurs parents
   listing:
     pick_from_code:
       not_found: La liste n'a pas été trouvée. Vérifiez l'orthographe du mot code qui vous a été envoyé.
