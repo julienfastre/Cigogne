@@ -9,7 +9,8 @@ Fastre\CigogneBundle\Entity\Code:
   fields:
     word:
       type: string
+      unique: true
   manyToOne:
-    list:
+    listing:
       targetEntity: Listing
       inversedBy: codes

@@ -22,7 +22,7 @@ class Code
     /**
      * @var Fastre\CigogneBundle\Entity\List
      */
-    private $list;
+    private $listing;
     
     public function __construct($word) {
         $this->word = $word;
@@ -66,12 +66,12 @@ class Code
     /**
      * Set list
      *
-     * @param Fastre\CigogneBundle\Entity\Listing $list
+     * @param Fastre\CigogneBundle\Entity\Listing $listing
      * @return Code
      */
-    public function setList(\Fastre\CigogneBundle\Entity\Listing $list = null)
+    public function setListing(\Fastre\CigogneBundle\Entity\Listing $listing = null)
     {
-        $this->list = $list;
+        $this->listing = $listing;
     
         return $this;
     }
@@ -81,8 +81,8 @@ class Code
      *
      * @return Fastre\CigogneBundle\Entity\Listing 
      */
-    public function getList()
+    public function getListing()
     {
-        return $this->list;
+        return $this->listing;
     }
 }
