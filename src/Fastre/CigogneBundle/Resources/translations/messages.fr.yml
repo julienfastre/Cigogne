@@ -15,5 +15,7 @@ cigogne:
   listing:
     pick_from_code:
       not_found: La liste n'a pas été trouvée. Vérifiez l'orthographe du mot code qui vous a été envoyé.
+    view:
+      title: La liste de %name%
         
     

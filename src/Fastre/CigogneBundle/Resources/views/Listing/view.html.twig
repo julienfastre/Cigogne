@@ -1,0 +1,11 @@
+{% extends "FastreCigogneBundle::layout.html.twig" %}
+
+{% block title %}{% trans with {'%name%': listing.creator.username} %}cigogne.listing.view.title{% endtrans %}{% endblock %}
+
+{% block content %}
+
+<h1>{{listing.name}}</h1>
+<p>{% trans with {'%name%': listing.creator.username} %}cigogne.listing.view.list_of_{% endtrans %}</p>
+
+
+{% endblock %}

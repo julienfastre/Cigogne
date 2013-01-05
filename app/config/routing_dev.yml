@@ -1,6 +1,4 @@
-_welcome:
-    pattern:  /
-    defaults: { _controller: AcmeDemoBundle:Welcome:index }
+
     
 _test:
   pattern: /test.{_format}

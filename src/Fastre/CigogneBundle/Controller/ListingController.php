@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
+use \Exception;
 
 /**
  * Description of ListingController
@@ -83,7 +84,29 @@ class ListingController extends Controller {
     }
     
     public function getListingFromCodeAction($code, Request $request) {
-        return $this->render('FastreCigogneBundle:Default:index.html.twig');
+        //sanitize code
+        $code = trim($code);
+        
+        //get the list
+        $em = $this->getDoctrine()->getEntityManager();
+        $q = $em->createQuery('SELECT l from FastreCigogneBundle:Listing l JOIN l.codes c where c.word like :code');
+        $q->setParameter('code', $code);
+        
+        try {
+           $l = $q->getSingleResult();
+                    
+        } catch (Exception $e) {
+            //redirect to first page
+            $message = $this->get('translator')->trans('cigogne.listing.pick_from_code.not_found');
+            $this->get('session')->getFlashBag()->add('warn', $message);
+            return $this->redirect(
+                    $this->generateUrl("homepage")
+                    );
+        }
+        
+        return $this->render('FastreCigogneBundle:Listing:view.html.twig', array(
+            'listing' => $l
+        ));        
     }
     
     
