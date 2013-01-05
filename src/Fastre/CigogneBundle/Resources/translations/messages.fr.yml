@@ -1,5 +1,5 @@
 cigogne:
-  futur_parent_?: Futur Parent ?
+  future_parent_?: Futur Parent ?
   register: Créer un compte
   connect: Se connecter
   logout: Se déconnecter
