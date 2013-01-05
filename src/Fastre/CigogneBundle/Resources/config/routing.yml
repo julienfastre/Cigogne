@@ -1,3 +1,15 @@
+homepage:
+    pattern:  /
+    defaults: { _controller: FastreCigogneBundle:Default:index }
+    
+cigogne.list.pick_from_code:
+  pattern: /list/pick_from_code
+  defaults: { _controller: FastreCigogneBundle:Listing:pickFromCode }
+  
+cigogne.listing.see:
+  pattern: /{code}
+  defaults: {_controller: FastreCigogneBundle:Listing:getListingFromCode }
+
 fastre_cigogne_listing_get:
   pattern: /listing/get/{id}.{_format}
   defaults: {_controller: FastreCigogneBundle:Listing:getListing }
