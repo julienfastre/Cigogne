@@ -7,5 +7,50 @@
 <h1>{{listing.name}}</h1>
 <p>{% trans with {'%name%': listing.creator.username} %}cigogne.listing.view.list_of_{% endtrans %}</p>
 
+<p>{% trans with {'%date%': listing.dateOfBirth | date("m/d/Y")} %}cigogne.listing.view.date_of_birth{% endtrans %}</p>
+
+{{listing.description}}
+
+<h2>{% trans %}cigogne.listing.view.item_list{% endtrans %}</h2>
+
+
+<div id="item.list" >
+    
+    {% for item in listing.items %}
+        <div class="item 
+    {% if item.type is constant('Fastre\\CigogneBundle\\Entity\\Item::TYPE_GOOD') %}good{% else %}service{% endif %}
+    {% for f in item.furniture %}
+      {% if f is constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_SECOND_HAND') %}second{% endif %}
+      {% if f is constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_NEW') %}new{% endif %}
+    {% endfor %}
+    ">
+            <p class="item.title">{{item.title}}</p>
+
+            <p class="item.description">{{item.description}}</p>
+
+            {% for f in item.furniture %}
+            
+                {% if f is constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_SECOND_HAND') %}
+                <form method="post" action="#" class="second">
+                    <p>TODO formulaire seconde main</p>
+                </form>
+
+                {% endif %}
+
+                {% if f is constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_NEW') %}
+                <form method="post" action="#" class="new">
+                    <p>TODO formulaire première main</p>
+                </form>
+
+                {% endif %}
+            
+            {% endfor %}
+
+
+        </div>
+
+    {% endfor %}
+        
+</div>
 
 {% endblock %}

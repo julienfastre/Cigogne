@@ -17,5 +17,8 @@ cigogne:
       not_found: La liste n'a pas été trouvée. Vérifiez l'orthographe du mot code qui vous a été envoyé.
     view:
       title: La liste de %name%
+      list_of_: Liste de %name%
+      date_of_birth: La naissance est prévue pour le %date%
+      item_list: Notre liste...
         
     
