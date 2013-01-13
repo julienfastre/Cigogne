@@ -1,6 +1,4 @@
-fastre_cigogne:
-    resource: "@FastreCigogneBundle/Resources/config/routing.yml"
-    prefix:   /
+
 
 
 fos_user_security:
@@ -21,6 +19,10 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+    
+fastre_cigogne:
+    resource: "@FastreCigogneBundle/Resources/config/routing.yml"
+    prefix:   /    
 
 # Internal routing configuration to handle ESI
 #_internal:
