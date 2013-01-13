@@ -11,7 +11,7 @@
 
 {{listing.description}}
 
-<h2>{% trans %}cigogne.listing.view.item_list{% endtrans %}</h2>
+<h1>{% trans %}cigogne.listing.view.item_list{% endtrans %}</h1>
 
 
 <div id="item.list" >
@@ -19,27 +19,27 @@
     {% for item in listing.items %}
         <div class="item 
     {% if item.type is constant('Fastre\\CigogneBundle\\Entity\\Item::TYPE_GOOD') %}good{% else %}service{% endif %}
-    {% for f in item.furniture %}
-      {% if f is constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_SECOND_HAND') %}second{% endif %}
-      {% if f is constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_NEW') %}new{% endif %}
+    {% for g in item.good %}
+      {% if g is constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_SECOND_HAND') %}second{% endif %}
+      {% if g is constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_NEW') %}new{% endif %}
     {% endfor %}
     ">
-            <p class="item.title">{{item.title}}</p>
+            <h2 class="item.title">{{item.title}}</h2>
 
             <p class="item.description">{{item.description}}</p>
 
             {% for f in item.furniture %}
             
-                {% if f is constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_SECOND_HAND') %}
+                {% if f is constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_MONEY') %}
                 <form method="post" action="#" class="second">
-                    <p>TODO formulaire seconde main</p>
+                    <p>TODO formulaire donner de l'argent</p>
                 </form>
 
                 {% endif %}
 
-                {% if f is constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_NEW') %}
+                {% if f is constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_NATURE') %}
                 <form method="post" action="#" class="new">
-                    <p>TODO formulaire première main</p>
+                    <p>TODO formulaire donner en nature</p>
                 </form>
 
                 {% endif %}

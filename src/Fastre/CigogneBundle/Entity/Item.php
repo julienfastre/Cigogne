@@ -40,21 +40,6 @@ class Item
     private $furniture;
 
     /**
-     * @var string $furnitureDetails
-     */
-    private $furnitureDetails;
-
-    /**
-     * @var string $furniturePlace
-     */
-    private $furniturePlace;
-
-    /**
-     * @var string $furnitureShop
-     */
-    private $furnitureShop;
-
-    /**
      * @var integer $priority
      */
     private $priority;
@@ -213,75 +198,6 @@ class Item
     public function getFurniture()
     {
         return $this->furniture;
-    }
-
-    /**
-     * Set furnitureDetails
-     *
-     * @param string $furnitureDetails
-     * @return Item
-     */
-    public function setFurnitureDetails($furnitureDetails)
-    {
-        $this->furnitureDetails = $furnitureDetails;
-    
-        return $this;
-    }
-
-    /**
-     * Get furnitureDetails
-     *
-     * @return string 
-     */
-    public function getFurnitureDetails()
-    {
-        return $this->furnitureDetails;
-    }
-
-    /**
-     * Set furniturePlace
-     *
-     * @param string $furniturePlace
-     * @return Item
-     */
-    public function setFurniturePlace($furniturePlace)
-    {
-        $this->furniturePlace = $furniturePlace;
-    
-        return $this;
-    }
-
-    /**
-     * Get furniturePlace
-     *
-     * @return string 
-     */
-    public function getFurniturePlace()
-    {
-        return $this->furniturePlace;
-    }
-
-    /**
-     * Set furnitureShop
-     *
-     * @param string $furnitureShop
-     * @return Item
-     */
-    public function setFurnitureShop($furnitureShop)
-    {
-        $this->furnitureShop = $furnitureShop;
-    
-        return $this;
-    }
-
-    /**
-     * Get furnitureShop
-     *
-     * @return string 
-     */
-    public function getFurnitureShop()
-    {
-        return $this->furnitureShop;
     }
 
     /**
