@@ -8,6 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use \Exception;
+use Fastre\CigogneBundle\Entity\Item;
+use Fastre\CigogneBundle\Entity\Gift\GiftMoney;
+use Fastre\CigogneBundle\Form\Gift\GiftMoneyType;
+use Fastre\CigogneBundle\Entity\Gift\GiftNature;
+
 
 /**
  * Description of ListingController
@@ -104,8 +109,41 @@ class ListingController extends Controller {
                     );
         }
         
+        //prepare an array which hold the form for gifts
+        $forms = array();
+        $basket = new \Fastre\CigogneBundle\Entity\Basket();
+        
+        foreach ($l->getItems() as $item) {
+            $forms_item = array();
+            
+            if (in_array(Item::FURNITURE_MONEY, $item->getFurniture())) {
+                $gift = new GiftMoney();
+                $gift->setBasket($basket)
+                        ->setItem($item)
+                        ->setAmount($item->getPrice());
+                $f = $this->createForm(new GiftMoneyType(), $gift);
+                $forms_item[Item::FURNITURE_MONEY] = $f->createView();
+            }
+            
+            if (in_array(Item::FURNITURE_NATURE, $item->getFurniture())) {
+                $gift = new GiftMoney();
+                $gift->setBasket($basket)
+                        ->setItem($item)
+                        ->setAmount($item->getPrice());
+                $f = $this->createForm(new GiftMoneyType(), $gift);
+                $forms_item[Item::FURNITURE_NATURE] = $f->createView();
+            }
+            
+            if (count($forms_item) > 0) {
+                $forms[$item->getId()] = $forms_item;
+            }
+        }
+        
+        
+        
         return $this->render('FastreCigogneBundle:Listing:view.html.twig', array(
-            'listing' => $l
+            'listing' => $l,
+            'forms' => $forms,
         ));        
     }
     

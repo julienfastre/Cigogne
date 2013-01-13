@@ -3,6 +3,11 @@ cigogne:
   register: Créer un compte
   connect: Se connecter
   logout: Se déconnecter
+  type:
+    item_hidden:
+      does_not_exist: L'item sélectionné n'existe pas dans la base de donnée.
+    basket_hidden:
+      does_not_exist: Le panier sélection n'existe pas dans la base de donnée.
   homepage:
     send_code: Rechercher !
     code_validation_message: Veuillez n'indiquer que des chiffres ou des lettres

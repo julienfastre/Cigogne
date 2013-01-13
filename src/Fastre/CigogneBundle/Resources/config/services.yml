@@ -22,3 +22,15 @@ services:
     class: Fastre\CigogneBundle\Services\Normalizer\ListingNormalizer
     arguments:
       itemNormalizer: "@cigogne.normalizer.item_normalizer"
+  
+  cigogne.type.item_hidden:
+    class: Fastre\CigogneBundle\Form\Type\ItemHiddenType
+    arguments: ["@doctrine.orm.entity_manager"]
+    tags:
+      - { name: form.type, alias: item_hidden }
+      
+  cigogne.type.basket_hidden:
+    class: Fastre\CigogneBundle\Form\Type\BasketHiddenType
+    arguments: ["@doctrine.orm.entity_manager"]
+    tags:
+      - { name: form.type, alias: basket_hidden }

@@ -1,6 +1,33 @@
 {% extends "FastreCigogneBundle::layout.html.twig" %}
 
+{#
+    Les arguments passés à la vue sont les suivants:
+
+- listing: la liste affichée
+- forms: les formulaires. Il s'agit d'un tableau multidimensionnel où la première 
+   clé est celle de l'id de l'item, la deuxième le type de formulaire
+   forms[listing.item.id][Item::FURNITURE_MONEY ou ITEM::FURNITURE_NATURE] = form
+
+#}
+
+{#  
+    les deux lignes ci-dessous stockent des valeurs constantes dans des variables twig, 
+    histoire de ne pas trop alourdir le code... 
+#}
+
+{% set money = constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_MONEY') %}
+{% set nature = constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_NATURE') %}
+
+{#  
+    ajoute le titre de la page
+#}
+
 {% block title %}{% trans with {'%name%': listing.creator.username} %}cigogne.listing.view.title{% endtrans %}{% endblock %}
+
+
+{#  
+    le contenu commence ici
+#}
 
 {% block content %}
 
@@ -13,38 +40,41 @@
 
 <h1>{% trans %}cigogne.listing.view.item_list{% endtrans %}</h1>
 
+{#  
+    liste de tous les items...
+#}
 
 <div id="item.list" >
     
     {% for item in listing.items %}
+{#  
+    ajoute des classes particulières en fonction de la nature de l'item
+#}
         <div class="item 
-    {% if item.type is constant('Fastre\\CigogneBundle\\Entity\\Item::TYPE_GOOD') %}good{% else %}service{% endif %}
-    {% for g in item.good %}
-      {% if g is constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_SECOND_HAND') %}second{% endif %}
-      {% if g is constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_NEW') %}new{% endif %}
-    {% endfor %}
+      {% if item.type is constant('Fastre\\CigogneBundle\\Entity\\Item::TYPE_GOOD') %}good{% else %}service{% endif %}
+      {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_SECOND_HAND') in item.good %}second{% endif %}
+      {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_NEW') in item.good %}new{% endif %}
     ">
             <h2 class="item.title">{{item.title}}</h2>
 
             <p class="item.description">{{item.description}}</p>
 
-            {% for f in item.furniture %}
             
-                {% if f is constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_MONEY') %}
-                <form method="post" action="#" class="second">
-                    <p>TODO formulaire donner de l'argent</p>
-                </form>
+            {% if money in item.furniture %}
+ 
+            <form method="post" action="#" class="second">
+                {{ form_rest(attribute(attribute(forms, item.id), money)) }} 
+            </form>
 
-                {% endif %}
+            {% endif %}
 
-                {% if f is constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_NATURE') %}
-                <form method="post" action="#" class="new">
-                    <p>TODO formulaire donner en nature</p>
-                </form>
+            {% if nature in item.furniture %}
+            <form method="post" action="#" class="new">
+                <p>TODO formulaire donner en nature</p>
+            </form>
 
-                {% endif %}
+            {% endif %}
             
-            {% endfor %}
 
 
         </div>
