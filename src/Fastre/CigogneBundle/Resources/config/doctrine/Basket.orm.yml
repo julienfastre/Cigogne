@@ -1,0 +1,28 @@
+Fastre\CigogneBundle\Entity\Basket:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: {strategy: AUTO}
+  fields:
+    name:
+      type: string
+      length: 255
+    email:
+      type: string
+      length: 255
+    message:
+      type: text
+      length: 7000
+    payment:
+      type: string
+      length: 10
+    token:
+      type: string
+      length: 255
+  oneToMany:
+    elements:
+      targetEntity: Gift
+      mappedBy: basket
+    
+    

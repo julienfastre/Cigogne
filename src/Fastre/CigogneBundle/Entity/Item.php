@@ -59,6 +59,16 @@ class Item
      */
     private $good;
     
+    /**
+     * @var string
+     */
+    private $furnitureDetails = '';
+    
+    /**
+     * @var float
+     */
+    private $received = 0;
+    
     
     const GOOD_SECOND_HAND = 'second';
     const GOOD_NEW = 'new';
@@ -321,5 +331,54 @@ class Item
     public function getGood()
     {
         return $this->good;
+    }
+
+    /**
+     * Set received
+     *
+     * @param float $received
+     * @return Item
+     */
+    public function setReceived($received)
+    {
+        $this->received = $received;
+    
+        return $this;
+    }
+
+    /**
+     * Get received
+     *
+     * @return float 
+     */
+    public function getReceived()
+    {
+        return $this->received;
+    }
+
+
+
+
+    /**
+     * Set furnitureDetails
+     *
+     * @param string $furnitureDetails
+     * @return Item
+     */
+    public function setFurnitureDetails($furnitureDetails)
+    {
+        $this->furnitureDetails = $furnitureDetails;
+    
+        return $this;
+    }
+
+    /**
+     * Get furnitureDetails
+     *
+     * @return string 
+     */
+    public function getFurnitureDetails()
+    {
+        return $this->furnitureDetails;
     }
 }

@@ -18,10 +18,17 @@ Fastre\CigogneBundle\Entity\Item:
       scale: 2
     furniture:
       type: array
+    furnitureDetails:
+      type: text
+      length: 5000
     good:
       type: array
     priority:
       type: integer
+    received:
+      type: decimal
+      precision: 4
+      scale: 2     
     creationDate:
       type: datetime
   manyToOne:

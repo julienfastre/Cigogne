@@ -1,0 +1,13 @@
+Fastre\CigogneBundle\Entity\Gift\GiftMoney:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: auto
+  fields:
+    amount:
+      type: decimal
+      precision: 4
+      scale: 2
+      

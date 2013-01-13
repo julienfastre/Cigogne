@@ -1,0 +1,23 @@
+Fastre\CigogneBundle\Entity\Gift:
+  type: entity
+  inheritanceType: JOINED
+  discriminatorColumn: 
+    name: discr
+    type: string
+  discriminatorMap:
+    money: Fastre\CigogneBundle\Entity\Gift\GiftMoney
+    service: Fastre\CigogneBundle\Entity\Gift\GiftService
+    nature: Fastre\CigogneBundle\Entity\Gift\GiftNature
+  id:
+    id:
+      type: integer
+      generator: {strategy: AUTO}
+  manyToOne:
+    basket:
+      targetEntity: Basket
+      inversedBy: elements
+    item:
+      targetEntity: Item
+      inversedBy: gifts
+        
+  
