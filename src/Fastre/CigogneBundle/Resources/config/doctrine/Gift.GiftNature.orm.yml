@@ -1,10 +1,5 @@
 Fastre\CigogneBundle\Entity\Gift\GiftNature:
   type: entity
-  id:
-    id:
-      type: integer
-      generator:
-        strategy: auto
   fields:
     message:
       type: text

@@ -2,12 +2,14 @@
 
 namespace Fastre\CigogneBundle\Entity\Gift;
 
+use Fastre\CigogneBundle\Entity\Gift;
+
 /**
  * Description of GiftMoney
  *
  * @author Julien Fastré <julien arobase fastre point info>
  */
-class GiftMoney {
+class GiftMoney extends Gift {
 
     /**
      * @var float
@@ -37,19 +39,5 @@ class GiftMoney {
     {
         return $this->amount;
     }
-    /**
-     * @var integer
-     */
-    private $id;
 
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 }

@@ -2,12 +2,14 @@
 
 namespace Fastre\CigogneBundle\Entity\Gift;
 
+use Fastre\CigogneBundle\Entity\Gift;
+
 /**
  * Description of GiftService
  *
  * @author Julien Fastré <julien arobase fastre point info>
  */
-class GiftService {
+class GiftService extends Gift {
 
     /**
      * @var string
@@ -37,19 +39,5 @@ class GiftService {
     {
         return $this->message;
     }
-    /**
-     * @var integer
-     */
-    private $id;
 
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 }
