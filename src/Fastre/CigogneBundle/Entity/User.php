@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends BaseUser
 {
+    
+    /**
+     * @var integer
+     */
+    protected $id;
 
     /**
      * @var string $phonenumber
@@ -232,5 +237,17 @@ class User extends BaseUser
     public function getPaymentBitcoinAccepted()
     {
         return $this->paymentBitcoinAccepted;
+    }
+    
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return parent::getId();
     }
 }

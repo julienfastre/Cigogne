@@ -169,7 +169,7 @@ class Listing
      */
     public function addCode(\Fastre\CigogneBundle\Entity\Code $codes)
     {
-        $codes->setList($this);
+        $codes->setListing($this);
         
         $this->codes[] = $codes;
     

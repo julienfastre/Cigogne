@@ -69,9 +69,17 @@ class Item
      */
     private $listing;
     
+    /**
+     * @var array
+     */
+    private $good;
     
-    const FURNITURE_SECOND_HAND = 'second';
-    const FURNITURE_NEW = 'new';
+    
+    const GOOD_SECOND_HAND = 'second';
+    const GOOD_NEW = 'new';
+    
+    const FURNITURE_MONEY = 'money';
+    const FURNITURE_NATURE = 'nature';
     
     const TYPE_GOOD = 'good';
     const TYPE_SERVICE = 'service';
@@ -372,5 +380,30 @@ class Item
         $this->listing = $listing;
     
         return $this;
+    }
+
+
+
+    /**
+     * Set good
+     *
+     * @param array $good
+     * @return Item
+     */
+    public function setGood($good)
+    {
+        $this->good = $good;
+    
+        return $this;
+    }
+
+    /**
+     * Get good
+     *
+     * @return array 
+     */
+    public function getGood()
+    {
+        return $this->good;
     }
 }

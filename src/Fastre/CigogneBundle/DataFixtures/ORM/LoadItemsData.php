@@ -28,20 +28,22 @@ class LoadItemsData extends AbstractFixture implements OrderedFixtureInterface {
                 "desc" => "Une grande pousette pour mettre les deux enfants avec un marchepied pour le premier",
                 "title" => "pousette de luxe",
                 "quantity" => 1,
-                "furn" => array(Item::FURNITURE_NEW),
+                "furn" => array(Item::FURNITURE_MONEY, Item::FURNITURE_NATURE),
                 "price" => 550,00,
                 "priority" => 0,
                 "type" => Item::TYPE_GOOD,
+                'good' => array(Item::GOOD_NEW, Item::GOOD_SECOND_HAND),
             ),
             array(
                 "desc" => "Cette baignoire ravira le petit (jusqu'à ce que le grand la troue)",
                 "title" => "baignoire facile",
                 "quantity" => 1,
-                "furn" => array(Item::FURNITURE_NEW, Item::FURNITURE_SECOND_HAND),
+                "furn" => array(Item::FURNITURE_MONEY),
                 "price" => 25,
                 "furnDetails" => "si possible sans trous :-)",
                 "priority" => 1,
                 "type" => Item::TYPE_GOOD,
+                'good' => array(Item::GOOD_NEW),
             ),
             
         );
@@ -55,7 +57,8 @@ class LoadItemsData extends AbstractFixture implements OrderedFixtureInterface {
                     ->setPrice($a['price'])
                     ->setFurniture($a['furn'])
                     ->setPriority($a['priority'])
-                    ->setType($a['type']);
+                    ->setType($a['type'])
+                    ->setGood($a['good']);
             if (isset($a['furnDetails']))
             {
                 $item->setFurnitureDetails($a['furnDetails']);
