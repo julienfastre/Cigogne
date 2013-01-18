@@ -25,5 +25,16 @@ cigogne:
       list_of_: Liste de %name%
       date_of_birth: La naissance est prévue pour le %date%
       item_list: Notre liste...
+  gift:
+    form:
+      common:
+        amount: Montant
+        message: Message
+      money:
+        give: Offrir
+      nature:
+        give: Donner
+      service:
+        give: Rendre ce service
         
     
