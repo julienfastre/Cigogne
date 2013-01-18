@@ -17,6 +17,7 @@
 
 {% set money = constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_MONEY') %}
 {% set nature = constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_NATURE') %}
+{% set service = constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_SERVICE') %}
 
 {#  
     ajoute le titre de la page
@@ -60,18 +61,39 @@
             <p class="item.description">{{item.description}}</p>
 
             
-            {% if money in item.furniture %}
- 
-            <form method="post" action="#" class="second">
-                {{ form_rest(attribute(attribute(forms, item.id), money)) }} 
-            </form>
+            {% if attribute(attribute(forms, item.id), money) is defined %}
+                {% set form = attribute(attribute(forms, item.id), money) %}
+                <form method="post" action="#" class="second">
+                    {{ form_label(form.amount) }}: {{ form_widget(form.amount) }}
+                    {# ne pas supprimer form_rest : il affiche les éléments manquants 
+                        (valeurs cachées, etc.  #}
+                        {{ form_rest(form) }} 
+                    <button>{% trans %}cigogne.gift.form.money.give{% endtrans %}</button>
+                </form>
 
             {% endif %}
 
-            {% if nature in item.furniture %}
-            <form method="post" action="#" class="new">
-                <p>TODO formulaire donner en nature</p>
-            </form>
+            {% if attribute(attribute(forms, item.id), nature) is defined  %}
+                {% set form = attribute(attribute(forms, item.id), nature) %}
+                <form method="post" action="#" class="new">
+                    {{ form_label(form.message) }}: {{ form_widget(form.message) }}
+                        {# ne pas supprimer form_rest : il affiche les éléments manquants 
+                        (valeurs cachées, etc.  #}
+                        {{ form_rest(form) }} 
+                    <button>{% trans %}cigogne.gift.form.nature.give{% endtrans %}</button>
+                </form>
+
+            {% endif %}
+            
+            {% if attribute(attribute(forms, item.id), service) is defined %}
+                {% set form = attribute(attribute(forms, item.id), service) %}
+                <form method="post" action="#" class="new">
+                    {{ form_label(form.message) }}: {{ form_widget(form.message) }}
+                        {# ne pas supprimer form_rest : il affiche les éléments manquants 
+                        (valeurs cachées, etc.  #}
+                        {{ form_rest(form) }} 
+                    <button>{% trans %}cigogne.gift.form.service.give{% endtrans %}</button>
+                </form>
 
             {% endif %}
             

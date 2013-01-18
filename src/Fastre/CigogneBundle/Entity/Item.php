@@ -75,6 +75,7 @@ class Item
     
     const FURNITURE_MONEY = 'money';
     const FURNITURE_NATURE = 'nature';
+    const FURNITURE_SERVICE = 'service';
     
     const TYPE_GOOD = 'good';
     const TYPE_SERVICE = 'service';
@@ -150,6 +151,8 @@ class Item
     public function setType($type)
     {
         $this->type = $type;
+        
+
     
         return $this;
     }
@@ -380,5 +383,26 @@ class Item
     public function getFurnitureDetails()
     {
         return $this->furnitureDetails;
+    }
+    
+    /**
+     * check the consistency of the item
+     * Used for validation
+     */
+    public function isConsistent() {
+//                switch ($type)
+//        {
+//             case self::TYPE_GOOD :
+//                foreach ($this->furniture as $key => $str) {
+//                    if ($str === self::FURNITURE_SERVICE) {
+//                        unset($this->furniture[$key]);
+//                    }
+//                }
+//                break;
+//            case self::TYPE_SERVICE :
+//                foreach ($this->furniture as $key => $str) {
+//                if ($str === self::FURNITURE_MONEY OR $str === self::FURNITURE_SERVICE)
+//                }
+//        } 
     }
 }
