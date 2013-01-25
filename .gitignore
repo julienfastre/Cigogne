@@ -9,6 +9,7 @@ src/Acme
 app/config/parameters.yml
 ui/.metadata
 *.php~
+bd/*.sqlite
 
 #for GWT
 *.class
