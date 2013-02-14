@@ -13,7 +13,10 @@ class GiftMoneyType extends GiftType
         parent::buildForm($builder, $options);
         
         $builder
-            ->add('amount', 'text', array('label' => 'cigogne.gift.form.common.amount'))
+            ->add('amount', 'money', array(
+                'label' => 'cigogne.gift.form.common.amount',
+                'grouping' => true)
+                    )
         ;
     }
 
