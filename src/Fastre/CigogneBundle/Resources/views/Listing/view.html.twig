@@ -41,16 +41,17 @@
 
 <div ng-app>
     <div ng-controller="basketController">
-    <div id="basket" >
-        <ul id="moneyGift">
-            <li ng-repeat="moneyGift in moneyGifts">
-                <span>{{'{{'}}moneyGift.title{{'}}'}}</span> <span>{{'{{'}}moneyGift.amount{{'}}'}}</span>
-            </li>
-        
-        </ul>
-            
-        {{'{{'}}getTotalMoneyGifts(){{'}}'}}
-        
+        <div id="basket" >
+            <ul id="moneyGift">
+                <li ng-repeat="moneyGift in moneyGifts">
+                    <span>{{'{{'}}moneyGift.title{{'}}'}}</span> <span>{{'{{'}}moneyGift.amount{{'}}'}}</span>
+                </li>
+
+            </ul>
+
+            {{'{{'}}getTotalMoneyGifts(){{'}}'}}
+
+        </div>
     </div>
     
     
@@ -85,24 +86,27 @@
 
                 {% if attribute(attribute(forms, item.id), money) is defined %}
                     {% set form = attribute(attribute(forms, item.id), money) %}
-                    <form class="second" ng-submit="addMoneyGift()">
+                <div ng-controller="moneyGiftController">
+                    <form class="second" >
                         
                         {{ form_label(form.amount) }}: {{ form_widget(form.amount, {'attr': {'ng-model':'amount'}}) }}
                         
-                        <input type="hidden" value="{{item.title}}" ng-model="title">
+                        <input type="hidden" value="{{item.title}}" >
                         
                         {# ne pas supprimer form_rest : il affiche les éléments manquants 
                             (valeurs cachées, etc.  #}
                         {{ form_rest(form) }} 
                         
-                        <button>{% trans %}cigogne.gift.form.money.give{% endtrans %}</button>
+                        <button ng-click="addMoneyGift()">{% trans %}cigogne.gift.form.money.give{% endtrans %}</button>
                         
                     </form>
+                </div>
 
                 {% endif %}
 
                 {% if attribute(attribute(forms, item.id), nature) is defined  %}
                     {% set form = attribute(attribute(forms, item.id), nature) %}
+                  
                     <form method="post" action="#" class="new">
                         {{ form_label(form.message) }}: {{ form_widget(form.message) }}
                             {# ne pas supprimer form_rest : il affiche les éléments manquants 
@@ -110,6 +114,7 @@
                             {{ form_rest(form) }} 
                         <button>{% trans %}cigogne.gift.form.nature.give{% endtrans %}</button>
                     </form>
+                  
 
                 {% endif %}
 
@@ -133,6 +138,6 @@
 
     </div>
 
-</div></div> {# div for ng-app #}
+</div> {# div for ng-app #}
 
 {% endblock %}
