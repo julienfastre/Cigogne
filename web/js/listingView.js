@@ -16,9 +16,9 @@ function basketController($scope) {
 
 function moneyGiftController($scope) {
     
-    $scope.addMoneyGift = function() {
+    $scope.addMoneyGift = function(form) {
         console.log("addMoneyGift");
-        console.log($scope.amount);
+        alert(form.amount);
         //$scope.moneyGifts.push({title: $scope.title, amount: $scope.amount});
     };
 }

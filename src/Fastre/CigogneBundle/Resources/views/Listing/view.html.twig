@@ -87,9 +87,9 @@
                 {% if attribute(attribute(forms, item.id), money) is defined %}
                     {% set form = attribute(attribute(forms, item.id), money) %}
                 <div ng-controller="moneyGiftController">
-                    <form class="second" >
+                    <form class="second" ng-submit="addMoneyGift('form123')">
                         
-                        {{ form_label(form.amount) }}: {{ form_widget(form.amount, {'attr': {'ng-model':'amount'}}) }}
+                        {{ form_label(form.amount) }}: {{ form_widget(form.amount, {'attr': {}}) }}
                         
                         <input type="hidden" value="{{item.title}}" >
                         
@@ -97,7 +97,7 @@
                             (valeurs cachées, etc.  #}
                         {{ form_rest(form) }} 
                         
-                        <button ng-click="addMoneyGift()">{% trans %}cigogne.gift.form.money.give{% endtrans %}</button>
+                        <button >{% trans %}cigogne.gift.form.money.give{% endtrans %}</button>
                         
                     </form>
                 </div>
