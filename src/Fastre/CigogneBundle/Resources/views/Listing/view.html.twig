@@ -39,7 +39,7 @@
 
 {% block content %}
 
-<div ng-app>
+<div ng-app="listingView">
     <div ng-controller="basketController">
         <div id="basket" >
             <ul id="moneyGift">
@@ -86,8 +86,8 @@
 
                 {% if attribute(attribute(forms, item.id), money) is defined %}
                     {% set form = attribute(attribute(forms, item.id), money) %}
-                <div ng-controller="moneyGiftController">
-                    <form class="second" ng-submit="addMoneyGift('form123')">
+                <div >
+                    <form class="second" ng-controller="moneyGiftController" ng-submit="addMoneyGift('form123')">
                         
                         {{ form_label(form.amount) }}: {{ form_widget(form.amount, {'attr': {}}) }}
                         
