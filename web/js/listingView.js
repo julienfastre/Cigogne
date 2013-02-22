@@ -14,11 +14,15 @@ function basketController($scope) {
     
 }
 
-function moneyGiftController($scope) {
+function moneyGiftController($scope, $element, $http) {
     
-    $scope.addMoneyGift = function(form) {
+    $scope.addMoneyGift = function() {
         console.log("addMoneyGift");
-        alert(form.amount);
+        form = angular.element($element);
+        console.log(el);
+        seria = el.serialize();
+        console.log(seria);
+
         //$scope.moneyGifts.push({title: $scope.title, amount: $scope.amount});
     };
 }
