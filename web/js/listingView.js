@@ -63,7 +63,11 @@ function moneyGiftController($scope, $element, binder) {
         console.log("addMoneyGift");
         el = angular.element($element);
         console.log(el.text());
-        binder.addItem("test");
+        a = el.find('.amount').val();
+        t = el.find('.title').val();
+        ob = {form: el, amount: a, title: t};
+        
+        binder.addItem(ob);
 
         //$scope.moneyGifts.push({title: $scope.title, amount: $scope.amount});
     };

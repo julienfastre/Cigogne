@@ -89,9 +89,9 @@
                 <div >
                     <form class="second" ng-controller="moneyGiftController" ng-submit="addMoneyGift(this)">
                    
-                        {{ form_label(form.amount) }}: {{ form_widget(form.amount, {'attr': {}}) }}
+                        {{ form_label(form.amount) }}: {{ form_widget(form.amount, {'attr': {'class':'amount'}}) }}
                         
-                        <input type="hidden" name="title" value="{{item.title}}" >
+                        <input type="hidden" name="title" class="title" value="{{item.title}}" >
                         
                         {# ne pas supprimer form_rest : il affiche les éléments manquants 
                             (valeurs cachées, etc.  #}
