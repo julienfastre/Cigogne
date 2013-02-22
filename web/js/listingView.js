@@ -1,7 +1,37 @@
-function basketController($scope) {
+function basket2formBinderService() {
+
+    var fon;
+    
+    this.addItem = function(item) {
+        fon(item);
+    } ;
+    
+    this.register = function(fona) {
+        fon = fona;
+    }
+    
+    this.gogo = function(test){
+        console.log(test);
+    }
+}
+
+
+angular.module('listingView', [], function($provide) {
+   $provide.factory('basket2formBinderService', function() {
+       return new basket2formBinderService();
+   }) 
+});
+
+
+
+
+
+function basketController($scope, binder) {
     $scope.moneyGifts = [];
     // an object moneyGift should be :
     // {title: 'the title', amount: 50 }
+    
+    binder.gogo('from basketController');
         
     $scope.getTotalMoneyGifts = function() {
         var total = 0;
@@ -12,17 +42,33 @@ function basketController($scope) {
         return total;
     };
     
+    this.addItem = function (item) {
+        console.log('additem');
+        console.log(item);
+        $scope.moneyGifts.push(item);
+    };
+    
+    binder.register(this.addItem);
+    
 }
+basketController.$inject = ['$scope', 'basket2formBinderService'];
 
-function moneyGiftController($scope, $element, $http) {
+
+function moneyGiftController($scope, $element, binder) {
+    
+    binder.gogo('from moneyGift');
+
     
     $scope.addMoneyGift = function() {
         console.log("addMoneyGift");
-        form = angular.element($element);
-        console.log(el);
-        seria = el.serialize();
-        console.log(seria);
+        el = angular.element($element);
+        console.log(el.text());
+        binder.addItem("test");
 
         //$scope.moneyGifts.push({title: $scope.title, amount: $scope.amount});
     };
+    
+    
 }
+
+moneyGiftController.$inject = ['$scope', '$element', 'basket2formBinderService'];
