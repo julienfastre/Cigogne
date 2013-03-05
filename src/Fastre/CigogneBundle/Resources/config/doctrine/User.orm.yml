@@ -25,4 +25,8 @@ Fastre\CigogneBundle\Entity\User:
     paymentBitcoinAddress:
       type: string
       nullable: true
+  oneToMany:
+    lists:
+      targetEntity: Listing
+      mappedBy: creator
       

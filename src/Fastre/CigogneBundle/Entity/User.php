@@ -51,6 +51,8 @@ class User extends BaseUser
      * @var boolean $paymentBitcoinAccepted
      */
     private $paymentBitcoinAccepted = false;
+    
+    private $lists;
 
 
     /**

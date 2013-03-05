@@ -26,7 +26,7 @@ class ListingNormalizer implements NormalizerInterface {
      * @param string $format format the normalization result will be encoded as
      * @return array|scalar
      */
-    public function normalize($object, $format = null) {
+    public function normalize($object, $format = null, array $context = array()) {
         $a = array(
             'dateOfBirth' => null,
             'name' => $object->getName(),
