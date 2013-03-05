@@ -26,6 +26,19 @@
 {% block title %}{% trans with {'%name%': listing.creator.username} %}cigogne.listing.view.title{% endtrans %}{% endblock %}
 
 
+{% block css %}
+
+{# Peut être déplacé vers un fichier css #}
+
+<style type="text/css">
+        
+    {# permet de rendre invisible les titres dans le basket #}
+    .invisible {
+        display: none;
+    }
+</style>
+{% endblock %}
+
 {#  ajoute les dépendances JS d'angular JS + script de manip des formulaires #}
 {% block javascript %}
    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
@@ -42,14 +55,21 @@
 <div ng-app="listingView">
     <div ng-controller="basketController">
         <div id="basket" >
+            
+            <h1>{{ 'cigogne.listing.view.basket_title' | trans }}</h1>
+            
+            <p id="basket_all_empty_message">{{ 'cigogne.listing.view.basket_empty' | trans }}</p>
+            
+            <h2 class="invisible " id="basket_money_title">Les cadeaux achetés</h2>
+            
             <ul id="moneyGift">
                 <li ng-repeat="moneyGift in moneyGifts">
-                    <span>{{'{{'}}moneyGift.title{{'}}'}}</span> <span>{{'{{'}}moneyGift.amount{{'}}'}}</span>
+                    <span>{{ '{{moneyGift.title}}' }}</span> <span>{{ '{{moneyGift.amount | currency:"€"}}' }}</span>
                 </li>
 
             </ul>
 
-            {{'{{'}}getTotalMoneyGifts(){{'}}'}}
+            <p class="invisible" id="basket_money_total">{{ 'cigogne.listing.view.total_money' | trans}} {{ '{{getTotalMoneyGifts() | currency:"€"}}' }}
 
         </div>
     </div>
@@ -87,17 +107,31 @@
                 {% if attribute(attribute(forms, item.id), money) is defined %}
                     {% set form = attribute(attribute(forms, item.id), money) %}
                 <div >
-                    <form class="second" ng-controller="moneyGiftController" ng-submit="addMoneyGift(this)">
+                    <form class="second" 
+                          ng-controller="moneyGiftController" 
+                          ng-submit="addMoneyGift(this)" 
+                          action="{{path('cigogne.gift.money.send', {'_format':'json'})}}",
+                          method="post">
                    
-                        {{ form_label(form.amount) }}: {{ form_widget(form.amount, {'attr': {'class':'amount'}}) }}
+                        <p>
+                            {{ form_label(form.amount) }}: {{ form_widget(form.amount, 
+                                        {'attr': {
+                                            'class':'amount', 
+                                            'pattern': '[-+]?[0-9]*[.,]?[0-9]+',
+                                            'x-moz-errormessage': 'cigogne.gift.form.money.amount_error_message'|trans, 
+                                            'title': 'cigogne.gift.form.money.amount_error_message'|trans}}) }}
+
+                            <input type="hidden" name="title" value="{{item.title}}" >
+                            <input type="hidden" name="type" value="money" />
+
+
+                            {# ne pas supprimer form_rest : il affiche les éléments manquants 
+                                (valeurs cachées, etc.  #}
+                            {{ form_rest(form) }} 
+
+                            <button >{% trans %}cigogne.gift.form.money.give{% endtrans %}</button>
                         
-                        <input type="hidden" name="title" class="title" value="{{item.title}}" >
-                        
-                        {# ne pas supprimer form_rest : il affiche les éléments manquants 
-                            (valeurs cachées, etc.  #}
-                        {{ form_rest(form) }} 
-                        
-                        <button >{% trans %}cigogne.gift.form.money.give{% endtrans %}</button>
+                        </p>
                         
                     </form>
                 </div>

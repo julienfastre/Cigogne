@@ -25,6 +25,9 @@ cigogne:
       list_of_: Liste de %name%
       date_of_birth: La naissance est prévue pour le %date%
       item_list: Notre liste...
+      total_money: Montant total de vos cadeaux
+      basket_title: Votre panier
+      basket_empty: Votre panier est vide.
   gift:
     form:
       common:
@@ -32,6 +35,7 @@ cigogne:
         message: Message
       money:
         give: Offrir
+        amount_error_message: Uniquement des nombres avec un point ou un virgule
       nature:
         give: Donner
       service:

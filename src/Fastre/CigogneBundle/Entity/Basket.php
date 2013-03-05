@@ -17,27 +17,27 @@ class Basket
     /**
      * @var string
      */
-    private $name;
+    private $name = '';
 
     /**
      * @var string
      */
-    private $email;
+    private $email = '';
 
     /**
      * @var string
      */
-    private $message;
+    private $message = '';
 
     /**
      * @var string
      */
-    private $payment;
+    private $payment = '';
 
     /**
      * @var string
      */
-    private $token;
+    private $token = '';
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -183,10 +183,11 @@ class Basket
      * @param \Fastre\CigogneBundle\Entity\Gift $elements
      * @return Basket
      */
-    public function addElement(\Fastre\CigogneBundle\Entity\Gift $elements)
+    public function addElement(\Fastre\CigogneBundle\Entity\Gift $element)
     {
-        $this->elements[] = $elements;
-    
+        $this->elements[] = $element;
+        $element->setBasket($this);
+        
         return $this;
     }
 

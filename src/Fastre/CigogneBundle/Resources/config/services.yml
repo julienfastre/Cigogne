@@ -34,3 +34,7 @@ services:
     arguments: ["@doctrine.orm.entity_manager"]
     tags:
       - { name: form.type, alias: basket_hidden }
+      
+  cigogne.basket.provider:
+    class: Fastre\CigogneBundle\Services\BasketProviderService
+    arguments: ["@session", "@doctrine.orm.entity_manager"]
