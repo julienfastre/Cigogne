@@ -13,6 +13,8 @@ function basket2formBinderService() {
     this.gogo = function(test){
         console.log(test);
     };
+    
+
 }
 
 
@@ -23,6 +25,10 @@ angular.module('listingView', [], function($provide) {
    
    $provide.factory('sendFormService', function() {
        return new sendFormService();
+   });
+   
+   $provide.factory('uuidFactory', function(){
+       return new uuidFactory(); 
    });
 });
 
@@ -117,7 +123,7 @@ function basketController($scope, binder, formServiceInstance) {
 basketController.$inject = ['$scope', 'basket2formBinderService'];
 
 
-function moneyGiftController($scope, $element, binder, formService) {
+function moneyGiftController($scope, $element, binder, formService, uuidFactory) {
     
     binder.gogo('from moneyGift');
     
@@ -144,25 +150,35 @@ function moneyGiftController($scope, $element, binder, formService) {
         
         ttitle = el.find('input[name=title]').val();
         ttype =  el.find('input[name=type]').val();
-        ob = {form: el, amount: aamount_corrected, title: ttitle, type: ttype};
+        uuuid = uuidFactory.guid();
+        ob = {form: el, amount: aamount_corrected, title: ttitle, type: ttype, uuid: uuuid};
         
         binder.addItem(ob);
         
-        formService.sendForm($element);
+        formService.sendForm($element, ob);
 
     };
     
     
 }
 
-moneyGiftController.$inject = ['$scope', '$element', 'basket2formBinderService', 'sendFormService'];
+moneyGiftController.$inject = ['$scope', '$element', 'basket2formBinderService', 'sendFormService', 'uuidFactory'];
 
 
 function sendFormService() {
     
-    this.sendForm = function(formElement) {
+    this.sendForm = function(formElement, item) {
         console.log('sendform active');
         form = angular.element(formElement);
+        
+        //add the uuid input
+        uuidInput = $('<input>', {
+            type: 'hidden',
+            value: item.uuid,
+            name: 'uuid'
+        });
+        
+        form.append(uuidInput);
 
         $.ajax({
             type: form.attr('method'),
@@ -177,4 +193,17 @@ function sendFormService() {
         })
     };
     
+}
+
+function uuidFactory() {
+    s4 = function() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+                   .toString(16)
+                   .substring(1);
+    };
+
+    this.guid = function() {
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+               s4() + '-' + s4() + s4() + s4();
+    }
 }
