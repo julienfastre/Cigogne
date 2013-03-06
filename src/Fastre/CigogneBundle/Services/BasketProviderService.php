@@ -51,6 +51,9 @@ class BasketProviderService {
         } else {
             $basket = $this->em->getRepository('FastreCigogneBundle:Basket')
                     ->find($basket_id);
+            if ($basket === null) {
+                throw new \Exception('basket not found with id '.$basket_id);
+            }
         }
         
         return $basket;

@@ -43,6 +43,16 @@ class Basket
      * @var \Doctrine\Common\Collections\Collection
      */
     private $elements;
+    
+    /**
+     * @var \DateTime
+     */
+    private $lastUpdate;
+
+    /**
+     * @var boolean
+     */
+    private $closed = false;    
 
     /**
      * Constructor
@@ -50,6 +60,7 @@ class Basket
     public function __construct()
     {
         $this->elements = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setLastUpdateNow();
     }
     
     /**
@@ -187,6 +198,7 @@ class Basket
     {
         $this->elements[] = $element;
         $element->setBasket($this);
+        $this->setLastUpdateNow();
         
         return $this;
     }
@@ -209,5 +221,62 @@ class Basket
     public function getElements()
     {
         return $this->elements;
+    }
+
+    /**
+     * Set lastUpdate
+     *
+     * @param \DateTime $lastUpdate
+     * @return Basket
+     */
+    private function setLastUpdate(\DateTime $lastUpdate)
+    {
+        $this->lastUpdate = $lastUpdate;
+    
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \Fastre\CigogneBundle\Entity\Basket
+     */
+    public function setLastUpdateNow()
+    {
+        $date = new \DateTime('now');
+        $this->setLastUpdate($date);
+        return $this;
+    }
+
+    /**
+     * Get lastUpdate
+     *
+     * @return \DateTime 
+     */
+    public function getLastUpdate()
+    {
+        return $this->lastUpdate;
+    }
+
+    /**
+     * Set closed
+     *
+     * @param boolean $closed
+     * @return Basket
+     */
+    public function setClosed($closed)
+    {
+        $this->closed = $closed;
+    
+        return $this;
+    }
+
+    /**
+     * Get closed
+     *
+     * @return boolean 
+     */
+    public function getClosed()
+    {
+        return $this->closed;
     }
 }

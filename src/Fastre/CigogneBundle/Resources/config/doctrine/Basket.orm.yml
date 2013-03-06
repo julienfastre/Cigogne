@@ -20,9 +20,15 @@ Fastre\CigogneBundle\Entity\Basket:
     token:
       type: string
       length: 255
+    lastUpdate:
+      type: datetime
+    closed:
+      type: boolean
   oneToMany:
     elements:
       targetEntity: Gift
       mappedBy: basket
+  hasLifecycleCallbacks:
+    preUpdate: [setLastUpdateNow]
     
     
