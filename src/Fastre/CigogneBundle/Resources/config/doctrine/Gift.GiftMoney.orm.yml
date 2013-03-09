@@ -3,6 +3,6 @@ Fastre\CigogneBundle\Entity\Gift\GiftMoney:
   fields:
     amount:
       type: decimal
-      precision: 4
+      precision: 8
       scale: 2
       
