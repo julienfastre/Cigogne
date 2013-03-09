@@ -45,6 +45,17 @@ class LoadItemsData extends AbstractFixture implements OrderedFixtureInterface {
                 "type" => Item::TYPE_GOOD,
                 'good' => array(Item::GOOD_NEW),
             ),
+            array(
+                "desc" => "Séances de baby-sitting",
+                'title' => 'Du baby-sitting !',
+                'quantity' => 10,
+                'furn' => array(Item::FURNITURE_SERVICE),
+                'price' => 0,
+                "furnDetails" => "Des samedi soirs",
+                'type' => Item::TYPE_SERVICE,
+                'good' => array(),
+                'priority' => 1,
+            ),
             
         );
         

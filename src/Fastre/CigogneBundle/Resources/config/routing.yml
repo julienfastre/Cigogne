@@ -16,9 +16,16 @@ fastre_cigogne_listing_get:
   requirements:
     _format: json
     
-cigogne.gift.money.send:
-  pattern: /gift/money/add.{_format}
+cigogne.gift.add:
+  pattern: /gift/{type}/add.{_format}
   defaults: {_controller: FastreCigogneBundle:Gift:moneyAdd }
   requirements:
     _format : json
-    method: post
+    method: POST
+
+cigogne.gift.remove:
+  pattern: /gift/remove.{_format}
+  defaults: {_controller: FastreCigogneBundle:Gift:remove }
+  requirements:
+    _format: json
+    method: POST

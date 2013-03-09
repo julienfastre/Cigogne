@@ -9,6 +9,7 @@ use Fastre\CigogneBundle\Entity\Item;
  * Normalize items
  *
  * @author Julien Fastré <julien arobase fastre point info>
+ * @deprecated
  */
 class ItemNormalizer {
     

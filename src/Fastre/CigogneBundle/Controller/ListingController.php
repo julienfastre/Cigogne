@@ -158,6 +158,8 @@ class ListingController extends Controller {
         return $this->render('FastreCigogneBundle:Listing:view.html.twig', array(
             'listing' => $l,
             'forms' => $forms,
+            'deleteToken' => $this->get('form.csrf_provider')
+                ->generateCsrfToken(GiftController::DELETE_ITEM_TOKEN)
         ));        
     }
     

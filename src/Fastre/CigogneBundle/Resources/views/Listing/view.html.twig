@@ -43,6 +43,10 @@
 {% block javascript %}
    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
    <script src="{{ asset('js/listingView.js') }}"></script>
+   <script>
+       var urlDeleteGift = '{{ path('cigogne.gift.remove', {'_format':'json'})}}';
+       var deleteToken = '{{deleteToken}}';
+   </script>
 {% endblock %}
 
 
@@ -62,11 +66,25 @@
             
             <h2 class="invisible " id="basket_money_title">Les cadeaux achetés</h2>
             
-            <ul id="moneyGift">
+            <ul id="moneyGiftList">
                 <li ng-repeat="moneyGift in moneyGifts">
-                    <span>{{ '{{moneyGift.title}}' }}</span> <span>{{ '{{moneyGift.amount | currency:"€"}}' }}</span>
+                    <span>{{ '{{moneyGift.title}}' }}</span> 
+                    <span>{{ '{{moneyGift.amount | currency:"€"}}' }}</span> 
+                    <span><a ng-click="deleteItem(moneyGift.uuid)">{{ 'cigogne.listing.view.basket_delete'}}</a>
                 </li>
 
+            </ul>
+            
+            
+            <h2 >Vous apporterez en nature...</h2>
+            
+            <ul id="natureGiftList">
+                <li ng-repeat="natureGift in natureGifts">
+                    <span>{{ '{{natureGift.title}}' }}</span>
+                    <span>{{ '{{natureGift.message}}' }}</span>
+                    <span><a ng-click="deleteItem(natureGift.uuid)">{{ 'cigogne.listing.view.basket_delete'}}</a>
+                </li>
+            
             </ul>
 
             <p class="invisible" id="basket_money_total">{{ 'cigogne.listing.view.total_money' | trans}} {{ '{{getTotalMoneyGifts() | currency:"€"}}' }}
@@ -110,7 +128,7 @@
                     <form class="second" 
                           ng-controller="moneyGiftController" 
                           ng-submit="addMoneyGift(this)" 
-                          action="{{path('cigogne.gift.money.send', {'_format':'json'})}}",
+                          action="{{path('cigogne.gift.add', {'_format':'json', 'type':'money'})}}" 
                           method="post">
                    
                         <p>
@@ -141,10 +159,23 @@
                 {% if attribute(attribute(forms, item.id), nature) is defined  %}
                     {% set form = attribute(attribute(forms, item.id), nature) %}
                   
-                    <form method="post" action="#" class="new">
-                        {{ form_label(form.message) }}: {{ form_widget(form.message) }}
+                    <form method="post" 
+                          action="{{path('cigogne.gift.add', {'_format':'json', 'type':'nature'})}}"
+                          class="new" 
+                          ng-controller="natureGiftController" 
+                          ng-submit="addNatureGift(this)">
+                        
+                           {{ form_label(form.message) }}: {{ form_widget(form.message, 
+                                             {'attr': {
+                                                    'class' : 'message'
+                                                    }}) }}
+                            
+                            <input type="hidden" name="title" value="{{item.title}}" >
+                            <input type="hidden" name="type" value="nature" />
+
+                                   
                             {# ne pas supprimer form_rest : il affiche les éléments manquants 
-                            (valeurs cachées, etc.  #}
+                            (valeurs cachées, etc.  #} 
                             {{ form_rest(form) }} 
                         <button>{% trans %}cigogne.gift.form.nature.give{% endtrans %}</button>
                     </form>

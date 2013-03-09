@@ -222,6 +222,11 @@ class Basket
     {
         return $this->elements;
     }
+    
+    public function hasElement(\Fastre\CigogneBundle\Entity\Gift $element)
+    {
+        return $this->elements->contains($element);
+    }
 
     /**
      * Set lastUpdate
