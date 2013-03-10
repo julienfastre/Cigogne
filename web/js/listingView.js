@@ -64,11 +64,15 @@ function basketController($scope, binder, formServiceInstance) {
     //should be:
     //{title: 'the title', message:'the message', uuid: 'uuidstring' }
     
+    $scope.serviceGifts = [];
+    
     binder.gogo('from basketController');
     /**
      * the form service
      */
     formService = formServiceInstance ;
+    
+    
         
     $scope.getTotalMoneyGifts = function() {
         var total = 0;
@@ -79,34 +83,44 @@ function basketController($scope, binder, formServiceInstance) {
         return total;
     };
     
-    this.addItem = function (item) {
-        console.log('additem');
-        console.log(item);
-        
-        switch (item.type) {
-            case 'money':
-                $scope.moneyGifts.push(item);
-                break;
-            case 'nature':
-                $scope.natureGifts.push(item);
-                break;
+    
+    
+    var public = {
+        addItem : function (item) {
+            console.log('additem');
+            console.log(item);
+
+            switch (item.type) {
+                case 'money':
+                    $scope.moneyGifts.push(item);
+                    break;
+                case 'nature':
+                    $scope.natureGifts.push(item);
+                    break;
+                case 'service':
+                    $scope.serviceGifts.push(item);
+                    break;
+            }
+
+
+            processVisibleMessage();
+
+            switch(item.type) 
+            {
+                case 'money' :
+                    processMoney(item);
+                    break;
+                case 'nature':
+                    processNature(item);
+                    break;
+                case 'service':
+                    processService(item);
+                    break;
+                default:
+                    console.log(item.type + 'not exist');
+            }
+
         }
-        
-        
-        processVisibleMessage();
-             
-        switch(item.type) 
-        {
-            case 'money' :
-                processMoney(item);
-                break;
-            case 'nature':
-                processNature(item);
-                break;
-            default:
-                console.log(item.type + 'not exist');
-        }
-        
     };
     
     processVisibleMessage = function() {
@@ -129,11 +143,15 @@ function basketController($scope, binder, formServiceInstance) {
                 return $scope.moneyGifts.length;
                 break;
             case 'all':
-                a = countItems('money') + countItems('nature');
+                a = countItems('money') + countItems('nature') + countItems('service');
                 return a;
                 break;
             case 'nature':
                 return $scope.natureGifts.length;
+                break;
+            case 'service':
+                return $scope.serviceGifts.length;
+                break;
             default:
                 console.log('not implemented');
                 return 0;
@@ -142,7 +160,6 @@ function basketController($scope, binder, formServiceInstance) {
     };
     
     processMoney = function () {
-        console.log('process money');
         
         if (countItems('money') > 0 ) {
             h = $('#basket_money_title');
@@ -168,9 +185,53 @@ function basketController($scope, binder, formServiceInstance) {
             
     };
     
-    processNature = function (item) {
-        
-    }
+    processNature = function(item) {
+        if (countItems('nature') > 0 ) {
+            h = $('#basket_nature_title');
+            if (h.hasClass('invisible')) {
+                h.removeClass('invisible');
+            }
+            
+            p = $('#basket_nature_total');
+            if (p.hasClass('invisible')) {
+                p.removeClass('invisible');
+            }
+                        
+        } else {
+            h = $('#basket_nature_title');
+            
+                h.addClass('invisible');
+                        
+            p = $('#basket_nature_total');
+            
+                p.addClass('invisible');
+            
+        }
+    };
+    
+    processService = function(item) {
+        if (countItems('service') > 0 ) {
+            h = $('#basket_service_title');
+            if (h.hasClass('invisible')) {
+                h.removeClass('invisible');
+            }
+            
+            p = $('#basket_service_total');
+            if (p.hasClass('invisible')) {
+                p.removeClass('invisible');
+            }
+                        
+        } else {
+            h = $('#basket_service_title');
+            
+                h.addClass('invisible');
+                        
+            p = $('#basket_service_total');
+            
+                p.addClass('invisible');
+            
+        }
+    };
     
     $scope.deleteItem = function(uuid) {
         
@@ -192,6 +253,17 @@ function basketController($scope, binder, formServiceInstance) {
                 if ($scope.natureGifts[i].uuid === uuid) {
                     foundId = $scope.natureGifts[i].id;
                     $scope.natureGifts.splice(i, 1);
+                    found = true;
+                }            
+            } 
+        }
+        
+        //delete in serviceGift
+        if (found === false) {
+            for (i = 0; i < $scope.serviceGifts.length; i++) {
+                if ($scope.serviceGifts[i].uuid === uuid) {
+                    foundId = $scope.serviceGifts[i].id;
+                    $scope.serviceGifts.splice(i, 1);
                     found = true;
                 }            
             } 
@@ -220,8 +292,28 @@ function basketController($scope, binder, formServiceInstance) {
             alert(uuid+' not found ! ');
         } 
         
+        //enable the form corresponding to uuid
+        forms = $('form');
+        console.log('found ' + forms.length + 'forms ');
+        for(i=0; i < forms.length; i++) {
+            formE = $(forms[i]);
+            inputUuid = formE.find('input[name=uuid]');
+            console.log(inputUuid.length);
+            if (inputUuid.length === 1) {
+
+                if ($(inputUuid[0]).val() === uuid) {
+                    inputs = formE.find(':input');
+                    inputs.each(function(){
+                        $(this).prop('disabled', false);
+                    });
+                }
+            }
+        }
+        
         processVisibleMessage();
         processMoney();
+        processNature();
+        processService();
         
     };
     
@@ -247,6 +339,16 @@ function basketController($scope, binder, formServiceInstance) {
             }
         }
         
+        //within serviceGifts
+        if (found === false) {
+            for (i=0; i < $scope.serviceGifts.length; i++) {
+                if ($scope.serviceGifts[i].uuid === r.uuid) {
+                    $scope.serviceGifts[i].id = r.id;
+                    found = true;
+                }
+            }
+        } 
+        
         if (found === false) {
             alert('erreur du serveur');
         }
@@ -254,8 +356,51 @@ function basketController($scope, binder, formServiceInstance) {
     
     
     //bind some function to the binder, to let them accessible to other controllers:
-    binder.registerAddItem(this.addItem);
+    binder.registerAddItem(public.addItem);
     binder.registerBindItem(this.bindItem);
+    
+    //add the gift already in the basket
+    for(i = 0; i < itemsInBasket.length; i++) {
+        public.addItem(itemsInBasket[i]);
+        
+        //disable the form corresponding to the item
+        forms = $('form');
+        console.log('we are searching for ' + itemsInBasket[i].itemId);
+        console.log('within ' +forms.length);
+        for (j = 0; j < forms.length; j++) {
+            formE = $(forms[j]);
+            inputsId = formE.find('input[name*="item"]');
+            console.log(inputsId);
+            //if the form has an item...
+            if(inputsId.length > 0) {
+                console.log('i found something');
+                //if the item correspond to the itemId...
+                console.log('found item ' + $(inputsId[0]).val() 
+                        +' in ' + $(inputsId[0]).attr('name'));
+                if($(inputsId[0]).val().toString() === itemsInBasket[i].itemId.toString()) {
+                    console.log('i found the correct form !');
+                    elements = formE.find(':input');
+                    
+                    elements.each(function(){
+                        $(this).prop('disabled', true);
+                    });
+                    
+                    uuidInput = $('<input>', {
+                        type: 'hidden',
+                        value: itemsInBasket[i].uuid,
+                        name:'uuid'
+
+                    });
+        
+                    formE.append(uuidInput);
+                    
+                }
+            }
+        }
+        
+    }
+    
+    return public;
     
 }
 basketController.$inject = ['$scope', 'basket2formBinderService'];
@@ -288,10 +433,11 @@ function moneyGiftController($scope, $element, binder, formService, uuidProvider
         
         ttitle = el.find('input[name=title]').val();
         ttype =  el.find('input[name=type]').val();
+        iid = el.find('input[name*="item"]').val();
         uuuid = uuidProvider.createGuid();
         
         
-        ob = {form: el, amount: aamount_corrected, title: ttitle, type: ttype, uuid: uuuid};
+        ob = {form: el, amount: aamount_corrected, title: ttitle, type: ttype, uuid: uuuid, itemId : iid};
         
         binder.addItem(ob);
         
@@ -323,9 +469,11 @@ function natureGiftController($scope, $element, binder, formService, uuidProvide
         ttitle = el.find('input[name=title]').val();
         ttype =  el.find('input[name=type]').val();
         uuuid = uuidProvider.createGuid();
+        qquantity = el.find('input[name*="quantity"]').val();
+        iid = el.find('input[name*="item"]').val();
         
         
-        ob = {message: mmessage, uuid : uuuid, title: ttitle, type: ttype};
+        ob = {message: mmessage, uuid : uuuid, title: ttitle, type: ttype, quantity: qquantity, itemId: iid};
         
         binder.addItem(ob);
         
@@ -337,6 +485,42 @@ function natureGiftController($scope, $element, binder, formService, uuidProvide
 }
 
 natureGiftController.$inject = ['$scope', '$element', 'basket2formBinderService', 'sendFormService', 'uuidProvider'];
+
+
+function serviceGiftController($scope, $element, binder, formService, uuidProvider) {
+    
+    binder.gogo('from serviceGiftController');
+    
+    angular.element($element).submit(function(event) {
+        event.preventDefault();
+    });
+
+    
+    $scope.addServiceGift = function() {
+        console.log("addServiceGift");
+        el = angular.element($element);
+        
+        mmessage = el.find('[name*="message"]').val();
+        
+        ttitle = el.find('input[name=title]').val();
+        ttype =  el.find('input[name=type]').val();
+        uuuid = uuidProvider.createGuid();
+        qquantity = el.find('input[name*="quantity"]').val();
+        iid = el.find('input[name*="item"]').val();
+        
+        
+        ob = {message: mmessage, uuid : uuuid, title: ttitle, type: ttype, quantity: qquantity, itemId: iid};
+        
+        binder.addItem(ob);
+        
+        formService.sendForm($element, ob);
+
+    };
+    
+    
+}
+
+serviceGiftController.$inject = ['$scope', '$element', 'basket2formBinderService', 'sendFormService', 'uuidProvider'];
 
 
 
@@ -374,6 +558,13 @@ function sendFormService(bindService) {
             }
             
         });
+        
+        elements = form.find(':input');
+        for(i=0; i < elements.length; i++) {
+            $(elements[i]).prop('disabled', true);
+
+        }
+        
     };
     
 }

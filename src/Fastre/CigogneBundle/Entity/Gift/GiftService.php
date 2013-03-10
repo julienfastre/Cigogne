@@ -14,7 +14,12 @@ class GiftService extends Gift {
     /**
      * @var string
      */
-    private $message;
+    private $message = '';
+    
+    /**
+     * @var integer
+     */
+    private $quantity = 1;    
 
 
     /**
@@ -26,6 +31,10 @@ class GiftService extends Gift {
     public function setMessage($message)
     {
         $this->message = $message;
+        if ($this->message === null)
+        {
+            $this->message = '';
+        }
     
         return $this;
     }
@@ -40,4 +49,26 @@ class GiftService extends Gift {
         return $this->message;
     }
 
+    /**
+     * Set quantity
+     *
+     * @param integer $quantity
+     * @return GiftService
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+    
+        return $this;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return integer 
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
 }

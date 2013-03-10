@@ -28,11 +28,13 @@ cigogne:
       total_money: Montant total de vos cadeaux
       basket_title: Votre panier
       basket_empty: Votre panier est vide.
+      basket_delete: Supprimer du panier
   gift:
     form:
       common:
         amount: Montant
         message: Message
+        quantity: Quantité
       money:
         give: Offrir
         amount_error_message: Uniquement des nombres avec un point ou un virgule

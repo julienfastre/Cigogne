@@ -4,3 +4,5 @@ Fastre\CigogneBundle\Entity\Gift\GiftNature:
     message:
       type: text
       length: 7000
+    quantity:
+      type: integer

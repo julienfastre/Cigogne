@@ -9,6 +9,7 @@ use Fastre\CigogneBundle\Entity\User;
  * Normalize Users Entity
  *
  * @author Julien Fastré <julien arobase fastre point info>
+ * @deprecated
  */
 class UserNormalizer implements NormalizerInterface {
     

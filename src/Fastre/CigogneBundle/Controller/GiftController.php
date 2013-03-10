@@ -9,6 +9,8 @@ use Fastre\CigogneBundle\Entity\Gift\GiftMoney;
 use Fastre\CigogneBundle\Form\Gift\GiftMoneyType;
 use Fastre\CigogneBundle\Entity\Gift\GiftNature;
 use Fastre\CigogneBundle\Form\Gift\GiftNatureType;
+use Fastre\CigogneBundle\Entity\Gift\GiftService;
+use Fastre\CigogneBundle\Form\Gift\GiftServiceType;
 
 /**
  * 
@@ -19,7 +21,7 @@ class GiftController extends Controller {
     
     const DELETE_ITEM_TOKEN = 'delete_item';
     
-    public function moneyAddAction($_format, Request $request, $type) {
+    public function addAction($_format, Request $request, $type) {
         
         switch($type) {
             case 'money' :    
@@ -29,6 +31,10 @@ class GiftController extends Controller {
             case 'nature':
                 $gift = new GiftNature();
                 $form = $this->createForm(new GiftNatureType, $gift);
+                break;
+            case 'service':
+                $gift = new GiftService();
+                $form = $this->createForm(new GiftServiceType, $gift);
                 break;
             default:
                 $r = new Response('type not exist : '.$type);

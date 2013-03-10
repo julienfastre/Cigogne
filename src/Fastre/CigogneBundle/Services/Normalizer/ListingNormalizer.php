@@ -10,6 +10,7 @@ use Fastre\CigogneBundle\Services\Normalizer\ItemNormalizer;
  * Description of ListNormalizer
  *
  * @author Julien Fastré <julien arobase fastre point info>
+ * @deprecated
  */
 class ListingNormalizer implements NormalizerInterface {
     

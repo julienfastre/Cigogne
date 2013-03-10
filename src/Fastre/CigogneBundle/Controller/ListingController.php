@@ -154,12 +154,24 @@ class ListingController extends Controller {
         }
         
         
+        //get the gift already in the basket and serialize them into json
+        $json = $this->get("cigogne.normalizer.serializer")
+                ->serialize(
+                        $this->get("cigogne.basket.provider")
+                            ->getBasket()
+                            ->getElements(),
+                        'json',
+                        array()
+                        );
+        
+        
         
         return $this->render('FastreCigogneBundle:Listing:view.html.twig', array(
             'listing' => $l,
             'forms' => $forms,
             'deleteToken' => $this->get('form.csrf_provider')
-                ->generateCsrfToken(GiftController::DELETE_ITEM_TOKEN)
+                ->generateCsrfToken(GiftController::DELETE_ITEM_TOKEN),
+            'itemsInBasket' => $json,
         ));        
     }
     

@@ -14,6 +14,7 @@ services:
       normalizers: 
           - "@cigogne.normalizer.listing_normalizer"
           - "@cigogne.normalizer.item_normalizer"
+          - "@cigogne.normalizer.gift_normalizer"
   
   cigogne.normalizer.item_normalizer:
     class: Fastre\CigogneBundle\Services\Normalizer\ItemNormalizer
@@ -22,6 +23,10 @@ services:
     class: Fastre\CigogneBundle\Services\Normalizer\ListingNormalizer
     arguments:
       itemNormalizer: "@cigogne.normalizer.item_normalizer"
+      
+  cigogne.normalizer.gift_normalizer:
+    class: Fastre\CigogneBundle\Services\Normalizer\GiftNormalizer
+    
   
   cigogne.type.item_hidden:
     class: Fastre\CigogneBundle\Form\Type\ItemHiddenType
