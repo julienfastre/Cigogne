@@ -306,6 +306,10 @@ function basketController($scope, binder, formServiceInstance) {
                     inputs.each(function(){
                         $(this).prop('disabled', false);
                     });
+                    
+                    uuidInput = formE.find('input[name=uuid]');
+                    uuidInput.remove();
+                    
                 }
             }
         }
@@ -508,7 +512,7 @@ function serviceGiftController($scope, $element, binder, formService, uuidProvid
         qquantity = el.find('input[name*="quantity"]').val();
         iid = el.find('input[name*="item"]').val();
         
-        
+            
         ob = {message: mmessage, uuid : uuuid, title: ttitle, type: ttype, quantity: qquantity, itemId: iid};
         
         binder.addItem(ob);
