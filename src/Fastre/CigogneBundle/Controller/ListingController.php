@@ -172,6 +172,7 @@ class ListingController extends Controller {
             'deleteToken' => $this->get('form.csrf_provider')
                 ->generateCsrfToken(GiftController::DELETE_ITEM_TOKEN),
             'itemsInBasket' => $json,
+            'code' => $code
         ));        
     }
     

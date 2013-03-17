@@ -1,0 +1,47 @@
+{% extends "FastreCigogneBundle::layout.html.twig" %}
+
+{#  
+    ajoute le titre de la page
+#}
+
+{% block title %}{% trans %}cigogne.basket.confirm.title{% endtrans %}{% endblock %}
+
+{% block css %}
+  {# mettre le code CSS ou les liens vers des feuilles de style CSS ici #}
+
+
+
+{% endblock %}
+
+
+
+{% block javascript %}
+  {# mettre le code js ou les liens vers les scripts ici #}
+
+
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<h1>Confirmation de vos dons</h1>
+
+{{ include('FastreCigogneBundle:Basket:presentation.html.twig', {
+   'giftMoneys': giftMoneys,
+   'giftNatures' : giftNatures, 
+   'giftServices' : giftServices
+   }
+) }}
+
+<p><a href="{{ url('cigogne.listing.see', {'code': code, 'rand' : random() } ) }}">Modifier</a></p>
+
+<form method="POST" action="#" >
+
+        
+  {{ form_rest(basketForm) }}
+
+</form>
+
+{% endblock %}

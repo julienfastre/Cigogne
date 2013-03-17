@@ -53,6 +53,21 @@ class Basket
      * @var boolean
      */
     private $closed = false;    
+    
+    const PAYEMENT_TRANSFER = 'transfer';
+    const PAYEMENT_BITCOIN = 'bitcoin';
+    const PAYEMENT_PAYPAL = 'paypal';
+    
+    /**
+     * 
+     */
+    public static function getPaymentMethodWithTranslation() {
+        return array(
+            //self::PAYEMENT_BITCOIN => 'cigogne.basket.payement_methods.bitcoin', 
+            //self::PAYEMENT_PAYPAL => 'cigogne.basket.payement_methods.paypal', 
+            self::PAYEMENT_TRANSFER => 'cigogne.basket.payement_methods.transfer'
+        );
+    }
 
     /**
      * Constructor
@@ -61,6 +76,20 @@ class Basket
     {
         $this->elements = new \Doctrine\Common\Collections\ArrayCollection();
         $this->setLastUpdateNow();
+        $this->token = $this->createToken();
+    }
+    
+    private function createToken() {
+        $letters = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+                'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+                '1', '2', '3', '4', '5', '6', '7', '8', '9');
+        
+        $str = '';
+        
+        for ($i = 0; $i < 4; $i++) {
+            $str .= $letters[array_rand($letters)];
+        }
+        return $str;
     }
     
     /**

@@ -1,0 +1,46 @@
+{% if giftMoneys | length > 0 %}
+    <h2>Vous donnez de l'argent pour...</h2>
+
+    <ul>
+        {% for giftMoney in giftMoneys %}
+
+            <li>{{giftMoney.item.title}}, {{giftMoney.amount}}<br/>
+                <span class="message"></span></li>
+
+        {% endfor %}
+
+    </ul>
+
+{% endif %}
+
+{% if giftNatures | length > 0 %}
+    <h2>Vous apporterez les objets suivants...</h2>
+
+    <ul>
+        {% for giftNature in giftNatures %}
+
+            <li>{{giftNature.item.title}}, {{giftNature.quantity}}<br/>
+                <span class="message">{{giftNature.message}}</span></li>
+
+        {% endfor %}
+
+    </ul>
+{% endif %}
+
+{% if giftServices | length > 0 %}    
+<h2>Vous rendrez ces services</h2>
+
+<ul>
+    {% for giftService in giftServices %}
+        
+        <li>{{giftService.item.title}}, {{giftService.quantity}}<br/>
+            <span class="message">{{giftService.message}}</span></li>
+        
+    {% endfor %}
+
+</ul>
+{% endif %}
+
+<p>Vos dons : €{{totalMoney | number_format(2, ',', ' ')}} pour {{giftMoneys | length }} objet,
+{{giftNatures | length }} dons d'objets et {{giftServices | length }} services.</p>
+

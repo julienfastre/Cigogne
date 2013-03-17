@@ -29,3 +29,8 @@ cigogne.gift.remove:
   requirements:
     _format: json
     method: POST
+    
+cigogne.basket.confirm:
+  pattern: basket/{code}/confirm
+  defaults: {_controller: FastreCigogneBundle:Basket:confirm }
+  

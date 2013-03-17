@@ -122,6 +122,7 @@
 
             <p class="invisible" id="basket_money_total">{{ 'cigogne.listing.view.total_money' | trans}} {{ '{{getTotalMoneyGifts() | currency:"€"}}' }}</p>
 
+            <p><a href="{{ path('cigogne.basket.confirm', {'code': code }) }}">Valider</a></p>
         </div>
     </div>
     
