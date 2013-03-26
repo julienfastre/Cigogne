@@ -63,6 +63,8 @@
 #}
 
 {% block content %}
+   
+   {# le code qui contient le "panier " de l'utilisateur.  #}
 
 <div ng-app="listingView">
     <div ng-controller="basketController" >
@@ -126,7 +128,7 @@
         </div>
     </div>
     
-    
+    {# les listes commencent à être décrites ici #}
     <h1>{{listing.name}}</h1>
     <p>{% trans with {'%name%': listing.creator.username} %}cigogne.listing.view.list_of_{% endtrans %}</p>
 
@@ -140,7 +142,7 @@
         liste de tous les items...
     #}
 
-    <div id="item.list" >
+    <div id="item_list" >
 
         {% for item in listing.items %}
     {#  
@@ -151,11 +153,11 @@
           {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_SECOND_HAND') in item.good %}second{% endif %}
           {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_NEW') in item.good %}new{% endif %}
         ">
-                <h2 class="item_title">{{item.title}}</h2>
+                <h2 class="robert item_title">{{item.title}}</h2>
 
                 <p class="item_description">{{item.description}}</p>
 
-
+                {# formulaire pour donner de l'argent #}
                 {% if attribute(attribute(forms, item.id), money) is defined %}
                     {% set form = attribute(attribute(forms, item.id), money) %}
                 <div >
@@ -189,7 +191,8 @@
                 </div>
 
                 {% endif %}
-
+                
+                {# formulaire pour donner un objet en nature #}
                 {% if attribute(attribute(forms, item.id), nature) is defined  %}
                     {% set form = attribute(attribute(forms, item.id), nature) %}
                   
@@ -217,6 +220,7 @@
 
                 {% endif %}
 
+                {# formulaire pour rendre un service #}
                 {% if attribute(attribute(forms, item.id), service) is defined %}
                     {% set form = attribute(attribute(forms, item.id), service) %}
                 

@@ -3,12 +3,14 @@
 
     <head>
         <title>{% block title %}{% endblock %} | Cigogne</title>
-        
+     
+        <link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/architect-s-daughter"  type="text/css"/> 
        <script type="text/javascript" src="{{ asset('js/jquery-1.9.1.js') }}" ></script>
         {% block javascript %}
           
         {% endblock %}
         
+       <link rel="stylesheet" media="screen" href="{{asset('css/newfont.css')}}" type="text/css" />
         {% block css %}
         
         {% endblock %}
