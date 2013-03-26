@@ -14,7 +14,15 @@ class GiftServiceType extends GiftType
         parent::buildForm($builder, $options);
         
         $builder
-            ->add('message', 'textarea', array('label' => 'cigogne.gift.form.common.message'))
+            ->add('message', 'textarea', 
+                    array(
+                        'label' => 'cigogne.gift.form.common.message',
+                        'required' => false)
+                    )
+            ->add('quantity', 'number', array(
+                'precision' => 0,
+                'label' => 'cigogne.gift.form.common.quantity'
+            ))
         ;
     }
 
