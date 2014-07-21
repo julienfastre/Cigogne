@@ -3,6 +3,7 @@
 
     <head>
         <title>{% block title %}{% endblock %} | Cigogne</title>
+
         
         {% stylesheets '@FastreCigogneBundle/Resources/public/css/fonts/leckerlione.css'
                        '@FastreCigogneBundle/Resources/public/css/fonts/entypo.css'
@@ -13,11 +14,13 @@
         	<link rel="stylesheet" href="{{ asset_url }}" />
     	{% endstylesheets %}
         
+
        <script type="text/javascript" src="{{ asset('js/jquery-1.9.1.js') }}" ></script>
         {% block javascript %}
           
         {% endblock %}
         
+       <link rel="stylesheet" media="screen" href="{{asset('css/newfont.css')}}" type="text/css" />
         {% block css %}
         
         {% endblock %}

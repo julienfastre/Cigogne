@@ -22,6 +22,8 @@ function basket2formBinderService() {
     this.gogo = function(test){
         console.log(test);
     };
+    
+
 }
 
 function uuidProvider() {
@@ -49,6 +51,10 @@ angular.module('listingView', [], function($provide) {
    
    $provide.factory('uuidProvider', function() {
        return new uuidProvider();
+   });
+   
+   $provide.factory('uuidFactory', function(){
+       return new uuidFactory(); 
    });
 });
 
@@ -437,6 +443,7 @@ function moneyGiftController($scope, $element, binder, formService, uuidProvider
         
         ttitle = el.find('input[name=title]').val();
         ttype =  el.find('input[name=type]').val();
+
         iid = el.find('input[name*="item"]').val();
         uuuid = uuidProvider.createGuid();
         
@@ -514,6 +521,7 @@ function serviceGiftController($scope, $element, binder, formService, uuidProvid
         
             
         ob = {message: mmessage, uuid : uuuid, title: ttitle, type: ttype, quantity: qquantity, itemId: iid};
+
         
         binder.addItem(ob);
         
@@ -524,23 +532,26 @@ function serviceGiftController($scope, $element, binder, formService, uuidProvid
     
 }
 
+
 serviceGiftController.$inject = ['$scope', '$element', 'basket2formBinderService', 'sendFormService', 'uuidProvider'];
+
 
 
 
 function sendFormService(bindService) {
     
-    bindService.gogo('from sendFormService');
-    
+
     this.sendForm = function(formElement, item) {
         console.log('sendform active');
         form = angular.element(formElement);
         
+
         uuidInput = $('<input>', {
             type: 'hidden',
             value: item.uuid,
             name:'uuid'
             
+
         });
         
         form.append(uuidInput);
@@ -571,4 +582,17 @@ function sendFormService(bindService) {
         
     };
     
+}
+
+function uuidFactory() {
+    s4 = function() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+                   .toString(16)
+                   .substring(1);
+    };
+
+    this.guid = function() {
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+               s4() + '-' + s4() + s4() + s4();
+    }
 }

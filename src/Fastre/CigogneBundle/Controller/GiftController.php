@@ -69,6 +69,7 @@ class GiftController extends Controller {
                 $em->persist($gift);
                 $em->flush();
                 
+
                 $uuidFromClient = $request->request->get('uuid', null);
                 
                 return new Response(json_encode(

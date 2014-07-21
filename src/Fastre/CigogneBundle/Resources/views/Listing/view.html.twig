@@ -63,6 +63,8 @@
 #}
 
 {% block content %}
+   
+   {# le code qui contient le "panier " de l'utilisateur.  #}
 
 <div ng-app="listingView" class="row">
     <div ng-controller="basketController" class="column three" >
@@ -126,6 +128,7 @@
         </div>
     </div>
     
+
     <div class="column nine">
 	    <h1>{{listing.name}}</h1>
 	    <p>{% trans with {'%name%': listing.creator.username} %}cigogne.listing.view.list_of_{% endtrans %}</p>
