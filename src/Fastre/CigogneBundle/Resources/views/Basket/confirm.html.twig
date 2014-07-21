@@ -26,22 +26,29 @@
 
 {% block content %}
 
-<h1>Confirmation de vos dons</h1>
-
-{{ include('FastreCigogneBundle:Basket:presentation.html.twig', {
-   'giftMoneys': giftMoneys,
-   'giftNatures' : giftNatures, 
-   'giftServices' : giftServices
-   }
-) }}
-
-<p><a href="{{ url('cigogne.listing.see', {'code': code, 'rand' : random() } ) }}">Modifier</a></p>
-
-<form method="POST" action="#" >
-
-        
-  {{ form_rest(basketForm) }}
-
-</form>
+<div class="row">
+	<div class="column twelve">
+	
+		<h1>Confirmation de vos cadeaux</h1>
+		
+		{{ include('FastreCigogneBundle:Basket:presentation.html.twig', {
+		   'giftMoneys': giftMoneys,
+		   'giftNatures' : giftNatures, 
+		   'giftServices' : giftServices
+		   }
+		) }}
+		
+		<p><a href="{{ url('cigogne.listing.see', {'code': code, 'rand' : random() } ) }}">Modifier</a></p>
+		
+		<form method="POST" action="#" >
+		
+		        
+		  {{ form_rest(basketForm) }}
+		  
+		  <button type="submit">{{ 'cigogne.basket.confirm.post'|trans }}</button>
+		
+		</form>
+	</div>
+</div>
 
 {% endblock %}

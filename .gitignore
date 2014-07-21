@@ -11,6 +11,12 @@ ui/.metadata
 *.php~
 bd/*.sqlite
 
+.buildpath
+.project
+.settings/
+
+src/Fastre/CigogneBundle/Resources/compass/.sass-cache
+
 #for GWT
 *.class
 

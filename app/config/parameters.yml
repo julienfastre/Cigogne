@@ -1,0 +1,14 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_pgsql
+    database_host: localhost
+    database_port: 5433
+    database_name: cigogne
+    database_user: cigogne
+    database_password: cigogne
+    mailer_transport: smtp
+    mailer_host: relay.belgacom.be
+    mailer_user: null
+    mailer_password: null
+    locale: fr
+    secret: da267e3799cd6238bcf4e16718b51e109e9ba382

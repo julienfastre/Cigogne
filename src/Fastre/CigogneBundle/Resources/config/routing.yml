@@ -34,3 +34,6 @@ cigogne.basket.confirm:
   pattern: basket/{code}/confirm
   defaults: {_controller: FastreCigogneBundle:Basket:confirm }
   
+cigogne.basket.confirmed:
+  pattern: basket/{code}/confirmation/{basketId}
+  defaults: {_controller: FastreCigogneBundle:Basket:confirmed }

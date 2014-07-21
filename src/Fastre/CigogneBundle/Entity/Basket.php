@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Basket
 {
     /**
-     * @var integer
+     * @var string
      */
     private $id;
 
@@ -77,6 +77,7 @@ class Basket
         $this->elements = new \Doctrine\Common\Collections\ArrayCollection();
         $this->setLastUpdateNow();
         $this->token = $this->createToken();
+        $this->id = sha1(uniqid());
     }
     
     private function createToken() {

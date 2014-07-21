@@ -46,7 +46,7 @@ class GiftController extends Controller {
         
         
         if ($request->isMethod("POST")) {
-            $form->bindRequest($request);
+            $form->bind($request);
         
             if ($form->isValid())
             {
@@ -55,6 +55,13 @@ class GiftController extends Controller {
                  */
                 $basketProvider = $this->get('cigogne.basket.provider');
                 $basket = $basketProvider->getBasket();
+                
+                if ($basket === NULL) {
+                    $response = new Response(json_encode(array('message'
+                        => $this->get('translator')->trans('cigogne.controller.gift.basket_not_exist'))));
+                    $response->setStatusCode(Response::HTTP_NOT_ACCEPTABLE);
+                    return $response;
+                }
                 
                 $basket->addElement($gift);
                 
@@ -71,6 +78,11 @@ class GiftController extends Controller {
                                 'id' => $gift->getId()
                             )
                         ));
+            } else {
+                $response = new Response(json_encode(array('message' 
+                    => $this->get('translator')->trans('cigogne.controller.gift.invalid_form'))));
+                $response->setStatusCode(Response::HTTP_NOT_ACCEPTABLE);
+                return $response;
             }
         }
         

@@ -115,7 +115,7 @@ class ListingController extends Controller {
         
         //prepare an array which hold the form for gifts
         $forms = array();
-        $basket = new \Fastre\CigogneBundle\Entity\Basket();
+        $basket = $this->get('cigogne.basket.provider')->getBasket();
         
         foreach ($l->getItems() as $item) {
             $forms_item = array();

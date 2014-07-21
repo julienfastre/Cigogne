@@ -4,6 +4,15 @@
     <head>
         <title>{% block title %}{% endblock %} | Cigogne</title>
         
+        {% stylesheets '@FastreCigogneBundle/Resources/public/css/fonts/leckerlione.css'
+                       '@FastreCigogneBundle/Resources/public/css/fonts/entypo.css'
+                       '@FastreCigogneBundle/Resources/public/css/fonts/open_sans.css' %}
+        	<link rel="stylesheet" href="{{ asset_url }}" />
+    	{% endstylesheets %}
+        {% stylesheets '@FastreCigogneBundle/Resources/public/css/main.css' filter='cssrewrite' %}
+        	<link rel="stylesheet" href="{{ asset_url }}" />
+    	{% endstylesheets %}
+        
        <script type="text/javascript" src="{{ asset('js/jquery-1.9.1.js') }}" ></script>
         {% block javascript %}
           
@@ -17,12 +26,12 @@
     
     </head>
     <body>
-        <div id="header">
-            <nav>
+        <div id="header" class="row">
+            <nav class="column twelve">
                 <ul id="top-menu">
                     {% if not app.user %} 
-                        <li><a href="{{url('fos_user_security_login') }}">{% trans %}cigogne.connect{% endtrans %}</a></li>
-                        <li>{% trans %}cigogne.future_parent_?{% endtrans %}<a href="{{url('fos_user_registration_register') }}">{% trans %}cigogne.register{% endtrans %}</a></li>
+                        <li>{{ 'cigogne.already_a_list_?'|trans }} <a href="{{url('fos_user_security_login') }}">{% trans %}cigogne.connect{% endtrans %}</a></li>
+                        <li>{% trans %}cigogne.future_parent_?{% endtrans %} <a href="{{url('fos_user_registration_register') }}">{% trans %}cigogne.register{% endtrans %}</a></li>
                     {% else %}
                         <li>Bonjour {{app.user.username}}</li>
                         <li><a href="{{url('fos_user_security_logout') }}">{% trans %}cigogne.logout{% endtrans %}</a></li>
@@ -31,15 +40,15 @@
            </nav>
         </div>
             
-        <div id="flash-messages">
+        <div id="flash-messages" class="row">
             {% for flashMessage in app.session.flashbag.get('notice') %}
-                <div class="flash-notice">
+                <div class="flash-notice column eight centered">
                         {{ flashMessage }}
                 </div>
             {% endfor %}
 
             {% for flashMessage in app.session.flashbag.get('warn') %}
-                <div class="flash-notice">
+                <div class="flash-warn column eight centered">
                         {{ flashMessage }}
                 </div>
             {% endfor %}

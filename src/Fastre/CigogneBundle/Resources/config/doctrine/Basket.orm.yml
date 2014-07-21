@@ -2,8 +2,9 @@ Fastre\CigogneBundle\Entity\Basket:
   type: entity
   id:
     id:
-      type: integer
-      generator: {strategy: AUTO}
+      type: string
+      length: 40
+      generator: {strategy: NONE}
   fields:
     name:
       type: string

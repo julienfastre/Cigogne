@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+// Set local icon font
+@font-face {
+  font-family: 'entypo';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../bundles/fastrecigogne/fonts/icons/entypo.eot);
+  src: url('../bundles/fastrecigogne/fonts/icons/entypo.eot?#iefix') format('ie9-skip-eot'),
+       url('../bundles/fastrecigogne/fonts/icons/entypo.woff') format('woff'),
+       url('../bundles/fastrecigogne/fonts/icons/entypo.ttf')  format('truetype');
+}

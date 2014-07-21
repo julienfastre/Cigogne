@@ -64,8 +64,8 @@
 
 {% block content %}
 
-<div ng-app="listingView">
-    <div ng-controller="basketController" >
+<div ng-app="listingView" class="row">
+    <div ng-controller="basketController" class="column three" >
         <div id="basket" >
             
             <h1>{{ 'cigogne.listing.view.basket_title' | trans }}</h1>
@@ -126,127 +126,128 @@
         </div>
     </div>
     
-    
-    <h1>{{listing.name}}</h1>
-    <p>{% trans with {'%name%': listing.creator.username} %}cigogne.listing.view.list_of_{% endtrans %}</p>
-
-    <p>{% trans with {'%date%': listing.dateOfBirth | date("m/d/Y")} %}cigogne.listing.view.date_of_birth{% endtrans %}</p>
-
-    {{listing.description}}
-
-    <h1>{% trans %}cigogne.listing.view.item_list{% endtrans %}</h1>
-
-    {#  
-        liste de tous les items...
-    #}
-
-    <div id="item.list" >
-
-        {% for item in listing.items %}
-    {#  
-        ajoute des classes particulières en fonction de la nature de l'item
-    #}
-            <div class="item 
-          {% if item.type is constant('Fastre\\CigogneBundle\\Entity\\Item::TYPE_GOOD') %}good{% else %}service{% endif %}
-          {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_SECOND_HAND') in item.good %}second{% endif %}
-          {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_NEW') in item.good %}new{% endif %}
-        ">
-                <h2 class="item_title">{{item.title}}</h2>
-
-                <p class="item_description">{{item.description}}</p>
-
-
-                {% if attribute(attribute(forms, item.id), money) is defined %}
-                    {% set form = attribute(attribute(forms, item.id), money) %}
-                <div >
-                    <form class="second" 
-                          ng-controller="moneyGiftController" 
-                          ng-submit="addMoneyGift(this)" 
-                          action="{{path('cigogne.gift.add', {'_format':'json', 'type':'money'})}}" 
-                          method="post">
-                   
-                        <p>
-                            {{ form_label(form.amount) }}: {{ form_widget(form.amount, 
-                                        {'attr': {
-                                            'class':'amount', 
-                                            'pattern': '[-+]?[0-9]*[.,]?[0-9]+',
-                                            'x-moz-errormessage': 'cigogne.gift.form.money.amount_error_message'|trans, 
-                                            'title': 'cigogne.gift.form.money.amount_error_message'|trans}}) }}
-
-                            <input type="hidden" name="title" value="{{item.title}}" >
-                            <input type="hidden" name="type" value="money" />
-
-
-                            {# ne pas supprimer form_rest : il affiche les éléments manquants 
-                                (valeurs cachées, etc.  #}
-                            {{ form_rest(form) }} 
-
-                            <button >{% trans %}cigogne.gift.form.money.give{% endtrans %}</button>
-                        
-                        </p>
-                        
-                    </form>
-                </div>
-
-                {% endif %}
-
-                {% if attribute(attribute(forms, item.id), nature) is defined  %}
-                    {% set form = attribute(attribute(forms, item.id), nature) %}
-                  
-                    <form method="post" 
-                          action="{{path('cigogne.gift.add', {'_format':'json', 'type':'nature'})}}"
-                          class="new" 
-                          ng-controller="natureGiftController" 
-                          ng-submit="addNatureGift(this)">
-                        
-                           {{ form_label(form.message) }}: {{ form_widget(form.message, 
-                                             {'attr': {
-                                                    'class' : 'message'
-                                                    }}) }}
-                            
-                            <input type="hidden" name="title" value="{{item.title}}" >
-                            <input type="hidden" name="type" value="nature" />
-
-                                   
-                            {# ne pas supprimer form_rest : il affiche les éléments manquants 
-                            (valeurs cachées, etc.  #} 
-                            {{ form_rest(form) }} 
-                        <button>{% trans %}cigogne.gift.form.nature.give{% endtrans %}</button>
-                    </form>
-                  
-
-                {% endif %}
-
-                {% if attribute(attribute(forms, item.id), service) is defined %}
-                    {% set form = attribute(attribute(forms, item.id), service) %}
-                
-                    <form method="post" 
-                          action="{{path('cigogne.gift.add', {'_format':'json', 'type':'service'})}}"" 
-                          class="new" 
-                          ng-controller="serviceGiftController" 
-                          ng-submit="addServiceGift(this)">
-                        
-                        {{ form_label(form.message) }}: {{ form_widget(form.message) }}
-                        
-                        <input type="hidden" name="title" value="{{item.title}}" >
-                        <input type="hidden" name="type" value="service" />
-                        
-                            {# ne pas supprimer form_rest : il affiche les éléments manquants 
-                            (valeurs cachées, etc.  #}
-                            {{ form_rest(form) }} 
-                        
-                        
-                        <button>{% trans %}cigogne.gift.form.service.give{% endtrans %}</button>
-                    </form>
-
-                {% endif %}
-
-
-
-            </div>
-
-        {% endfor %}
-
+    <div class="column nine">
+	    <h1>{{listing.name}}</h1>
+	    <p>{% trans with {'%name%': listing.creator.username} %}cigogne.listing.view.list_of_{% endtrans %}</p>
+	
+	    <p>{% trans with {'%date%': listing.dateOfBirth | date("m/d/Y")} %}cigogne.listing.view.date_of_birth{% endtrans %}</p>
+	
+	    {{listing.description}}
+	
+	    <h1>{% trans %}cigogne.listing.view.item_list{% endtrans %}</h1>
+	
+	    {#  
+	        liste de tous les items...
+	    #}
+	
+	    <div id="item.list" >
+	
+	        {% for item in listing.items %}
+	    {#  
+	        ajoute des classes particulières en fonction de la nature de l'item
+	    #}
+	            <div class="item 
+	          {% if item.type is constant('Fastre\\CigogneBundle\\Entity\\Item::TYPE_GOOD') %}good{% else %}service{% endif %}
+	          {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_SECOND_HAND') in item.good %}second{% endif %}
+	          {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_NEW') in item.good %}new{% endif %}
+	        ">
+	                <h2 class="item_title">{{item.title}}</h2>
+	
+	                <p class="item_description">{{item.description}}</p>
+	
+	
+	                {% if attribute(attribute(forms, item.id), money) is defined %}
+	                    {% set form = attribute(attribute(forms, item.id), money) %}
+	                <div >
+	                    <form class="second" 
+	                          ng-controller="moneyGiftController" 
+	                          ng-submit="addMoneyGift(this)" 
+	                          action="{{path('cigogne.gift.add', {'_format':'json', 'type':'money'})}}" 
+	                          method="post">
+	                   
+	                        <p>
+	                            {{ form_label(form.amount) }}: {{ form_widget(form.amount, 
+	                                        {'attr': {
+	                                            'class':'amount', 
+	                                            'pattern': '[-+]?[0-9]*[.,]?[0-9]+',
+	                                            'x-moz-errormessage': 'cigogne.gift.form.money.amount_error_message'|trans, 
+	                                            'title': 'cigogne.gift.form.money.amount_error_message'|trans}}) }}
+	
+	                            <input type="hidden" name="title" value="{{item.title}}" >
+	                            <input type="hidden" name="type" value="money" />
+	
+	
+	                            {# ne pas supprimer form_rest : il affiche les éléments manquants 
+	                                (valeurs cachées, etc.  #}
+	                            {{ form_rest(form) }} 
+	
+	                            <button >{% trans %}cigogne.gift.form.money.give{% endtrans %}</button>
+	                        
+	                        </p>
+	                        
+	                    </form>
+	                </div>
+	
+	                {% endif %}
+	
+	                {% if attribute(attribute(forms, item.id), nature) is defined  %}
+	                    {% set form = attribute(attribute(forms, item.id), nature) %}
+	                  
+	                    <form method="post" 
+	                          action="{{path('cigogne.gift.add', {'_format':'json', 'type':'nature'})}}"
+	                          class="new" 
+	                          ng-controller="natureGiftController" 
+	                          ng-submit="addNatureGift(this)">
+	                        
+	                           {{ form_label(form.message) }}: {{ form_widget(form.message, 
+	                                             {'attr': {
+	                                                    'class' : 'message'
+	                                                    }}) }}
+	                            
+	                            <input type="hidden" name="title" value="{{item.title}}" >
+	                            <input type="hidden" name="type" value="nature" />
+	
+	                                   
+	                            {# ne pas supprimer form_rest : il affiche les éléments manquants 
+	                            (valeurs cachées, etc.  #} 
+	                            {{ form_rest(form) }} 
+	                        <button>{% trans %}cigogne.gift.form.nature.give{% endtrans %}</button>
+	                    </form>
+	                  
+	
+	                {% endif %}
+	
+	                {% if attribute(attribute(forms, item.id), service) is defined %}
+	                    {% set form = attribute(attribute(forms, item.id), service) %}
+	                
+	                    <form method="post" 
+	                          action="{{path('cigogne.gift.add', {'_format':'json', 'type':'service'})}}"" 
+	                          class="new" 
+	                          ng-controller="serviceGiftController" 
+	                          ng-submit="addServiceGift(this)">
+	                        
+	                        {{ form_label(form.message) }}: {{ form_widget(form.message) }}
+	                        
+	                        <input type="hidden" name="title" value="{{item.title}}" >
+	                        <input type="hidden" name="type" value="service" />
+	                        
+	                            {# ne pas supprimer form_rest : il affiche les éléments manquants 
+	                            (valeurs cachées, etc.  #}
+	                            {{ form_rest(form) }} 
+	                        
+	                        
+	                        <button>{% trans %}cigogne.gift.form.service.give{% endtrans %}</button>
+	                    </form>
+	
+	                {% endif %}
+	
+	
+	
+	            </div>
+	
+	        {% endfor %}
+	
+	    </div>
     </div>
 
 </div> {# div for ng-app #}

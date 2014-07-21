@@ -1,6 +1,7 @@
 cigogne:
   future_parent_?: Futur Parent ?
-  register: Créer un compte
+  already_a_list_?: Vous avez déjà créé une liste ?
+  register: Créer une liste
   connect: Se connecter
   logout: Se déconnecter
   type:
@@ -44,7 +45,18 @@ cigogne:
         give: Rendre ce service
   basket:
     confirm:
+      title: Récapitulatif de vos cadeaux
       is_empty: Votre panier est vide.
+      form_invalid: Vos données sont invalides, merci de les vérifier.
+      invalid_basket_id : L'identifiant du panier est invalide.
+      post: Confirmer
+    confirmed:
+      title: Confirmation de vos cadeaux
+      thanks: Merci pour vos cadeaux!
+      message_has_been_sent: Un message a été envoyé à l'adresse <strong>%email%</strong> avec le détail de vos cadeaux.
+      make_transfer_IBAN: Vous pouvez virer €%amount% sur le compte %IBAN%. 
+      to_homepage: Retour à l'accueil
+      
     form:
       name: Votre nom et prénom
       email: Une adresse de couriel
@@ -54,6 +66,10 @@ cigogne:
       bitcoin: Bitcoin
       paypal: Paypal
       transfer: Virement Bancaire IBAN
+  controller:
+    gift:
+      invalid_form: Formulaire non valide
+      basket_not_exist: Le panier n'existe pas
       
       
       
