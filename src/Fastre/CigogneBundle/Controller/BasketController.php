@@ -69,14 +69,29 @@ class BasketController extends Controller {
                 $basket);
         
         if ($request->getMethod() === 'POST') {
-        	$basketForm->submit($request);
+        	$basketForm->handleRequest($request);
         	
         	if ($basketForm->isValid()) {
         	    $basket->setClosed(true);
-        		$em->persist($basket);
-        		$em->flush($basket);
+
+        	    //register gifts on item
+        	    $function = function (\Fastre\CigogneBundle\Entity\Gift $el) use ($em) 
+        	    { 
+        	        $el->registerGiftOnItem(); 
+        	        $em->persist($el->getItem());
+                    var_dump($el->getItem()->getReceived());
+        	    };
+        	    array_map($function, $giftMoneys);
+        	    array_map($function, $giftService);
+        	    array_map($function, $giftNature);
+
+        		$em->flush();
         		
         		//send an email to the one who ordered
+                  
+                  
+                  //clear the basket in session
+                  $this->get('cigogne.basket.provider')->clear();
         		
         		return $this->redirect($this->generateUrl(
                     'cigogne.basket.confirmed',
@@ -105,17 +120,14 @@ class BasketController extends Controller {
     
     public function confirmedAction(Request $request, $code, $basketId)
     {
-        $basket = $this->get('cigogne.basket.provider')->getBasket();
+        $basket = $this->getDoctrine()->getRepository('FastreCigogneBundle:Basket')
+                ->find($basketId);
         
-        //check we are allowed to view id
-        if ($basket->getId() !== $basketId) {
-            $response = new Response($this->get('translator')->trans(
-                    'cigogne.basket.confirm.invalid_basket_id'
-            ));
-            $response->setStatusCode(Response::HTTP_FORBIDDEN);
-            return $response;
+        if ($basket === NULL) {
+           return $this->createNotFoundException();
         }
         
+        //retrieve the list
         //sanitize code
         $code = trim($code);
         
@@ -136,14 +148,6 @@ class BasketController extends Controller {
             );
         }
         
-        //check basket match code
-        if ($basket->getElements()->first()->getItem()->getListing()->getId() !== $list->getId()) {
-            $response = new Response($this->get('translator')->trans(
-                'cigogne.basket.confirm.invalid_basket_code'
-            ));
-            $response->setStatusCode(Response::HTTP_FORBIDDEN);
-            return $response;
-        }
         
         //retrieve gifts
         $em = $this->getDoctrine()->getEntityManager();

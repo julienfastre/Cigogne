@@ -15,7 +15,8 @@ class GiftMoneyType extends GiftType
         $builder
             ->add('amount', 'money', array(
                 'label' => 'cigogne.gift.form.common.amount',
-                'grouping' => true)
+                'grouping' => true,
+            )
                     )
         ;
     }

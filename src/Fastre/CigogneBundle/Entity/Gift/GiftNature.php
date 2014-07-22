@@ -3,6 +3,7 @@
 namespace Fastre\CigogneBundle\Entity\Gift;
 
 use Fastre\CigogneBundle\Entity\Gift;
+use Fastre\CigogneBundle\Entity\Item;
 
 /**
  * Description of GiftNature
@@ -70,5 +71,27 @@ class GiftNature extends Gift {
     public function getQuantity()
     {
         return $this->quantity;
+    }
+    
+    public function registerGiftOnItem()
+    {
+       if (!in_array(Item::FURNITURE_NATURE, $this->getItem()->getFurniture())) {
+          throw new \Exception('nature not possible with this item');
+       }
+       
+       if ($this->getPrice() === 0) { $price = 1; } else { $price = $this->getPrice();}
+       
+       $received = $this->getItem()->getReceived();
+        $received += $this->getQuantity() * $price ;
+        $this->getItem()->setReceived($received);
+    }
+    
+    /**
+     * 
+     * @throws \Exception not implemented
+     */
+    public function registerRemoveOnItem()
+    {
+        throw \Exception('not implemented');
     }
 }

@@ -358,6 +358,19 @@ class Item
     {
         return $this->received;
     }
+    
+    public function getRemainPossibleToGive($furniture)
+    {
+       switch ($furniture) {
+          case self::FURNITURE_MONEY : 
+             return $this->getPrice() - $this->getReceived();
+          case self::FURNITURE_NATURE : 
+             if ($this->getPrice() === 0) { $price = 1; } else { $price = $this->getPrice();}
+             return ceil(($price * $this->getQuantity() - $this->getReceived()) / $price);
+          case self::FURNITURE_SERVICE :
+             return $this->getQuantity() - $this->getReceived();
+       }
+    }
 
 
 

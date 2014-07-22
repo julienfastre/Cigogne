@@ -71,4 +71,18 @@ class GiftService extends Gift {
     {
         return $this->quantity;
     }
+    
+    public function registerGiftOnItem()
+    {
+        $received = $this->getItem()->getReceived();
+        $received += $this->getQuantity();
+        $this->getItem()->setReceived($received);
+    }
+    
+    public function registerRemoveOnItem()
+    {
+        $received = $this->getItem()->getReceived();
+        $received -= $this->getQuantity();
+        $this->getItem()->setReceived($received);
+    }
 }

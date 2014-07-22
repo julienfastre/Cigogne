@@ -60,6 +60,11 @@ class BasketProviderService {
         
     }
     
+    public function clear()
+    {
+       $this->session->set(self::KEY, null);
+    }
+    
     
     
 }

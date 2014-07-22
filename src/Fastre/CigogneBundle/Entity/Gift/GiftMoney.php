@@ -39,5 +39,19 @@ class GiftMoney extends Gift {
     {
         return $this->amount;
     }
+    
+    public function registerGiftOnItem()
+    {
+        $received = $this->getItem()->getReceived(); 
+        $received += $this->getAmount();
+        $this->getItem()->setReceived($received);
+    }
+    
+    public function registerRemoveOnItem()
+    {
+        $received = $this->getItem()->getReceived();
+        $received -= $this->getAmount();
+        $this->getItem()->setReceived($received);
+    }
 
 }

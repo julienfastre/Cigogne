@@ -27,10 +27,13 @@ Fastre\CigogneBundle\Entity\Item:
       type: integer
     received:
       type: decimal
-      precision: 4
+      precision: 12
       scale: 2     
     creationDate:
       type: datetime
+    quantity:
+       type: integer
+       default: 1
   manyToOne:
     listing:
       targetEntity: Listing

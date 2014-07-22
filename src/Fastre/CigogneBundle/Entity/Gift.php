@@ -80,4 +80,9 @@ abstract class Gift
     {
         return $this->item;
     }
+    
+    public abstract function registerGiftOnItem();
+    
+    public abstract function registerRemoveOnItem();
+
 }
