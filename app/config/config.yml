@@ -28,7 +28,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        ['FastreCigogneBundle' ]
+    bundles:        ['FastreCigogneBundle','CLPersonaUserBundle' ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -61,12 +61,15 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-fos_user:
-  db_driver: orm
-  firewall_name: main
-  user_class: Fastre\CigogneBundle\Entity\User
-  registration:
-    form:
-      type: fastre_cigogne_registration
-    confirmation:
-      enabled: true
+#fos_user:
+#  db_driver: orm
+#  firewall_name: main
+#  user_class: Fastre\CigogneBundle\Entity\User
+#  registration:
+#    form:
+#      type: fastre_cigogne_registration
+#    confirmation:
+#      enabled: true
+
+cl_persona_user:
+    route_not_existing_user: 'cigogne.register'

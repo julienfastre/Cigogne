@@ -1,0 +1,36 @@
+{% extends "FastreCigogneBundle::layout.html.twig" %}
+
+{% block title %}{{ 'cigogne.listing.list.title' | trans }}{% endblock title %}
+
+{% block content %}
+
+   <div class="row">
+      <div class="column twelve">
+         <h1>{{ 'cigogne.listing.list.my_lists'|trans( {'label': user.label } )}}</h1>
+         
+         
+         
+         {% if lists|length > 0 %}
+            <ul>
+            {% for list in lists %}
+               <li>
+                  <p><a href="{{ path('cigogne.listing.update', {'id': list.id }) }}">{{list.name}}</a>
+                  <dl>
+                     <dt>{{ 'cigogne.listing.list.description'|trans }}</dt>
+                     <dd>{{ list.description|nl2br }}</dd>
+                  </dl>
+                     <div>
+                        <a href="{{ path('cigogne.listing.update', {'id': list.id }) }}">{{ 'cigogne.listing.list.update'|trans }}</a>
+                     </div>
+               </li>
+
+
+            {% endfor %}
+            </ul>
+         {% else %}
+            <p><a href="{{ path('cigogne.listing.new') }}">{{ 'cigogne.listing.list.create_first_list'|trans }}</a></p>
+         {% endif %}
+      </div>
+   </div>
+   
+{% endblock content %}

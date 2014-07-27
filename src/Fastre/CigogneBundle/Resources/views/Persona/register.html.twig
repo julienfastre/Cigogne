@@ -1,0 +1,16 @@
+{% extends "FastreCigogneBundle::layout.html.twig" %}
+
+{% block title %}{{ 'cigogne.persona_explain' | trans }}{% endblock title %}
+
+{# empty the block persona login #}
+{% block personalogin %}{% endblock personalogin %}
+
+{% block content %}
+   <div class="row">
+      {{ form_start(form) }}
+      {{ form_rest(form) }}
+      <button type="submit">{{ 'cigogne.register.send'|trans }}</button>
+      {{ form_end(form) }}
+   </div>
+   
+{% endblock content %}

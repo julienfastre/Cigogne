@@ -13,6 +13,10 @@
         {% stylesheets '@FastreCigogneBundle/Resources/public/css/main.css' filter='cssrewrite' %}
         	<link rel="stylesheet" href="{{ asset_url }}" />
     	{% endstylesheets %}
+      
+      {% stylesheets '@CLPersonaUserBundle/Resources/public/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
         
 
        <script type="text/javascript" src="{{ asset('js/jquery-1.9.1.js') }}" ></script>
@@ -30,17 +34,19 @@
     </head>
     <body>
         <div id="header" class="row">
+           {% block personalogin %}
             <nav class="column twelve">
                 <ul id="top-menu">
                     {% if not app.user %} 
-                        <li>{{ 'cigogne.already_a_list_?'|trans }} <a href="{{url('fos_user_security_login') }}">{% trans %}cigogne.connect{% endtrans %}</a></li>
-                        <li>{% trans %}cigogne.future_parent_?{% endtrans %} <a href="{{url('fos_user_registration_register') }}">{% trans %}cigogne.register{% endtrans %}</a></li>
+                        <li>{{ 'cigogne.already_a_list_?'|trans }} {{ persona_login_button() }}</li>
+                        <li>{% trans %}cigogne.future_parent_?{% endtrans %} <a href="{{url('cigogne.persona_explain') }}">{% trans %}cigogne.register{% endtrans %}</a></li>
                     {% else %}
-                        <li>Bonjour {{app.user.username}}</li>
-                        <li><a href="{{url('fos_user_security_logout') }}">{% trans %}cigogne.logout{% endtrans %}</a></li>
+                        <li>Bonjour {{app.user.label}}, <a href="{{ path('cigogne.listing.list') }}">{{ 'cigogne.my_lists'|trans }}</a></li>
+                        <li><a href="{{url('cigogne.logout') }}">{% trans %}cigogne.logout{% endtrans %}</a></li>
                     {% endif %}
                 </ul>
            </nav>
+           {% endblock %}
         </div>
             
         <div id="flash-messages" class="row">
@@ -65,7 +71,18 @@
     
     
     
-    
+    <!-- THOSE VARIABLES ARE NEEDED FOR THE ADAPTATION OF THE js SCRIPT BELOW -->
+        <script type="text/javascript">
+            var personaLoginCheck = '{{ path('cl_persona_user.login_check') }}';
+            var personaLogout = '{{ path('cl_persona_user.logout') }}'; //replace with another logout route if needed
+        </script>
+
+     <!-- needed by persona ! -->
+        <script src="https://login.persona.org/include.js"></script>
+     <!-- the script we develop. This script will reload the page after login. You may create your own -->  
+        {% javascripts '@CLPersonaUserBundle/Resources/public/js/persona_auth.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
     
     </body>
 

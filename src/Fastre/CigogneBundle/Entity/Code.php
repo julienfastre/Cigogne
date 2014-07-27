@@ -85,4 +85,9 @@ class Code
     {
         return $this->listing;
     }
+    
+    public function __toString()
+    {
+       return $this->getWord();
+    }
 }

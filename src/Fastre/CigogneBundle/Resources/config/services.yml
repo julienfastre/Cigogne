@@ -1,13 +1,7 @@
 parameters:
 #    fastre_cigogne.example.class: Fastre\CigogneBundle\Example
 
-services:
-  cigogne.registration.form_type:
-    class: Fastre\CigogneBundle\Form\Type\RegistrationFormType
-    arguments: [%fos_user.model.user.class%]
-    tags:
-      - { name: form.type, alias: fastre_cigogne_registration }
-      
+services:      
   cigogne.normalizer.serializer:
     class: Fastre\CigogneBundle\Services\Normalizer\Serializer
     arguments:
@@ -40,6 +34,16 @@ services:
     tags:
       - { name: form.type, alias: basket_hidden }
       
+  cigogne.type.code:
+     class: Fastre\CigogneBundle\Form\Type\CodeType
+     arguments: ['@doctrine.orm.entity_manager']
+     tags:
+        - { name: form.type, alias: code }
+      
   cigogne.basket.provider:
     class: Fastre\CigogneBundle\Services\BasketProviderService
     arguments: ["@session", "@doctrine.orm.entity_manager"]
+    
+  cigogne.user.provider:
+     class: Fastre\CigogneBundle\Security\UserProvider\UserProvider
+     arguments: ["@doctrine.orm.entity_manager"]

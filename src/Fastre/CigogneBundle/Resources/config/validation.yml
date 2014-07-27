@@ -1,0 +1,3 @@
+Fastre\CigogneBundle\Entity\Listing:
+   contraints:
+      - Callback: [checkInvalidCodes]

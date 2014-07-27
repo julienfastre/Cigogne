@@ -5,9 +5,6 @@ Fastre\CigogneBundle\Entity\Listing:
       type: integer
       generator: {strategy: AUTO}
   fields:
-    dateOfBirth:
-      type: date
-      nullable: true
     name:
       type: string
       nullable: true

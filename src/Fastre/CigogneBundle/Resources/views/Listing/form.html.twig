@@ -1,0 +1,33 @@
+{% extends "FastreCigogneBundle::layout.html.twig" %}
+
+{% block title %}{{ 'cigogne.listing.form.title' | trans }}{% endblock title %}
+
+{% block content %}
+   <div class="row">
+      <div class="column twelve">
+         
+         {% if list is defined %}
+            <h1>{{ 'cigogne.listing.form.title'|trans( {'%name%' : list.name }) }}</h1>
+         {% else %}
+            <h1>{{ 'cigogne.listing.form.new'|trans }}</h1>    
+         {% endif %}
+
+         {{ form_start(form) }}
+
+         {{ form_rest(form) }}
+         
+         <button type="submit">{{ 'cigogne.listing.form.submit'|trans }}</button>
+
+         {{ form_end(form) }}
+         
+         
+         {% if list is defined %}
+            {% for item in list.items %}
+            
+               {% include 'FastreCigogneBundle:Listing:item' with {'item': item, 'update_link': true } %}
+            {% endfor %}
+         {% endif %}
+         
+      </div>
+   </div>
+{% endblock content %}

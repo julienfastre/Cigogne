@@ -6,23 +6,15 @@ Fastre\CigogneBundle\Entity\User:
       type: integer
       generator: {strategy: AUTO}
   fields:
-    phonenumber:
-      type: string
-      length: 30
-      nullable: true
-    paymentPaypalAccepted:
-      type: boolean
-    paymentPaypalAccount:
-      type: string
-      nullable: true
+    label:
+       type: string
+       length: 255
+    email:
+       type: string
+       length: 200
     paymentBankAccepted:
       type: boolean
     paymentBankAccountNumber:
-      type: string
-      nullable: true
-    paymentBitcoinAccepted:
-      type: boolean
-    paymentBitcoinAddress:
       type: string
       nullable: true
   oneToMany:

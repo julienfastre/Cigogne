@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use \Exception;
+use Fastre\CigogneBundle\Form\ListingType;
 use Fastre\CigogneBundle\Entity\Item;
 use Fastre\CigogneBundle\Entity\Gift\GiftMoney;
 use Fastre\CigogneBundle\Form\Gift\GiftMoneyType;
@@ -178,6 +179,119 @@ class ListingController extends Controller {
             'code' => $code
         ));        
     }
+    
+   public function listByUserAuthenticatedAction()
+   {
+      try {
+         if (FALSE === $this->get('security.context')->isGranted('ROLE_USER'))
+         {
+            throw $this->createAccessDeniedException();
+         }
+      } catch (\Symfony\Component\Security\Core\Exception\AuthenticationCredentialsNotFoundException $ex) {
+         throw $this->createAccessDeniedException();
+      }
+      
+      $user = $this->get('security.context')->getToken()->getUser();
+      
+      $lists = $this->getDoctrine()->getManager()
+              ->getRepository('FastreCigogneBundle:Listing')
+              ->findBy(array('creator' => $user))
+              ;
+      
+      
+      return $this->render('FastreCigogneBundle:Listing:list.html.twig', array(
+          'lists' => $lists,
+          'user'  => $user
+      ));
+   }
+   
+   public function newAction(Request $request)
+   {
+
+      if (FALSE === $this->get('security.context')->isGranted('ROLE_USER'))
+      {
+         throw $this->createAccessDeniedException();
+      }
+      
+      $list = new \Fastre\CigogneBundle\Entity\Listing();
+      $list->setCreator($this->get('security.context')->getToken()->getUser());
+      
+      $form = $this->createForm(new ListingType(), $list);
+      
+      if ('POST' === $request->getMethod()) {
+         $form->handleRequest($request);
+         
+         if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($list);
+            $em->flush();
+            
+            return $this->redirect($this->generateUrl('cigogne.listing.update',
+                    array('id' => $list->getId())));
+         }
+      }
+      
+      return $this->render('FastreCigogneBundle:Listing:form.html.twig', 
+              array('form' => $form->createView() )
+              );
+
+   }
+   
+   public function updateAction($id, Request $request)
+   {
+      if (FALSE === $this->get('security.context')->isGranted('ROLE_USER'))
+      {
+         throw $this->createAccessDeniedException();
+      }
+      
+      $user = $this->get('security.context')->getToken()->getUser();
+      
+      $list = $this->getDoctrine()->getManager()
+              ->getRepository('FastreCigogneBundle:Listing')
+              ->find($id);
+      
+      if ($list === NULL) {
+         throw $this->createNotFoundException();
+      }
+      
+      if ($list->getCreator()->getId() !== $user->getId()) {
+         throw $this->createAccessDeniedException();
+      }
+      
+      $form = $this->createForm(new ListingType(), $list);
+      
+      if ('POST' === $request->getMethod()) {
+         $codes = clone $list->getCodes(); #get codes for removing unused codes later
+         
+         $form->handleRequest($request);
+         
+         if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            
+            //remove unused codes
+            foreach ($codes as $code) {
+               if (! $list->getCodes()->contains($code)) {
+                  $em->remove($code);
+               }
+            }
+            
+            
+            $em->persist($list);
+            $em->flush();
+            
+            return $this->redirect($this->generateUrl('cigogne.listing.update',
+                    array('id' => $list->getId())));
+         }
+      }
+      
+      return $this->render('FastreCigogneBundle:Listing:form.html.twig', 
+              array('form' => $form->createView(), 'list' => $list )
+              );
+      
+      
+      
+      
+   }
     
     
 }

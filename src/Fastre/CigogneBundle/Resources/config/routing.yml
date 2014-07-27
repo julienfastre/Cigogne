@@ -6,10 +6,6 @@ cigogne.list.pick_from_code:
   pattern: /list/pick_from_code
   defaults: { _controller: FastreCigogneBundle:Listing:pickFromCode }
   
-cigogne.listing.see:
-  pattern: /{code}
-  defaults: {_controller: FastreCigogneBundle:Listing:getListingFromCode }
-
 fastre_cigogne_listing_get:
   pattern: /listing/get/{id}.{_format}
   defaults: {_controller: FastreCigogneBundle:Listing:getListing }
@@ -37,3 +33,31 @@ cigogne.basket.confirm:
 cigogne.basket.confirmed:
   pattern: basket/{code}/confirmation/{basketId}
   defaults: {_controller: FastreCigogneBundle:Basket:confirmed }
+  
+cigogne.register:
+   pattern: /register
+   defaults: {_controller: FastreCigogneBundle:User:register }
+   
+cigogne.persona_explain:
+   pattern: /persona_explain
+   defaults: {_controller: FastreCigogneBundle:User:personaExplain }
+ 
+cigogne.logout:
+   pattern: /logout
+   defaults: {_controller: FastreCigogneBundle:User:logout }
+   
+cigogne.listing.list:
+   pattern: /listing/list
+   defaults: {_controller: FastreCigogneBundle:Listing:listByUserAuthenticated }
+   
+cigogne.listing.new:
+   pattern: /listing/new
+   defaults: {_controller: FastreCigogneBundle:Listing:new }
+   
+cigogne.listing.update:
+   pattern: /listing/update/{id}
+   defaults: {_controller: FastreCigogneBundle:Listing:update }
+   
+cigogne.listing.see:
+  pattern: /{code}
+  defaults: {_controller: FastreCigogneBundle:Listing:getListingFromCode }

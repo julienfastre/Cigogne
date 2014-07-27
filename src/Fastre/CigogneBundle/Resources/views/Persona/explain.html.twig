@@ -1,0 +1,21 @@
+{% extends "FastreCigogneBundle::layout.html.twig" %}
+
+{% block title %}{{ 'cigogne.persona_explain' | trans }}{% endblock title %}
+
+{# empty the block persona login #}
+{% block personalogin %}{% endblock personalogin %}
+
+{% block content %}
+   <div class="row">
+      <div class="column twelve">
+         <p>{{ persona_login_button() }}</p>
+      </div>
+   </div>
+   <div class="row">
+      <div class="column twelve">
+         {{ 'persona.explain'|trans({}, 'persona') }}
+         
+      </div>
+   </div>
+   
+{% endblock content %}

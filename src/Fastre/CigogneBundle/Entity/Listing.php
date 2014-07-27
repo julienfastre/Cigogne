@@ -3,6 +3,7 @@
 namespace Fastre\CigogneBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Fastre\CigogneBundle\Entity\Listing
@@ -13,11 +14,6 @@ class Listing
      * @var integer $id
      */
     private $id;
-
-    /**
-     * @var \DateTime $dateOfBirth
-     */
-    private $dateOfBirth;
 
     /**
      * @var string $name
@@ -67,29 +63,6 @@ class Listing
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set dateOfBirth
-     *
-     * @param \DateTime $dateOfBirth
-     * @return Listing
-     */
-    public function setDateOfBirth($dateOfBirth)
-    {
-        $this->dateOfBirth = $dateOfBirth;
-    
-        return $this;
-    }
-
-    /**
-     * Get dateOfBirth
-     *
-     * @return \DateTime 
-     */
-    public function getDateOfBirth()
-    {
-        return $this->dateOfBirth;
     }
 
     /**
@@ -160,20 +133,37 @@ class Listing
     {
         return $this->creationDate;
     }
+    
+    private $invalidCodes = array();
 
     /**
-     * Add codes
+     * Add code
      *
-     * @param Fastre\CigogneBundle\Entity\Code $codes
+     * @param Fastre\CigogneBundle\Entity\Code $code
      * @return Listing
      */
-    public function addCode(\Fastre\CigogneBundle\Entity\Code $codes)
+    public function addCode(\Fastre\CigogneBundle\Entity\Code $code)
     {
-        $codes->setListing($this);
+       //we might not change the code from a listing to another !
+       //prepare for validation later
+       if ($code->getListing() !== NULL && $code->getListing() !== $this) {
+          $invalidCodes[] = $code;
+       } else {
+          $code->setListing($this);
+       }
         
-        $this->codes[] = $codes;
+        $this->codes[] = $code;
     
         return $this;
+    }
+    
+    public function checkInvalidCodes(ExecutionContextInterface $context)
+    {
+       die(var_dump($this->invalidCodes));
+       if (count($this->invalidCodes) > 0) {
+          $wordsInError = implode(', ', $this->invalidCodes);
+          $context->addViolationAt('code', 'cigogne.listing.form.invalid_code', $wordsInError);
+       }
     }
 
     /**
@@ -194,6 +184,11 @@ class Listing
     public function getCodes()
     {
         return $this->codes;
+    }
+    
+    public function setCodes(\Doctrine\Common\Collections\Collection $codes)
+    {
+       $this->codes = $codes;
     }
 
     /**

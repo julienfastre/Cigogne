@@ -2,13 +2,14 @@
 
 namespace Fastre\CigogneBundle\Entity;
 
-use FOS\UserBundle\Entity\User as BaseUser;
+use CL\PersonaUserBundle\Entity\PersonaUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Fastre\CigogneBundle\Entity\User
  */
-class User extends BaseUser
+class User implements PersonaUserInterface, UserInterface
 {
     
     /**
@@ -17,14 +18,15 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var string $phonenumber
+     * @var string $email
      */
-    private $phonenumber;
-
+    private $email;
+            
     /**
-     * @var string $paymentPaypalAccount
+     *
+     * @var string $label
      */
-    private $paymentPaypalAccount;
+    private $label;
 
     /**
      * @var string $paymentBankAccountNumber
@@ -32,96 +34,53 @@ class User extends BaseUser
     private $paymentBankAccountNumber;
 
     /**
-     * @var string $paymentBitcoinAddress
-     */
-    private $paymentBitcoinAddress;
-
-    
-    /**
-     * @var boolean $paymentPaypalAccepted
-     */
-    private $paymentPaypalAccepted = false;
-
-    /**
      * @var boolean $paymentBankAccepted
      */
     private $paymentBankAccepted = true;
 
-    /**
-     * @var boolean $paymentBitcoinAccepted
-     */
-    private $paymentBitcoinAccepted = false;
     
     private $lists;
+    
+    /**
+     *
+     * default role
+     * 
+     * @var string[]
+     */
+    private $roles = array('ROLE_USER');
 
 
     /**
-     * Set phonenumber
+     * Set email
      *
-     * @param string $phonenumber
+     * @param string $email
      * @return User
      */
-    public function setPhonenumber($phonenumber)
+    public function setEmail($email)
     {
-        $this->phonenumber = $phonenumber;
+        $this->email = $email;
     
         return $this;
     }
 
     /**
-     * Get phonenumber
+     * Get email
      *
      * @return string 
      */
-    public function getPhonenumber()
+    public function getEmail()
     {
-        return $this->phonenumber;
+        return $this->email;
     }
-
-    /**
-     * Set paymentAccepted
-     *
-     * @param array $paymentAccepted
-     * @return User
-     */
-    public function setPaymentAccepted($paymentAccepted)
-    {
-        $this->paymentAccepted = $paymentAccepted;
     
-        return $this;
+    public function getLabel()
+    {
+       return $this->label;
     }
 
-    /**
-     * Get paymentAccepted
-     *
-     * @return array 
-     */
-    public function getPaymentAccepted()
+    public function setLabel($label)
     {
-        return $this->paymentAccepted;
-    }
-
-    /**
-     * Set paymentPaypalAccount
-     *
-     * @param string $paymentPaypalAccount
-     * @return User
-     */
-    public function setPaymentPaypalAccount($paymentPaypalAccount)
-    {
-        $this->paymentPaypalAccount = $paymentPaypalAccount;
-    
-        return $this;
-    }
-
-    /**
-     * Get paymentPaypalAccount
-     *
-     * @return string 
-     */
-    public function getPaymentPaypalAccount()
-    {
-        return $this->paymentPaypalAccount;
+       $this->label = $label;
     }
 
     /**
@@ -148,54 +107,6 @@ class User extends BaseUser
     }
 
     /**
-     * Set paymentBitcoinAddress
-     *
-     * @param string $paymentBitcoinAddress
-     * @return User
-     */
-    public function setPaymentBitcoinAddress($paymentBitcoinAddress)
-    {
-        $this->paymentBitcoinAddress = $paymentBitcoinAddress;
-    
-        return $this;
-    }
-
-    /**
-     * Get paymentBitcoinAddress
-     *
-     * @return string 
-     */
-    public function getPaymentBitcoinAddress()
-    {
-        return $this->paymentBitcoinAddress;
-    }
-
-
-
-    /**
-     * Set paymentPaypalAccepted
-     *
-     * @param boolean $paymentPaypalAccepted
-     * @return User
-     */
-    public function setPaymentPaypalAccepted($paymentPaypalAccepted)
-    {
-        $this->paymentPaypalAccepted = $paymentPaypalAccepted;
-    
-        return $this;
-    }
-
-    /**
-     * Get paymentPaypalAccepted
-     *
-     * @return boolean 
-     */
-    public function getPaymentPaypalAccepted()
-    {
-        return $this->paymentPaypalAccepted;
-    }
-
-    /**
      * Set paymentBankAccepted
      *
      * @param boolean $paymentBankAccepted
@@ -218,38 +129,48 @@ class User extends BaseUser
         return $this->paymentBankAccepted;
     }
 
-    /**
-     * Set paymentBitcoinAccepted
-     *
-     * @param boolean $paymentBitcoinAccepted
-     * @return User
-     */
-    public function setPaymentBitcoinAccepted($paymentBitcoinAccepted)
-    {
-        $this->paymentBitcoinAccepted = $paymentBitcoinAccepted;
-    
-        return $this;
-    }
-
-    /**
-     * Get paymentBitcoinAccepted
-     *
-     * @return boolean 
-     */
-    public function getPaymentBitcoinAccepted()
-    {
-        return $this->paymentBitcoinAccepted;
-    }
-    
-
-
-    /**
+   /**
      * Get id
      *
      * @return integer 
      */
     public function getId()
     {
-        return parent::getId();
+        return $this->id;
     }
+
+   public function eraseCredentials()
+   {
+      
+   }
+
+   public function getPassword()
+   {
+      return '';
+   }
+
+   /**
+    * 
+    * @return string[]
+    */
+   public function getRoles()
+   {
+      return $this->roles;
+   }
+
+   public function getSalt()
+   {
+      return '';
+   }
+
+   public function getUsername()
+   {
+      return $this->getEmail();
+   }
+
+   public function getPersonaId()
+   {
+      return $this->getEmail();
+   }
+
 }
