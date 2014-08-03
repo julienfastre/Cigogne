@@ -1,0 +1,21 @@
+{% extends "FastreCigogneBundle::layout.html.twig" %}
+
+{% block title %}{{ 'cigogne.item.new.title'|trans }}{% endblock title %}
+
+{% block content %}
+   <div class="row">
+      <div class="column twelve">
+         {{ form_start(form) }}
+         
+         {{ form_rest(form) }}
+         
+         <button type="submit">{{ 'cigogne.item.new.submit'|trans }}</button>
+         
+         {{ form_end(form) }}
+         
+         
+      </div>
+   </div>
+   
+   
+{% endblock content %}

@@ -20,13 +20,22 @@
 
          {{ form_end(form) }}
          
+         <div class="items">
+         
+            <p>
+               <a href="{{ path('cigogne.item.new', { 'listingId' : list.id }) }}">
+                  {{ 'cigogne.listing.form.new_item'|trans }}
+               </a>
+            </p>
          
          {% if list is defined %}
             {% for item in list.items %}
             
-               {% include 'FastreCigogneBundle:Listing:item' with {'item': item, 'update_link': true } %}
+               {% include 'FastreCigogneBundle:Listing:form_item.html.twig' with {'item': item, 'listing': list } %}
             {% endfor %}
          {% endif %}
+         
+         </div>
          
       </div>
    </div>

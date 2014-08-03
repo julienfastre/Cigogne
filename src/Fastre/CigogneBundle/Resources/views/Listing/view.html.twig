@@ -133,9 +133,7 @@
 	    <h1>{{listing.name}}</h1>
 	    <p>{% trans with {'%name%': listing.creator.username} %}cigogne.listing.view.list_of_{% endtrans %}</p>
 	
-	    <p>{% trans with {'%date%': listing.dateOfBirth | date("m/d/Y")} %}cigogne.listing.view.date_of_birth{% endtrans %}</p>
-	
-	    {{listing.description}}
+          {{listing.description|nl2br}}
 	
 	    <h1>{% trans %}cigogne.listing.view.item_list{% endtrans %}</h1>
 	

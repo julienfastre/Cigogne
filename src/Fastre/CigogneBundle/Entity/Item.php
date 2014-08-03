@@ -2,7 +2,7 @@
 
 namespace Fastre\CigogneBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Fastre\CigogneBundle\Entity\Item
@@ -33,6 +33,11 @@ class Item
      * @var integer $quantity
      */
     private $quantity;
+    
+    /**
+     * @var float
+     */
+    private $price;
 
     /**
      * @var array $furniture
@@ -42,7 +47,7 @@ class Item
     /**
      * @var integer $priority
      */
-    private $priority;
+    private $priority = 1;
 
     /**
      * @var \DateTime $creationDate
@@ -269,12 +274,8 @@ class Item
     {
         return $this->listing;
     }
-    /**
-     * @var float
-     */
-    private $price;
-
-
+    
+    
     /**
      * Set price
      *
@@ -402,20 +403,52 @@ class Item
      * check the consistency of the item
      * Used for validation
      */
-    public function isConsistent() {
-//                switch ($type)
-//        {
-//             case self::TYPE_GOOD :
-//                foreach ($this->furniture as $key => $str) {
-//                    if ($str === self::FURNITURE_SERVICE) {
-//                        unset($this->furniture[$key]);
-//                    }
-//                }
-//                break;
-//            case self::TYPE_SERVICE :
-//                foreach ($this->furniture as $key => $str) {
-//                if ($str === self::FURNITURE_MONEY OR $str === self::FURNITURE_SERVICE)
-//                }
-//        } 
+    public function isConsistent(ExecutionContextInterface $context) {
+      switch ($this->getType())
+      {
+         case self::TYPE_GOOD :
+            //don't ask to give the good as a service
+            if (in_array(self::FURNITURE_SERVICE, $this->getFurniture())){
+               $context->buildViolation('cigogne.item.a_good_may_not_be_given as_a_service')
+                      ->atPath('furniture')
+                      ->addViolation();
+            }
+            //give the price if you ask for money
+            if ($this->getPrice() == 0 
+                    && in_array(self::FURNITURE_MONEY, $this->getFurniture())){
+               $context->buildViolation('cigogne.item.give_a_price')
+                       ->atPath('price')
+                       ->addViolation();
+            }
+            //fill at least one of 'good' possibility ('new' or 'second hand')
+            if (count($this->getGood()) === 0){
+               $context->buildViolation('cigogne.good.required')
+                       ->atPath('good')
+                       ->addViolation();
+            }
+            break;
+        case self::TYPE_SERVICE:
+           //a service may not be 'new' or 'second hand'
+           if (in_array(self::GOOD_NEW, $this->getGood()) 
+                   OR in_array(self::GOOD_SECOND_HAND, $this->getGood())) {
+              $context->buildViolation('cigogne.item.a_service_may_not_be_new_nor_second_hand')
+                      ->atPath('good')
+                      ->addViolation();
+           }
+           //a service may not be given as moyen
+           if (in_array(self::FURNITURE_MONEY, $this->getFurniture())){
+              $context->buildViolation('cigogne.item.a_service_may_not_be_paid')
+                      ->atPath('furniture')
+                      ->addViolation();
+           }
+           //a service may not be given in nature
+           if (in_array(self::FURNITURE_NATURE, $this->getFurniture())) {
+              $context->buildViolation('cigogne.item.a_service_may_not_be_nature')
+                      ->atPath('furniture')
+                      ->addViolation();
+           }
+           break;
+
+      } 
     }
 }

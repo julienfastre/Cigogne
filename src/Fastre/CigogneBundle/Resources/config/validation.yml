@@ -1,3 +1,37 @@
 Fastre\CigogneBundle\Entity\Listing:
    contraints:
       - Callback: [checkInvalidCodes]
+      
+Fastre\CigogneBundle\Entity\Item:
+   constraints:
+      - Callback: [isConsistent]
+   getters:
+      title:
+         - NotBlank: ~
+         - NotNull: ~
+         - Length:
+            min: 5
+            max: 255
+      description:
+         - NotBlank: ~
+         - NotNull: ~
+         - Length: 
+            min: 5
+            max: 600
+      type:
+         - NotNull: ~
+         - NotBlank: ~
+      quantity:
+         - Range:
+            min: 1
+            max: 10000
+         - NotNull: ~
+      price:
+         - Range: 
+            min: 1
+            max: 10000
+         - NotNull: ~
+      furniture:
+         - Count:
+            min: 1
+            max: 10

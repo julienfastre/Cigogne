@@ -47,7 +47,7 @@ cigogne.logout:
    defaults: {_controller: FastreCigogneBundle:User:logout }
    
 cigogne.listing.list:
-   pattern: /listing/list
+   pattern: /listings
    defaults: {_controller: FastreCigogneBundle:Listing:listByUserAuthenticated }
    
 cigogne.listing.new:
@@ -57,6 +57,14 @@ cigogne.listing.new:
 cigogne.listing.update:
    pattern: /listing/update/{id}
    defaults: {_controller: FastreCigogneBundle:Listing:update }
+   
+cigogne.item.new:
+   pattern: /item/{listingId}/new
+   defaults: {_controller: FastreCigogneBundle:Item:new }
+   
+cigogne.item.update:
+   pattern: /item/{listingId}/update/{id}
+   defaults: {_controller: FastreCigogneBundle:Item:update }
    
 cigogne.listing.see:
   pattern: /{code}

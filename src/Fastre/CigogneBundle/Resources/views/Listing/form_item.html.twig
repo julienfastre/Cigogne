@@ -1,0 +1,41 @@
+{% set money = constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_MONEY') %}
+{% set nature = constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_NATURE') %}
+{% set service = constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_SERVICE') %}
+
+{#  
+   ajoute des classes particulières en fonction de la nature de l'item
+#}
+      <div class="item {% spaceless %}
+    {% if item.type is constant('Fastre\\CigogneBundle\\Entity\\Item::TYPE_GOOD') %}good {% else %}service {% endif %}
+    {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_SECOND_HAND') in item.good %}second {% endif %}
+    {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_NEW') in item.good %}new {% endif %}
+    {% endspaceless %}">
+      <h2 class="item_title">{{item.title}}</h2>
+
+      <p class="item_description">{{item.description|nl2br}}</p>
+
+      <dl>
+         <dt>{{ 'cigogne.listing.form.item.quantity'|trans }}</dt>
+         <dd>{{ item.quantity }}</dd>
+         <dt>{{ 'cigogne.listing.form.item.price'|trans }}</dt>
+         <dd>{{ item.price|number_format(2, ',', ' ') }}&nbsp;€</dd>
+         <dt>{{ 'cigogne.listing.form.item.furniture'|trans }}</dt>
+         <dd>{% for furniture in item.furniture %}
+            {{ 'cigogne.listing.form.item.furniture_'~furniture|trans }}
+            {% endfor %}
+         </dd>
+         <dt>{{ 'cigogne.listing.form.item.good'|trans }}</dt>
+         <dd>{% for good in item.good %}
+            {{ 'cigogne.listing.form.item.good_'~good|trans }}
+            {% endfor %}
+         </dd>
+         
+      </dl>
+
+         <p>
+            <a href="{{ path('cigogne.item.update', {'listingId': list.id, 'id': item.id } ) }}">
+            {{ 'cigogne.listing.form.update_item'|trans }}
+            </a>
+         </p>
+
+       </div>
