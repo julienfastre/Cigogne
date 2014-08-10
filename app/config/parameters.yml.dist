@@ -19,4 +19,5 @@ parameters:
     swift_regio:        your_swift_regio
     swift_container:    your_swift_container
     swift_endpointurl:  your_swift_endpoint_url
+    swift_tenant:       your_swift_tenant_name
 

@@ -193,9 +193,10 @@ class Photo
        return $this->file;
     }
     
-    public function setPhoto($file) {
+    public function setPhoto(\Symfony\Component\HttpFoundation\File\UploadedFile $file) {
        
        $this->file = $file;
+       $this->type = $file->guessExtension();
     }
     
     public function getFileName()
