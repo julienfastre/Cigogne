@@ -26,3 +26,7 @@ Fastre\CigogneBundle\Entity\Listing:
     creator:
       targetEntity: User
       inversedBy: lists
+  oneToOne:
+    photo:
+      targetEntity: Photo
+      cascade: [persist, remove]

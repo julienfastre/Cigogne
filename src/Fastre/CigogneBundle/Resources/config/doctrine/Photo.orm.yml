@@ -2,18 +2,18 @@ Fastre\CigogneBundle\Entity\Photo:
   type: entity
   id:
     id:
-      type: integer
-      generator: {strategy: AUTO}
-  fields:
-    file:
       type: string
+      length: 255
+      generator: {strategy: NONE}
+  fields:
     type:
       type: string
       length: 5
     creationDate:
       type: datetime
-  manyToOne:
-    creator:
-      targetEntity: User
-      inversedBy: photos
+    endAccessDate:
+       type: datetime
+    tempUrl:
+       type: string
+       length: 255
       

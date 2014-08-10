@@ -14,3 +14,9 @@ parameters:
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
 
+    swift_username:     your_swift_username
+    swift_password:     your_swift_password
+    swift_regio:        your_swift_regio
+    swift_container:    your_swift_container
+    swift_endpointurl:  your_swift_endpoint_url
+

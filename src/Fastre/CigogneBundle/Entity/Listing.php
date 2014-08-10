@@ -44,6 +44,12 @@ class Listing
      * @var Fastre\CigogneBundle\Entity\User
      */
     private $creator;
+    
+    /**
+     *
+     * @var Photo 
+     */
+    private $photo;
 
     /**
      * Constructor

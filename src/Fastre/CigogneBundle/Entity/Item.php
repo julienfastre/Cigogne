@@ -74,6 +74,11 @@ class Item
      */
     private $received = 0;
     
+    /**
+     * @var \Fastre\CigogneBundle\Entity\Photo
+     */
+    private $photo;
+    
     
     const GOOD_SECOND_HAND = 'second';
     const GOOD_NEW = 'new';
@@ -447,8 +452,39 @@ class Item
                       ->atPath('furniture')
                       ->addViolation();
            }
+           //furniture service must be checked
+           if (!in_array(self::FURNITURE_SERVICE, $this->getFurniture())){
+              $context->buildViolation('cigogne.item.service_must_be_checked')
+                      ->atPath('furniture')
+                      ->addViolation();
+           }
            break;
 
       } 
+    }
+
+
+
+    /**
+     * Set photo
+     *
+     * @param \Fastre\CigogneBundle\Entity\Photo $photo
+     * @return Item
+     */
+    public function setPhoto(\Fastre\CigogneBundle\Entity\Photo $photo = null)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return \Fastre\CigogneBundle\Entity\Photo 
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
     }
 }

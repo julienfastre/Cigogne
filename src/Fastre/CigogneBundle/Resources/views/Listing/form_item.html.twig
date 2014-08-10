@@ -29,8 +29,12 @@
             {{ 'cigogne.listing.form.item.good_'~good|trans }}
             {% endfor %}
          </dd>
+         <dt>{{ 'cigogne.listing.form.item.progress'|trans }}</dt>
+         <dd><meter value="{{ item.received }}" min="0" max="{{ item.quantity }}"></meter></dd>
          
       </dl>
+         
+         <p>
 
          <p>
             <a href="{{ path('cigogne.item.update', {'listingId': list.id, 'id': item.id } ) }}">

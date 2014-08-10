@@ -47,3 +47,15 @@ services:
   cigogne.user.provider:
      class: Fastre\CigogneBundle\Security\UserProvider\UserProvider
      arguments: ["@doctrine.orm.entity_manager"]
+     
+  cigogne.photo.lifecycle:
+     class: Fastre\CigogneBundle\Events\PhotoLifecycle
+     arguments:
+        - %swift_endpointurl%
+        - %swift_username%
+        - %swift_password%
+        - %swift_regio%
+        - %swift_container%
+     tags:
+        - { name: doctrine.event_listener, event: postPersist }
+        - { name: doctrine.event_listener, event: postUpdate  }

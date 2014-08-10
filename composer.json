@@ -20,7 +20,8 @@
 		"doctrine/doctrine-fixtures-bundle" : "dev-master",
 		"doctrine/data-fixtures" : "dev-master",
 		"gumbyframework/gumby" : "2.6.3",
-		"champs-libres/persona-user-bundle": "dev-master"
+		"champs-libres/persona-user-bundle": "dev-master",
+		"rackspace/php-opencloud": "1.10.*"
 	},
 	"scripts" : {
 		"post-install-cmd" : [

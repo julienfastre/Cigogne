@@ -38,4 +38,8 @@ Fastre\CigogneBundle\Entity\Item:
     listing:
       targetEntity: Listing
       inversedBy: items
+  oneToOne:
+     photo:
+        targetEntity: Photo
+        cascade: [persist, remove]
     

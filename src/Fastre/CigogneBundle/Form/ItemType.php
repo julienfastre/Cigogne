@@ -50,6 +50,9 @@ class ItemType extends AbstractType
                   'expanded' => true,
                   'multiple' => true
               ))
+              ->add('photo', new PhotoType(), array(
+                  'required' => false
+              ))
               ;
    }
 
