@@ -25,6 +25,7 @@ cigogne:
       title: La liste de %name%
       list_of_: Liste de %name%
       date_of_birth: La naissance est prévue pour le %date%
+      #item_list is not used
       item_list: Notre liste...
       total_money: Montant total de vos cadeaux
       basket_title: Votre panier

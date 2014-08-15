@@ -20,4 +20,5 @@ parameters:
     swift_container:    your_swift_container
     swift_endpointurl:  your_swift_endpoint_url
     swift_tenant:       your_swift_tenant_name
+    swift_container_public_url: 'http://your_container_public.url'
 

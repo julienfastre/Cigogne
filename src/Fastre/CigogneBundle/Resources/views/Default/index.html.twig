@@ -18,18 +18,25 @@
 
 {% block content %}
 
-<p id="homepage.slogan">{% trans %}cigogne.homepage.slogan{% endtrans %}</p>
+   <div class="row homepage">
+      <div class="column twelve">
+         <p class="slogan">{% trans %}cigogne.homepage.slogan{% endtrans %}</p>
 
-{# \u00E0-\u00FC pattern="[a-zA-Z0-9]+" #}
-<form method="post" action="{{ url('cigogne.list.pick_from_code')}}" >
-    <input id="input.code" pattern="[a-zA-Z0-9\u00E0-\u00FC]+" name="code" placeholder="{% trans %}cigogne.homepage.write_code{% endtrans %}" title="{% trans %}cigogne.homepage.code_validation_message_title{% endtrans %}" autofocus required oninvalid='this.setCustomValidity("cigogne.homepage.code_validation_message")' >
-    <button type="submit">{% trans %}cigogne.homepage.send_code{% endtrans %}</button>
+         {# \u00E0-\u00FC pattern="[a-zA-Z0-9]+" #}
+         <form class="code" method="post" action="{{ url('cigogne.list.pick_from_code')}}" >
+            <div class="append field">
+             <input id="input_code" class="wide input" pattern="[a-zA-Z0-9\u00E0-\u00FC]+" name="code" placeholder="{% trans %}cigogne.homepage.write_code{% endtrans %}" title="{% trans %}cigogne.homepage.code_validation_message_title{% endtrans %}" autofocus required oninvalid='this.setCustomValidity("cigogne.homepage.code_validation_message")' >
+             <div class="medium primary btn adjoined"><button class="search" type="submit">{% trans %}cigogne.homepage.send_code{% endtrans %}</button></div>
+            </div>
 
-</form>
+         </form>
 
-<div id="homepage.buttons">
-    <div class="homepage.button" id="homepage.who_are_we"><a href="#">{% trans %}cigogne.homepage.who_are_we{% endtrans %}</a></div>
-    <div class="homepage.button" id="homepage.future_parent"><a href="#">{% trans %}cigogne.homepage.future_parent{% endtrans %}</a></div>
-    <div class="homepage.button" id="homepage.make_a_gift"><a href="#">{% trans %}cigogne.homepage.make_a_gift{% endtrans %}</a></div>
-</div>
+         <ul class="three_up tiles buttons">
+             <li class="button" class="who_are_we"><a href="#">{% trans %}cigogne.homepage.who_are_we{% endtrans %}</a></li>
+             <li class="button" class="future_parent"><a href="{{path('cigogne.persona_explain') }}">{% trans %}cigogne.homepage.future_parent{% endtrans %}</a></li>
+             <li class="button" class="make_a_gift"><a href="#">{% trans %}cigogne.homepage.make_a_gift{% endtrans %}</a></li>
+         </ul>
+      </div>
+   </div>
+
  {% endblock %}

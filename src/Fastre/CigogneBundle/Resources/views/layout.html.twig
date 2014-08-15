@@ -51,13 +51,13 @@
             
         <div id="flash-messages" class="row">
             {% for flashMessage in app.session.flashbag.get('notice') %}
-                <div class="flash-notice column eight centered">
+                <div class="flash-notice column eight centered primary alert">
                         {{ flashMessage }}
                 </div>
             {% endfor %}
 
             {% for flashMessage in app.session.flashbag.get('warn') %}
-                <div class="flash-warn column eight centered">
+                <div class="flash-warn column eight centered danger alert">
                         {{ flashMessage }}
                 </div>
             {% endfor %}

@@ -115,4 +115,73 @@ class ItemController extends Controller
               );
       
    }
+   
+   public function publicViewAction(Request $request, $codeListing, $itemId)
+   {
+      //get listing from code
+      //sanitize code
+      $code = trim($code);
+
+      //get the list
+      $em = $this->getDoctrine()->getEntityManager();
+      $q = $em->createQuery('SELECT l from FastreCigogneBundle:Listing l JOIN l.codes c where c.word like :code');
+      $q->setParameter('code', $code);
+
+      try {
+         $listing = $q->getSingleResult();
+      } catch (Exception $e) {
+         //redirect to first page
+         $message = $this->get('translator')->trans('cigogne.listing.pick_from_code.not_found');
+         $this->get('session')->getFlashBag()->add('warn', $message);
+         return $this->redirect(
+                         $this->generateUrl("homepage")
+         );
+      }
+      
+      $item = $em->getRepository('FastreCigogneBundle:Item')
+              ->find($itemId);
+      
+      if (NULL === $item) {
+         throw $this->createNotFoundException('item not found');
+      }
+      
+      $basket = $this->get('cigogne.basket.provider')->getBasket();
+      
+      //store the forms
+      $forms_item = array();
+
+      if ($item->getType() === Item::TYPE_GOOD) {
+
+         if (in_array(Item::FURNITURE_MONEY, $item->getFurniture())) {
+            $gift = new GiftMoney();
+            $gift->setBasket($basket)
+                    ->setItem($item)
+                    ->setAmount($item->getRemainPossibleToGive(Item::FURNITURE_MONEY))
+            ;
+            $f = $this->createForm(new GiftMoneyType(), $gift);
+            $forms_item[Item::FURNITURE_MONEY] = $f->createView();
+         }
+
+         if (in_array(Item::FURNITURE_NATURE, $item->getFurniture())) {
+            $gift = new GiftNature();
+            $gift->setBasket($basket)
+                    ->setItem($item)
+                    ->setQuantity($item->getRemainPossibleToGive(Item::FURNITURE_NATURE))
+            ;
+            $f = $this->createForm(new GiftNatureType(), $gift);
+            $forms_item[Item::FURNITURE_NATURE] = $f->createView();
+         }
+      } else {
+         $gift = new GiftService();
+         $gift->setBasket($basket)
+                 ->setItem($item)
+                 ->setQuantity($item->getRemainPossibleToGive(Item::FURNITURE_SERVICE))
+         ;
+         $f = $this->createForm(new GiftServiceType(), $gift);
+         $forms_item[Item::FURNITURE_SERVICE] = $f->createView();
+      }
+      
+      
+   }
+
 }

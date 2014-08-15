@@ -7422,3 +7422,58 @@ table.rounded > tbody:first-child tr:first-child td {
 .ie9 .radio.checked i, .ie9 .checkbox.checked i {
   top: 0;
 }
+
+/* line 2, ../../compass/sass/_homepage.scss */
+.homepage .slogan {
+  font-size: 48px;
+  text-align: center;
+  font-family: 'leckerlioneregular', serif;
+}
+/* line 8, ../../compass/sass/_homepage.scss */
+.homepage form.code {
+  text-align: center;
+}
+/* line 12, ../../compass/sass/_homepage.scss */
+.homepage form.code div.adjoined button {
+  color: #000101;
+}
+/* line 19, ../../compass/sass/_homepage.scss */
+.homepage .buttons {
+  text-align: center;
+}
+
+/* line 2, ../../compass/sass/_listing.scss */
+.listing #basket {
+  padding: 1em;
+  border: 1px solid #EAEAEA;
+  background-color: #F7F7F7;
+}
+/* line 8, ../../compass/sass/_listing.scss */
+.listing #basket h1 {
+  font-size: 30px;
+}
+/* line 12, ../../compass/sass/_listing.scss */
+.listing #basket h2 {
+  font-size: 26px;
+}
+/* line 16, ../../compass/sass/_listing.scss */
+.listing #basket p.total {
+  font-weight: bold;
+}
+/* line 24, ../../compass/sass/_listing.scss */
+.listing #basket img.delete {
+  max-height: 1em;
+  max-width: 1em;
+}
+/* line 32, ../../compass/sass/_listing.scss */
+.listing #item_list .item .image_item {
+  max-width: 15em;
+  max-height: 15em;
+  float: left;
+}
+
+/* line 5, ../../compass/sass/_custom.scss */
+body {
+  background-image: url("../../Resources/public/css/images/noisy-texture-100x100-o11-d17-ffd546-t1.png");
+  background-repeat: repeat;
+}

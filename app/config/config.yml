@@ -23,6 +23,8 @@ twig:
     form:
         resources:
             - 'FastreCigogneBundle:Form:fields.html.twig'
+    globals:
+       container_url: %swift_container_public_url%
 
 # Assetic Configuration
 assetic:

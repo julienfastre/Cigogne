@@ -66,7 +66,7 @@
    
    {# le code qui contient le "panier " de l'utilisateur.  #}
 
-<div ng-app="listingView" class="row">
+<div ng-app="listingView" class="row listing">
     <div ng-controller="basketController" class="column three" >
         <div id="basket" >
             
@@ -77,13 +77,14 @@
             <h2 class="invisible " id="basket_money_title">Les cadeaux achetés</h2>
             
             <ul id="moneyGiftList">
-                <li ng-repeat="moneyGift in moneyGifts">
+                <li ng-repeat="moneyGift in moneyGifts" class="item">
                     <span>{{ '{{moneyGift.title}}' }}</span> 
                     <span>{{ '{{moneyGift.amount | currency:"€"}}' }}</span> 
                     <span><a ng-click="deleteItem(moneyGift.uuid)">
                             <img src="{{asset('img/1362970997_error.png')}}" 
                                  alt="{{ 'cigogne.listing.view.basket_delete'}}" 
-                                 title="{{ 'cigogne.listing.view.basket_delete'}}" />
+                                 title="{{ 'cigogne.listing.view.basket_delete'}}" 
+                                 class="delete"/>
                         </a>
                 </li>
 
@@ -93,14 +94,15 @@
             <h2 class="invisible " id="basket_nature_title">Vos dons</h2>
             
             <ul id="natureGiftList">
-                <li ng-repeat="natureGift in natureGifts">
+                <li ng-repeat="natureGift in natureGifts" class="item">
                     <span>{{ '{{natureGift.title}}' }}</span> 
                     <span>{{ '{{natureGift.message}}' }}</span> 
                     <span>{{ '{{natureGift.quantity}}' }}</span>
                     <span><a ng-click="deleteItem(natureGift.uuid)">
                             <img src="{{asset('img/1362970997_error.png')}}" 
                                  alt="{{ 'cigogne.listing.view.basket_delete'}}" 
-                                 title="{{ 'cigogne.listing.view.basket_delete'}}" />
+                                 title="{{ 'cigogne.listing.view.basket_delete'}}" 
+                                 class="delete" />
                         </a>
                 </li>
             
@@ -109,39 +111,43 @@
             <h2 class="invisible " id="basket_service_title">Vos services</h2>
             
             <ul id="natureGiftList">
-                <li ng-repeat="serviceGift in serviceGifts">
+                <li ng-repeat="serviceGift in serviceGifts" class="item">
                     <span>{{ '{{serviceGift.title}}' }}</span> 
                     <span>{{ '{{serviceGift.message}}' }}</span> 
                     <span>{{ '{{serviceGift.quantity}}' }}</span>
                     <span><a ng-click="deleteItem(serviceGift.uuid)">
                             <img src="{{asset('img/1362970997_error.png')}}" 
                                  alt="{{ 'cigogne.listing.view.basket_delete'}}" 
-                                 title="{{ 'cigogne.listing.view.basket_delete'}}" />
+                                 title="{{ 'cigogne.listing.view.basket_delete'}}" 
+                                 class="delete" />
                         </a>
                 </li>
             
             </ul>
 
-            <p class="invisible" id="basket_money_total">{{ 'cigogne.listing.view.total_money' | trans}} {{ '{{getTotalMoneyGifts() | currency:"€"}}' }}</p>
+            <p class="invisible total" id="basket_money_total" >{{ 'cigogne.listing.view.total_money' | trans}} {{ '{{getTotalMoneyGifts() | currency:"€"}}' }}</p>
 
-            <p><a href="{{ path('cigogne.basket.confirm', {'code': code }) }}">Valider</a></p>
+            <div class="medium primary btn">
+               <a href="{{ path('cigogne.basket.confirm', {'code': code }) }}">Valider</a>
+            </div>
         </div>
     </div>
     
 
     <div class="column nine">
-	    <h1>{{listing.name}}</h1>
+	    
+          <h1>{{listing.name}}</h1>
 	    <p>{% trans with {'%name%': listing.creator.username} %}cigogne.listing.view.list_of_{% endtrans %}</p>
 	
           {{listing.description|nl2br}}
 	
-	    <h1>{% trans %}cigogne.listing.view.item_list{% endtrans %}</h1>
+	    {# <h2>{% trans %}cigogne.listing.view.item_list{% endtrans %}</h2> #}
 	
 	    {#  
 	        liste de tous les items...
 	    #}
 	
-	    <div id="item.list" >
+	    <div id="item_list" >
 	
 	        {% for item in listing.items %}
 	    {#  
@@ -152,7 +158,8 @@
 	          {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_SECOND_HAND') in item.good %}second{% endif %}
 	          {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_NEW') in item.good %}new{% endif %}
 	        ">
-	                <h2 class="item_title">{{item.title}}</h2>
+                     <div class="image_item"><img src="{{ container_url ~ '/' ~ item.photo.fileName }}" class="image_item" /></div>
+                      <h3 class="item_title">{{item.title}}</h3>
 	
 	                <p class="item_description">{{item.description}}</p>
 	

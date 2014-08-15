@@ -1,3 +1,8 @@
 // Your custom SCSS should be written here...
 
 @import 'typo.scss';
+
+body {
+   background-image: url("./../images/noisy-texture-100x100-o11-d17-ffd546-t1.png");
+   background-repeat: repeat;
+}
