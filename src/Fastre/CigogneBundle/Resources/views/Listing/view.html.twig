@@ -32,10 +32,6 @@
 
 <style type="text/css">
         
-    {# permet de rendre invisible les titres dans le basket #}
-    .invisible {
-        display: none;
-    }
     
     {# style temporaire pour visualiser les formulaires #}
     form {
@@ -67,195 +63,58 @@
    {# le code qui contient le "panier " de l'utilisateur.  #}
 
 <div ng-app="listingView" class="row listing">
-    <div ng-controller="basketController" class="column three" >
-        <div id="basket" >
-            
-            <h1>{{ 'cigogne.listing.view.basket_title' | trans }}</h1>
-            
-            <p id="basket_all_empty_message">{{ 'cigogne.listing.view.basket_empty' | trans }}</p>
-            
-            <h2 class="invisible " id="basket_money_title">Les cadeaux achetés</h2>
-            
-            <ul id="moneyGiftList">
-                <li ng-repeat="moneyGift in moneyGifts" class="item">
-                    <span>{{ '{{moneyGift.title}}' }}</span> 
-                    <span>{{ '{{moneyGift.amount | currency:"€"}}' }}</span> 
-                    <span><a ng-click="deleteItem(moneyGift.uuid)">
-                            <img src="{{asset('img/1362970997_error.png')}}" 
-                                 alt="{{ 'cigogne.listing.view.basket_delete'}}" 
-                                 title="{{ 'cigogne.listing.view.basket_delete'}}" 
-                                 class="delete"/>
-                        </a>
-                </li>
-
-            </ul>
-            
-            
-            <h2 class="invisible " id="basket_nature_title">Vos dons</h2>
-            
-            <ul id="natureGiftList">
-                <li ng-repeat="natureGift in natureGifts" class="item">
-                    <span>{{ '{{natureGift.title}}' }}</span> 
-                    <span>{{ '{{natureGift.message}}' }}</span> 
-                    <span>{{ '{{natureGift.quantity}}' }}</span>
-                    <span><a ng-click="deleteItem(natureGift.uuid)">
-                            <img src="{{asset('img/1362970997_error.png')}}" 
-                                 alt="{{ 'cigogne.listing.view.basket_delete'}}" 
-                                 title="{{ 'cigogne.listing.view.basket_delete'}}" 
-                                 class="delete" />
-                        </a>
-                </li>
-            
-            </ul>
-            
-            <h2 class="invisible " id="basket_service_title">Vos services</h2>
-            
-            <ul id="natureGiftList">
-                <li ng-repeat="serviceGift in serviceGifts" class="item">
-                    <span>{{ '{{serviceGift.title}}' }}</span> 
-                    <span>{{ '{{serviceGift.message}}' }}</span> 
-                    <span>{{ '{{serviceGift.quantity}}' }}</span>
-                    <span><a ng-click="deleteItem(serviceGift.uuid)">
-                            <img src="{{asset('img/1362970997_error.png')}}" 
-                                 alt="{{ 'cigogne.listing.view.basket_delete'}}" 
-                                 title="{{ 'cigogne.listing.view.basket_delete'}}" 
-                                 class="delete" />
-                        </a>
-                </li>
-            
-            </ul>
-
-            <p class="invisible total" id="basket_money_total" >{{ 'cigogne.listing.view.total_money' | trans}} {{ '{{getTotalMoneyGifts() | currency:"€"}}' }}</p>
-
-            <div class="medium primary btn">
-               <a href="{{ path('cigogne.basket.confirm', {'code': code }) }}">Valider</a>
-            </div>
-        </div>
-    </div>
+    
+   <div class="columns three">
+   {% include 'FastreCigogneBundle:Basket:preparation.html.twig' %}
+   </div>
     
 
-    <div class="column nine">
+    <div class="column eight item_wrapper">
 	    
           <h1>{{listing.name}}</h1>
 	    <p>{% trans with {'%name%': listing.creator.username} %}cigogne.listing.view.list_of_{% endtrans %}</p>
-	
-          {{listing.description|nl2br}}
-	
-	    {# <h2>{% trans %}cigogne.listing.view.item_list{% endtrans %}</h2> #}
+
 	
 	    {#  
 	        liste de tous les items...
 	    #}
 	
-	    <div id="item_list" >
+	    <ul id="item_list" class="item_list " >
 	
 	        {% for item in listing.items %}
 	    {#  
 	        ajoute des classes particulières en fonction de la nature de l'item
 	    #}
-	            <div class="item 
+	            <li class="item 
 	          {% if item.type is constant('Fastre\\CigogneBundle\\Entity\\Item::TYPE_GOOD') %}good{% else %}service{% endif %}
 	          {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_SECOND_HAND') in item.good %}second{% endif %}
 	          {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_NEW') in item.good %}new{% endif %}
 	        ">
-                     <div class="image_item"><img src="{{ container_url ~ '/' ~ item.photo.fileName }}" class="image_item" /></div>
+                     
+                     {% if item.photo is not null %}
+                     <div class="image_item">
+                        <img src="{{ container_url ~ '/' ~ item.photo.fileName }}" class="image_item" />
+                     </div>
+                     {% endif %}
+                     
                       <h3 class="item_title">{{item.title}}</h3>
 	
 	                <p class="item_description">{{item.description}}</p>
 	
 	
-	                {% if attribute(attribute(forms, item.id), money) is defined %}
-	                    {% set form = attribute(attribute(forms, item.id), money) %}
-	                <div >
-	                    <form class="second" 
-	                          ng-controller="moneyGiftController" 
-	                          ng-submit="addMoneyGift(this)" 
-	                          action="{{path('cigogne.gift.add', {'_format':'json', 'type':'money'})}}" 
-	                          method="post">
-	                   
-	                        <p>
-	                            {{ form_label(form.amount) }}: {{ form_widget(form.amount, 
-	                                        {'attr': {
-	                                            'class':'amount', 
-	                                            'pattern': '[-+]?[0-9]*[.,]?[0-9]+',
-	                                            'x-moz-errormessage': 'cigogne.gift.form.money.amount_error_message'|trans, 
-	                                            'title': 'cigogne.gift.form.money.amount_error_message'|trans}}) }}
-	
-	                            <input type="hidden" name="title" value="{{item.title}}" >
-	                            <input type="hidden" name="type" value="money" />
-	
-	
-	                            {# ne pas supprimer form_rest : il affiche les éléments manquants 
-	                                (valeurs cachées, etc.  #}
-	                            {{ form_rest(form) }} 
-	
-	                            <button >{% trans %}cigogne.gift.form.money.give{% endtrans %}</button>
-	                        
-	                        </p>
-	                        
-	                    </form>
-	                </div>
-	
-	                {% endif %}
-	
-	                {% if attribute(attribute(forms, item.id), nature) is defined  %}
-	                    {% set form = attribute(attribute(forms, item.id), nature) %}
-	                  
-	                    <form method="post" 
-	                          action="{{path('cigogne.gift.add', {'_format':'json', 'type':'nature'})}}"
-	                          class="new" 
-	                          ng-controller="natureGiftController" 
-	                          ng-submit="addNatureGift(this)">
-	                        
-	                           {{ form_label(form.message) }}: {{ form_widget(form.message, 
-	                                             {'attr': {
-	                                                    'class' : 'message'
-	                                                    }}) }}
-	                            
-	                            <input type="hidden" name="title" value="{{item.title}}" >
-	                            <input type="hidden" name="type" value="nature" />
-	
-	                                   
-	                            {# ne pas supprimer form_rest : il affiche les éléments manquants 
-	                            (valeurs cachées, etc.  #} 
-	                            {{ form_rest(form) }} 
-	                        <button>{% trans %}cigogne.gift.form.nature.give{% endtrans %}</button>
-	                    </form>
-	                  
-	
-	                {% endif %}
-	
-	                {% if attribute(attribute(forms, item.id), service) is defined %}
-	                    {% set form = attribute(attribute(forms, item.id), service) %}
-	                
-	                    <form method="post" 
-	                          action="{{path('cigogne.gift.add', {'_format':'json', 'type':'service'})}}"" 
-	                          class="new" 
-	                          ng-controller="serviceGiftController" 
-	                          ng-submit="addServiceGift(this)">
-	                        
-	                        {{ form_label(form.message) }}: {{ form_widget(form.message) }}
-	                        
-	                        <input type="hidden" name="title" value="{{item.title}}" >
-	                        <input type="hidden" name="type" value="service" />
-	                        
-	                            {# ne pas supprimer form_rest : il affiche les éléments manquants 
-	                            (valeurs cachées, etc.  #}
-	                            {{ form_rest(form) }} 
-	                        
-	                        
-	                        <button>{% trans %}cigogne.gift.form.service.give{% endtrans %}</button>
-	                    </form>
-	
-	                {% endif %}
+                      <div class="medium secondary btn pick-btn">
+                         <a href="{{ path('cigogne.item.public_view', { 'codeListing': code, 'itemId': item.id } ) }}">
+                            {{ 'cigogne.listing.item.pick'|trans }}
+                         </a>
+                      </div>
 	
 	
 	
-	            </div>
+	            </li>
 	
 	        {% endfor %}
 	
-	    </div>
+	    </ul>
     </div>
 
 </div> {# div for ng-app #}

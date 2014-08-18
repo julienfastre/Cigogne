@@ -66,6 +66,12 @@ cigogne.item.update:
    pattern: /item/{listingId}/update/{id}
    defaults: {_controller: FastreCigogneBundle:Item:update }
    
+cigogne.item.public_view:
+   pattern: /item/view/{codeListing}/{itemId}
+   defaults: {_controller: FastreCigogneBundle:Item:publicView }
+   requirements:
+      itemId: \d+
+   
 cigogne.listing.see:
   pattern: /{code}
   defaults: {_controller: FastreCigogneBundle:Listing:getListingFromCode }

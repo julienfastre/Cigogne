@@ -1,39 +1,39 @@
 .listing {
-   #basket {
-      padding: 1em;
-      border: 1px solid #EAEAEA;
-      background-color: #F7F7F7;
-      
-      
-      h1 {
-         font-size: $larger;
-         
-      }
-      h2 {
-         font-size: $large;
-      }
-      
-      p.total {
-         font-weight: bold;
-      }
-      
-      ul {
-         
-      }
-      
-      img.delete {
-         max-height: 1em;
-         max-width: 1em;
-      }
+   
+   .item_wrapper {
+      width: columns(8);
    }
    
-   #item_list {
+   .item_list {
+      
+      -moz-column-count: 2;
+      -webkit-column-count: 2;
+      column-count: 2;
+         
+      
+      
       .item {
+         padding: 1em;
+         margin-top: 1.5em;
+         border: 1px solid #EAEAEA;
+         background-color: #F7F7F7;
+         
+         display: inline-block;
+         width: 100%;
+         
+
          .image_item {
-            max-width: 15em;
-            max-height: 15em;
-            max-height: 15em;
-            float: left;
+            max-width: 100%;
+            max-height: 12em;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+         }
+         
+         .pick-btn {
+            width: 100%;
+            text-align: center;
+            margin-top: 1em;
          }
       }
    }

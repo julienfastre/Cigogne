@@ -6,6 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Fastre\CigogneBundle\Entity\Item;
 use Fastre\CigogneBundle\Form\ItemType;
+use Fastre\CigogneBundle\Entity\Gift\GiftMoney;
+use Fastre\CigogneBundle\Form\Gift\GiftMoneyType;
+use Fastre\CigogneBundle\Entity\Gift\GiftNature;
+use Fastre\CigogneBundle\Form\Gift\GiftNatureType;
+use Fastre\CigogneBundle\Entity\Gift\GiftService;
+use Fastre\CigogneBundle\Form\Gift\GiftServiceType;
 
 
 /**
@@ -120,7 +126,7 @@ class ItemController extends Controller
    {
       //get listing from code
       //sanitize code
-      $code = trim($code);
+      $code = trim($codeListing);
 
       //get the list
       $em = $this->getDoctrine()->getEntityManager();
@@ -181,6 +187,26 @@ class ItemController extends Controller
          $forms_item[Item::FURNITURE_SERVICE] = $f->createView();
       }
       
+      //get the gift already in the basket and serialize them into json
+        $json = $this->get("cigogne.normalizer.serializer")
+                ->serialize(
+                        $this->get("cigogne.basket.provider")
+                            ->getBasket()
+                            ->getElements(),
+                        'json',
+                        array()
+                        );
+      
+      return $this->render('FastreCigogneBundle:Item:publicView.html.twig',
+              array(
+                  'forms_item' => $forms_item,
+                  'item' => $item,
+                  'listing' => $listing,
+                  'code' => $code,
+                  'deleteToken' => $this->get('form.csrf_provider')
+                     ->generateCsrfToken(GiftController::DELETE_ITEM_TOKEN),
+                  'itemsInBasket' => $json
+              ));
       
    }
 

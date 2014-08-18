@@ -114,49 +114,6 @@ class ListingController extends Controller {
                     );
         }
         
-        //prepare an array which hold the form for gifts
-        $forms = array();
-        $basket = $this->get('cigogne.basket.provider')->getBasket();
-        
-        foreach ($l->getItems() as $item) {
-            $forms_item = array();
-            
-            if ($item->getType() === Item::TYPE_GOOD) {
- 
-                if (in_array(Item::FURNITURE_MONEY, $item->getFurniture())) {
-                    $gift = new GiftMoney();
-                    $gift->setBasket($basket)
-                            ->setItem($item)
-                            ->setAmount($item->getRemainPossibleToGive(Item::FURNITURE_MONEY))
-                            ;
-                    $f = $this->createForm(new GiftMoneyType(), $gift);
-                    $forms_item[Item::FURNITURE_MONEY] = $f->createView();
-                }
-
-                if (in_array(Item::FURNITURE_NATURE, $item->getFurniture())) {
-                    $gift = new GiftNature();
-                    $gift->setBasket($basket)
-                            ->setItem($item)
-                            ->setQuantity($item->getRemainPossibleToGive(Item::FURNITURE_NATURE))
-                            ;
-                    $f = $this->createForm(new GiftNatureType(), $gift);
-                    $forms_item[Item::FURNITURE_NATURE] = $f->createView();
-                }
-            } else {
-                $gift = new GiftService();
-                $gift->setBasket($basket)
-                        ->setItem($item)
-                        ->setQuantity($item->getRemainPossibleToGive(Item::FURNITURE_SERVICE))
-                        ;
-                $f = $this->createForm(new GiftServiceType(), $gift);
-                $forms_item[Item::FURNITURE_SERVICE] = $f->createView();
-            }
-            
-            if (count($forms_item) > 0) {
-                $forms[$item->getId()] = $forms_item;
-            }
-        }
-        
         
         //get the gift already in the basket and serialize them into json
         $json = $this->get("cigogne.normalizer.serializer")
@@ -172,7 +129,6 @@ class ListingController extends Controller {
         
         return $this->render('FastreCigogneBundle:Listing:view.html.twig', array(
             'listing' => $l,
-            'forms' => $forms,
             'deleteToken' => $this->get('form.csrf_provider')
                 ->generateCsrfToken(GiftController::DELETE_ITEM_TOKEN),
             'itemsInBasket' => $json,

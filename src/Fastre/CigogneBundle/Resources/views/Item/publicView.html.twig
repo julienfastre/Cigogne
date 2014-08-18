@@ -1,0 +1,162 @@
+{% extends "FastreCigogneBundle::layout.html.twig" %}
+
+{% block title %}{{ item.title }}{% endblock title %}
+
+{#  
+    les deux lignes ci-dessous stockent des valeurs constantes dans des variables twig, 
+    histoire de ne pas trop alourdir le code... 
+#}
+
+{% set money = constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_MONEY') %}
+{% set nature = constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_NATURE') %}
+{% set service = constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_SERVICE') %}
+
+
+
+
+
+{#  ajoute les dépendances JS d'angular JS + script de manip des formulaires #}
+{% block javascript %}
+   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+   <script src="{{ asset('js/listingView.js') }}"></script>
+   <script>
+       var urlDeleteGift = '{{ path('cigogne.gift.remove', {'_format':'json'})}}';
+       var deleteToken = '{{deleteToken}}';
+       var itemsInBasket = {{itemsInBasket|raw }};
+   </script>
+{% endblock %}
+
+{% block content %}
+
+   <div ng-app="listingView" class="row publicView">
+      <div class="columns three">
+      {% include 'FastreCigogneBundle:Basket:preparation.html.twig' with { 'add_link_to_list': true } %}
+      
+      <div class="medium btn secondary back-to-list" >
+         <a href="{{ path('cigogne.listing.see', { 'code' : code } ) }}">
+            {{ 'cigogne.listing.item.back_to_list'|trans({ '%listingCreator%': listing.creator.label } )  }}
+         </a>
+      </div>
+           
+      
+      </div>
+      
+      <div class="columns nine item_wrapper">
+         <div class="item 
+              {% if item.type is constant('Fastre\\CigogneBundle\\Entity\\Item::TYPE_GOOD') %}good{% else %}service{% endif %}
+              {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_SECOND_HAND') in item.good %}second{% endif %}
+              {% if constant('Fastre\\CigogneBundle\\Entity\\Item::GOOD_NEW') in item.good %}new{% endif %}
+              ">
+            
+            {% if item.photo is not null %}
+            <div class="image_item">
+               <img src="{{ container_url ~ '/' ~ item.photo.fileName }}" class="image_item" />
+            </div>
+            {% endif %}
+            
+            
+            <h3 class="item_title">{{item.title}}</h3>
+
+            <p class="item_description">{{ item.description|nl2br }}</p>
+
+
+            {% if attribute(forms_item, money) is defined %}
+               {% set form = attribute(forms_item, money) %}
+               <div >
+                  <form class="second" 
+                        ng-controller="moneyGiftController" 
+                        ng-submit="addMoneyGift(this)" 
+                        action="{{path('cigogne.gift.add', {'_format':'json', 'type':'money'})}}" 
+                        method="post">
+
+                     <p>
+                        <div class="prepend field append">
+                        {{ form_label(form.amount, null, {'label_attr': {'class': 'adjoined' } } ) }} 
+                        {{ form_widget(form.amount, 
+	                                        {'attr': {
+	                                            'class':'amount input wide', 
+	                                            'pattern': '[-+]?[0-9]*[.,]?[0-9]+',
+	                                            'x-moz-errormessage': 'cigogne.gift.form.money.amount_error_message'|trans, 
+	                                            'title': 'cigogne.gift.form.money.amount_error_message'|trans } } ) }}
+                           <div class="medium primary btn adjoined">
+                              <button type="submit">{% trans %}cigogne.gift.form.money.give{% endtrans %}</button>
+                           </div>
+                        </div>
+                        <input type="hidden" name="title" value="{{item.title}}" >
+                        <input type="hidden" name="type" value="money" />
+                        
+
+
+                        {# ne pas supprimer form_rest : il affiche les éléments manquants 
+                            (valeurs cachées, etc.  #}
+                        {{ form_rest(form) }} 
+
+                        
+
+                     </p>
+
+                  </form>
+               </div>
+
+            {% endif %}
+
+            {% if attribute(forms_item, nature) is defined  %}
+               {% set form = attribute(forms_item, nature) %}
+
+               <form method="post" 
+                     action="{{path('cigogne.gift.add', {'_format':'json', 'type':'nature'})}}"
+                     class="new" 
+                     ng-controller="natureGiftController" 
+                     ng-submit="addNatureGift(this)">
+
+                  {{ form_label(form.message) }}: {{ form_widget(form.message, 
+	                                             {'attr': {
+	                                                    'class' : 'message'
+                  }}) }}
+
+                  <input type="hidden" name="title" value="{{item.title}}" >
+                  <input type="hidden" name="type" value="nature" />
+
+
+                  {# ne pas supprimer form_rest : il affiche les éléments manquants 
+                  (valeurs cachées, etc.  #} 
+                  {{ form_rest(form) }} 
+                  <button>{% trans %}cigogne.gift.form.nature.give{% endtrans %}</button>
+               </form>
+
+
+            {% endif %}
+
+            {% if attribute(forms_item, service) is defined %}
+               {% set form = attribute(forms_item, service) %}
+
+               <form method="post" 
+                     action="{{path('cigogne.gift.add', {'_format':'json', 'type':'service'})}}"" 
+                     class="new" 
+                     ng-controller="serviceGiftController" 
+                     ng-submit="addServiceGift(this)">
+
+                  {{ form_label(form.message) }}: {{ form_widget(form.message) }}
+
+                  <input type="hidden" name="title" value="{{item.title}}" >
+                  <input type="hidden" name="type" value="service" />
+
+                  {# ne pas supprimer form_rest : il affiche les éléments manquants 
+                  (valeurs cachées, etc.  #}
+                  {{ form_rest(form) }} 
+
+
+                  <button>{% trans %}cigogne.gift.form.service.give{% endtrans %}</button>
+               </form>
+
+            {% endif %}
+
+
+
+         </div>
+      </div>
+   </div>
+
+
+
+{% endblock content %}

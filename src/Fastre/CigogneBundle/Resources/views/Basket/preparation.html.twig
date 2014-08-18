@@ -1,0 +1,67 @@
+<div ng-controller="basketController" >
+        <div id="basket" >
+            
+            <h1>{{ 'cigogne.listing.view.basket_title' | trans }}</h1>
+            
+            <p id="basket_all_empty_message">{{ 'cigogne.listing.view.basket_empty' | trans }}</p>
+            
+            <h2 class="invisible " id="basket_money_title">Les cadeaux achetés</h2>
+            
+            <ul id="moneyGiftList">
+                <li ng-repeat="moneyGift in moneyGifts" class="item">
+                    <span>{{ '{{moneyGift.title}}' }}</span> 
+                    <span>{{ '{{moneyGift.amount | currency:"€"}}' }}</span> 
+                    <span><a ng-click="deleteItem(moneyGift.uuid)">
+                            <img src="{{asset('img/1362970997_error.png')}}" 
+                                 alt="{{ 'cigogne.listing.view.basket_delete'}}" 
+                                 title="{{ 'cigogne.listing.view.basket_delete'}}" 
+                                 class="delete"/>
+                        </a>
+                </li>
+
+            </ul>
+            
+            
+            <h2 class="invisible " id="basket_nature_title">Vos dons</h2>
+            
+            <ul id="natureGiftList">
+                <li ng-repeat="natureGift in natureGifts" class="item">
+                    <span>{{ '{{natureGift.title}}' }}</span> 
+                    <span>{{ '{{natureGift.message}}' }}</span> 
+                    <span>{{ '{{natureGift.quantity}}' }}</span>
+                    <span><a ng-click="deleteItem(natureGift.uuid)">
+                            <img src="{{asset('img/1362970997_error.png')}}" 
+                                 alt="{{ 'cigogne.listing.view.basket_delete'}}" 
+                                 title="{{ 'cigogne.listing.view.basket_delete'}}" 
+                                 class="delete" />
+                        </a>
+                </li>
+            
+            </ul>
+            
+            <h2 class="invisible " id="basket_service_title">Vos services</h2>
+            
+            <ul id="natureGiftList">
+                <li ng-repeat="serviceGift in serviceGifts" class="item">
+                    <span>{{ '{{serviceGift.title}}' }}</span> 
+                    <span>{{ '{{serviceGift.message}}' }}</span> 
+                    <span>{{ '{{serviceGift.quantity}}' }}</span>
+                    <span><a ng-click="deleteItem(serviceGift.uuid)">
+                            <img src="{{asset('img/1362970997_error.png')}}" 
+                                 alt="{{ 'cigogne.listing.view.basket_delete'}}" 
+                                 title="{{ 'cigogne.listing.view.basket_delete'}}" 
+                                 class="delete" />
+                        </a>
+                </li>
+            
+            </ul>
+
+            <p class="invisible total" id="basket_money_total" >{{ 'cigogne.listing.view.total_money' | trans}} {{ '{{getTotalMoneyGifts() | currency:"€"}}' }}</p>
+
+            <div class="medium primary btn">
+               <a href="{{ path('cigogne.basket.confirm', {'code': code }) }}">Valider</a>
+            </div> {% if add_link_to_list is defined and add_link_to_list == true %}
+            <a href="{{ path('cigogne.listing.see', { 'code' : code } ) }}">{{ 'cigogne.listing.item.or_go_on'|trans }}</a>
+            {% endif %}
+        </div>
+    </div>

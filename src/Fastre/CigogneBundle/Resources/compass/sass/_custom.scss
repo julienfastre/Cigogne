@@ -3,6 +3,14 @@
 @import 'typo.scss';
 
 body {
-   background-image: url("./../images/noisy-texture-100x100-o11-d17-ffd546-t1.png");
-   background-repeat: repeat;
+   
+}
+
+.invisible {
+   display: none;
+}
+
+.persona-button {
+   margin-top: 0.2em;
+   bottom: -0.5em;
 }
