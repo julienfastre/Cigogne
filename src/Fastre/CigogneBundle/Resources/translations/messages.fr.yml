@@ -4,6 +4,7 @@ cigogne:
   register: Créer une liste
   connect: Se connecter
   logout: Se déconnecter
+  my_lists: Vos listes
   type:
     item_hidden:
       does_not_exist: L'item sélectionné n'existe pas dans la base de donnée.
@@ -35,11 +36,20 @@ cigogne:
       back_to_list: Retour à la liste de %listingCreator%
       or_go_on: Ou continuer
       pick: Offrir
-      
+    form:
+       submit: Mettre à jour
+       new_item: Ajouter un article
+       update_item: Modifier l'article
+       title: Mettre à jour votre liste
+    list:
+      my_lists: Vos listes de naissance
+      description: Description
+      update: Mettre à jour
+
   gift:
     form:
       common:
-        amount: Montant
+        amount: €
         message: Message
         quantity: Quantité
       money:
@@ -49,6 +59,7 @@ cigogne:
         give: Donner
       service:
         give: Rendre ce service
+        message: Message éventuel
   basket:
     confirm:
       title: Récapitulatif de vos cadeaux
@@ -60,9 +71,9 @@ cigogne:
       title: Confirmation de vos cadeaux
       thanks: Merci pour vos cadeaux!
       message_has_been_sent: Un message a été envoyé à l'adresse <strong>%email%</strong> avec le détail de vos cadeaux.
-      make_transfer_IBAN: Vous pouvez virer €%amount% sur le compte %IBAN%. 
+      make_transfer_IBAN: Vous pouvez virer €%amount% sur le compte %IBAN%.
       to_homepage: Retour à l'accueil
-      
+
     form:
       name: Votre nom et prénom
       email: Une adresse de couriel
@@ -76,8 +87,3 @@ cigogne:
     gift:
       invalid_form: Formulaire non valide
       basket_not_exist: Le panier n'existe pas
-      
-      
-      
-        
-    

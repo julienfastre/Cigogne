@@ -12,7 +12,9 @@
 {% set service = constant('Fastre\\CigogneBundle\\Entity\\Item::FURNITURE_SERVICE') %}
 
 
-
+{% block money_widget -%}
+{{  block('form_widget_simple')  }}
+{%- endblock money_widget %}
 
 
 {#  ajoute les dépendances JS d'angular JS + script de manip des formulaires #}
@@ -68,6 +70,10 @@
                         ng-submit="addMoneyGift(this)" 
                         action="{{path('cigogne.gift.add', {'_format':'json', 'type':'money'})}}" 
                         method="post">
+                     
+                     <h4>{{ 'cigogne.gift.form.money.give'|trans }}</h4>
+                     
+                     {% form_theme form.amount _self %}
 
                      <p>
                         <div class="prepend field append">
@@ -108,12 +114,29 @@
                      class="new" 
                      ng-controller="natureGiftController" 
                      ng-submit="addNatureGift(this)">
-
-                  {{ form_label(form.message) }}: {{ form_widget(form.message, 
-	                                             {'attr': {
-	                                                    'class' : 'message'
-                  }}) }}
-
+                  
+                  <h4>{% trans %}cigogne.gift.form.nature.give{% endtrans %}</h4>
+                  
+                  <div class="prepend field append">
+                        {{ form_label(form.quantity, null, {'label_attr': {'class': 'adjoined' } } ) }} 
+                        {{ form_widget(form.quantity, 
+	                                        {'attr': {
+	                                            'class':'quantity input wide', 
+                                             } } ) }}
+                     <div class="medium primary btn adjoined">
+                        <button type="submit">{% trans %}cigogne.gift.form.nature.give{% endtrans %}</button>
+                     </div>
+                  </div>
+                  <input type="hidden" name="title" value="{{item.title}}" >
+                  <input type="hidden" name="type" value="money" />
+                  
+                  <div class="field">
+                     {{ form_widget(form.message, 
+                                                      {'attr': {
+                                                             'class' : 'message input textarea'
+                     }}) }}
+                  </div>
+                  
                   <input type="hidden" name="title" value="{{item.title}}" >
                   <input type="hidden" name="type" value="nature" />
 
@@ -121,7 +144,6 @@
                   {# ne pas supprimer form_rest : il affiche les éléments manquants 
                   (valeurs cachées, etc.  #} 
                   {{ form_rest(form) }} 
-                  <button>{% trans %}cigogne.gift.form.nature.give{% endtrans %}</button>
                </form>
 
 
@@ -135,8 +157,26 @@
                      class="new" 
                      ng-controller="serviceGiftController" 
                      ng-submit="addServiceGift(this)">
+                  
+                  <h4>{{ 'cigogne.gift.form.service.give'|trans }}</h4>
 
-                  {{ form_label(form.message) }}: {{ form_widget(form.message) }}
+                  <div class="field">
+                     {{ form_widget(form.message, {'attr': {
+                                                'class' : 'message input textarea xwide', 
+                                                'placeholder' : 'cigogne.gift.form.service.message'|trans
+                     } } ) }}
+                  </div>
+                  
+                  <div class="prepend field append">
+                        {{ form_label(form.quantity, null, {'label_attr': {'class': 'adjoined' } } ) }} 
+                        {{ form_widget(form.quantity, 
+	                                        {'attr': {
+	                                            'class':'quantity input narrow', 
+                                             } } ) }}
+                     <div class="medium primary btn adjoined">
+                        <button type="submit">{% trans %}cigogne.gift.form.service.give{% endtrans %}</button>
+                     </div>
+                  </div>
 
                   <input type="hidden" name="title" value="{{item.title}}" >
                   <input type="hidden" name="type" value="service" />
@@ -144,9 +184,6 @@
                   {# ne pas supprimer form_rest : il affiche les éléments manquants 
                   (valeurs cachées, etc.  #}
                   {{ form_rest(form) }} 
-
-
-                  <button>{% trans %}cigogne.gift.form.service.give{% endtrans %}</button>
                </form>
 
             {% endif %}

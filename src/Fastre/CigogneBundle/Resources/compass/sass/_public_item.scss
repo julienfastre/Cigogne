@@ -16,6 +16,18 @@
          text-align: center;
       }
       
+      form {
+         .prepend .adjoined.btn,
+            .append .adjoined.btn {
+               background-color: $primary-color;
+            }
+            
+            .append .adjoined.btn:hover {
+               background-color: $primary-hover-color;
+            }
+      }
+      
+      
    }
    }
    
