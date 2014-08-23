@@ -7506,6 +7506,44 @@ table.rounded > tbody:first-child tr:first-child td {
   max-width: 1em;
 }
 
+/* line 33, ../../compass/sass/_basket.scss */
+.confirm ul, .confirmed ul {
+  list-style-type: disc;
+  list-style-position: outside;
+}
+/* line 37, ../../compass/sass/_basket.scss */
+.confirm ul li, .confirmed ul li {
+  margin-left: 3em;
+}
+/* line 39, ../../compass/sass/_basket.scss */
+.confirm ul li .message, .confirmed ul li .message {
+  display: block;
+  font-style: italic;
+  margin: 0.4em;
+  padding: 0.4em;
+  border: 1px solid #EAEAEA;
+  background-color: #F7F7F7;
+}
+/* line 47, ../../compass/sass/_basket.scss */
+.confirm ul li .message .legend, .confirmed ul li .message .legend {
+  font-weight: bold;
+  font-style: normal;
+}
+/* line 55, ../../compass/sass/_basket.scss */
+.confirm .amount.list, .confirm .quantity.list, .confirmed .amount.list, .confirmed .quantity.list {
+  min-width: 9em;
+  text-align: right;
+}
+/* line 60, ../../compass/sass/_basket.scss */
+.confirm .amount, .confirm .quantity, .confirmed .amount, .confirmed .quantity {
+  font-weight: bold;
+}
+/* line 66, ../../compass/sass/_basket.scss */
+.confirm form label.aligned, .confirmed form label.aligned {
+  min-width: 15em;
+  text-align: right;
+}
+
 /* line 1, ../../compass/sass/_public_item.scss */
 .back-to-list {
   width: 100%;

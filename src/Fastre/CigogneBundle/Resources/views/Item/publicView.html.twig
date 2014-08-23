@@ -74,7 +74,10 @@
                      <h4>{{ 'cigogne.gift.form.money.give'|trans }}</h4>
                      
                      {% form_theme form.amount _self %}
-
+                     <p>
+                        <span class="asked"><span class="expl">{{ 'cigogne.gift.form.money.asked'|trans }}</span> <span class="amount">{{ item.price| number_format(2, ',', ' ') }}&nbsp;€</span></span>
+                        <span class="remaining"><span class="expl">{{ 'cigogne.gift.form.money.remaining' | trans }}</span> 
+                           <span class="amount">{{ item.getRemainPossibleToGive(money)| number_format(2, ',', ' ') }}&nbsp;€</span></span>
                      <p>
                         <div class="prepend field append">
                         {{ form_label(form.amount, null, {'label_attr': {'class': 'adjoined' } } ) }} 
@@ -82,6 +85,7 @@
 	                                        {'attr': {
 	                                            'class':'amount input wide', 
 	                                            'pattern': '[-+]?[0-9]*[.,]?[0-9]+',
+                                                  'placeholder' : 'cigogne.gift.form.money.amount_placeholder'|trans,
 	                                            'x-moz-errormessage': 'cigogne.gift.form.money.amount_error_message'|trans, 
 	                                            'title': 'cigogne.gift.form.money.amount_error_message'|trans } } ) }}
                            <div class="medium primary btn adjoined">
@@ -117,11 +121,17 @@
                   
                   <h4>{% trans %}cigogne.gift.form.nature.give{% endtrans %}</h4>
                   
+                  <p>
+                     <span class="asked"><span class="expl">{{ 'cigogne.gift.form.nature.asked'|trans }}</span> <span class="quantity">{{ item.quantity }}</span></span>
+                           <span class="remaining"><span class="expl">{{ 'cigogne.gift.form.nature.remaining' | trans }}</span> 
+                              <span class="quantity">{{ item.getRemainPossibleToGive(nature) }}</span></span>
+                  </p>
                   <div class="prepend field append">
                         {{ form_label(form.quantity, null, {'label_attr': {'class': 'adjoined' } } ) }} 
                         {{ form_widget(form.quantity, 
 	                                        {'attr': {
 	                                            'class':'quantity input wide', 
+                                                  'placeholder' : 'cigogne.gift.form.nature.quantity_placeholder'|trans
                                              } } ) }}
                      <div class="medium primary btn adjoined">
                         <button type="submit">{% trans %}cigogne.gift.form.nature.give{% endtrans %}</button>
@@ -159,6 +169,12 @@
                      ng-submit="addServiceGift(this)">
                   
                   <h4>{{ 'cigogne.gift.form.service.give'|trans }}</h4>
+                  
+                  <p>
+                     <span class="asked"><span class="expl">{{ 'cigogne.gift.form.nature.asked'|trans }}</span> <span class="quantity">{{ item.quantity }}</span></span>
+                           <span class="remaining"><span class="expl">{{ 'cigogne.gift.form.nature.remaining' | trans }}</span> 
+                              <span class="quantity">{{ item.getRemainPossibleToGive(service) }}</span></span>
+                  </p>
 
                   <div class="field">
                      {{ form_widget(form.message, {'attr': {
@@ -171,7 +187,8 @@
                         {{ form_label(form.quantity, null, {'label_attr': {'class': 'adjoined' } } ) }} 
                         {{ form_widget(form.quantity, 
 	                                        {'attr': {
-	                                            'class':'quantity input narrow', 
+	                                            'class':'quantity input narrow',
+                                                  'placeholder' : 'cigogne.gift.form.service.quantity_placeholder'|trans
                                              } } ) }}
                      <div class="medium primary btn adjoined">
                         <button type="submit">{% trans %}cigogne.gift.form.service.give{% endtrans %}</button>

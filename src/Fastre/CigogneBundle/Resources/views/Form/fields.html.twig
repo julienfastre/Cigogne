@@ -62,8 +62,28 @@ has_error danger
 {% spaceless %}
     <div {{ block('widget_container_attributes') }}>
     {% for child in form %}
+       {% set label_attr = child.vars.label_attr %}
+       {% if child.vars.label is not sameas(false) %}
+        {% if not child.vars.compound %}
+            {% set label_attr = label_attr|merge({'for': child.vars.id}) %}
+        {% endif %}
+        {% if child.vars.required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' radio required')|trim}) %}
+        {% else %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' radio')|trim}) %}
+        {% endif %}
+        {% if child.vars.label is empty %}
+            {% set label = child.name|humanize %}
+         {% else %}
+            {% set label = child.vars.label %}
+        {% endif %}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+       {% endif %}
         {{ form_widget(child) }}
-        {{ form_label(child, '', {'label_attr': { 'class' : 'inline radio'} }) }}
+        {% if label is not sameas(false) %}
+           <span></span>{{ label|trans({}, translation_domain) }}</label>
+        {% endif %}
+
     {% endfor %}
     </div>
 {% endspaceless %}

@@ -19,7 +19,7 @@ class GiftService extends Gift {
     /**
      * @var integer
      */
-    private $quantity = 1;    
+    private $quantity = null;    
 
 
     /**

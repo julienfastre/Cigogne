@@ -20,7 +20,7 @@ class GiftNature extends Gift {
     /**
      * @var integer
      */
-    private $quantity = 1;
+    private $quantity = null;
 
 
     /**
@@ -79,7 +79,7 @@ class GiftNature extends Gift {
           throw new \Exception('nature not possible with this item');
        }
        
-       if ($this->getPrice() === 0) { $price = 1; } else { $price = $this->getPrice();}
+       $price = 1; 
        
        $received = $this->getItem()->getReceived();
         $received += $this->getQuantity() * $price ;

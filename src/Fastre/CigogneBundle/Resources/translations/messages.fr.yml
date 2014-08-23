@@ -36,6 +36,7 @@ cigogne:
       back_to_list: Retour à la liste de %listingCreator%
       or_go_on: Ou continuer
       pick: Offrir
+      too_late_to_pick: Trop tard pour offrir...
     form:
        submit: Mettre à jour
        new_item: Ajouter un article
@@ -55,11 +56,20 @@ cigogne:
       money:
         give: Offrir
         amount_error_message: Uniquement des nombres avec un point ou un virgule
+        amount_placeholder: Montant que vous voulez offrir
+        asked: Montant demandé
+        remaining: Montant restant à offrir
       nature:
         give: Donner
+        quantity_placeholder: Quantité offerte
+        asked: Quantité demandée
+        remaining: Quantité restante à offrir
       service:
         give: Rendre ce service
         message: Message éventuel
+        quantity_placeholder: Nombre de services
+        asked: Quantité demandée
+        remaining: Quantité restante à offrir
   basket:
     confirm:
       title: Récapitulatif de vos cadeaux

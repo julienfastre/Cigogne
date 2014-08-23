@@ -4,8 +4,7 @@
     <ul>
         {% for giftMoney in giftMoneys %}
 
-            <li>{{giftMoney.item.title}}, {{giftMoney.amount}}<br/>
-                <span class="message"></span></li>
+           <li><span class="amount list">{{giftMoney.amount| number_format(2, ',', ' ')}}&nbsp;€</span>&nbsp;: <span class="title">{{giftMoney.item.title}}</span>, <br/>
 
         {% endfor %}
 
@@ -19,8 +18,9 @@
     <ul>
         {% for giftNature in giftNatures %}
 
-            <li>{{giftNature.item.title}}, {{giftNature.quantity}}<br/>
-                <span class="message">{{giftNature.message}}</span></li>
+           <li><span class="quantity list">{{giftNature.quantity}}</span>&nbsp;: <span class="title">{{giftNature.item.title}}</span>
+              {% if giftNature.message is not empty %}<br/>
+                 <span class="message"><span class="legend">Votre message&nbsp;:<br/></span>{{giftNature.message|nl2br}}</span>{% endif %}</li>
 
         {% endfor %}
 
@@ -33,14 +33,15 @@
 <ul>
     {% for giftService in giftServices %}
         
-        <li>{{giftService.item.title}}, {{giftService.quantity}}<br/>
-            <span class="message">{{giftService.message}}</span></li>
+       <li><span class="quantity list">{{giftService.quantity}}</span>&nbsp;: <span class="title">{{giftService.item.title}}</span>, {% if giftService.message is not empty %}<br/>
+              <span class="message"><span class="legend">Votre message&nbsp;:<br/></span>{{giftService.message|nl2br}}</span>{% endif %}</li>
         
     {% endfor %}
 
 </ul>
 {% endif %}
 
-<p>Vos dons : €{{totalMoney | number_format(2, ',', ' ')}} pour {{giftMoneys | length }} objet,
-{{giftNatures | length }} dons d'objets et {{giftServices | length }} services.</p>
+<h2>Soit... </h2>
+<p><span class="amount">{{totalMoney | number_format(2, ',', ' ')}}€</span> pour <span class="quantity">{{giftMoneys | length }}</span> objet(s),
+   <span class="quantity">{{giftNatures | length }}</span> dons d'objets et <span class="quantity">{{giftServices | length }}</span> services.</p>
 

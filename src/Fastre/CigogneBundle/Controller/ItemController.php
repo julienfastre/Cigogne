@@ -162,7 +162,7 @@ class ItemController extends Controller
             $gift = new GiftMoney();
             $gift->setBasket($basket)
                     ->setItem($item)
-                    ->setAmount($item->getRemainPossibleToGive(Item::FURNITURE_MONEY))
+                    //->setAmount($item->getRemainPossibleToGive(Item::FURNITURE_MONEY))
             ;
             $f = $this->createForm(new GiftMoneyType(), $gift);
             $forms_item[Item::FURNITURE_MONEY] = $f->createView();
@@ -172,7 +172,7 @@ class ItemController extends Controller
             $gift = new GiftNature();
             $gift->setBasket($basket)
                     ->setItem($item)
-                    ->setQuantity($item->getRemainPossibleToGive(Item::FURNITURE_NATURE))
+                    //->setQuantity($item->getRemainPossibleToGive(Item::FURNITURE_NATURE))
             ;
             $f = $this->createForm(new GiftNatureType(), $gift);
             $forms_item[Item::FURNITURE_NATURE] = $f->createView();
@@ -181,7 +181,7 @@ class ItemController extends Controller
          $gift = new GiftService();
          $gift->setBasket($basket)
                  ->setItem($item)
-                 ->setQuantity($item->getRemainPossibleToGive(Item::FURNITURE_SERVICE))
+                 //->setQuantity($item->getRemainPossibleToGive(Item::FURNITURE_SERVICE))
          ;
          $f = $this->createForm(new GiftServiceType(), $gift);
          $forms_item[Item::FURNITURE_SERVICE] = $f->createView();

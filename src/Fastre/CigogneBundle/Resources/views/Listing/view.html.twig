@@ -101,12 +101,20 @@
 	
 	                <p class="item_description">{{item.description}}</p>
 	
-	
+                      {% if item.getRemainPossibleToGive(service) <= 0 or item.getRemainPossibleToGive(nature) <= 0 or item.getRemainPossibleToGive(money) <= 0 %}
                       <div class="medium secondary btn pick-btn">
                          <a href="{{ path('cigogne.item.public_view', { 'codeListing': code, 'itemId': item.id } ) }}">
                             {{ 'cigogne.listing.item.pick'|trans }}
                          </a>
                       </div>
+                     
+                     {% else %}
+                     <div class="medium default btn pick-btn">
+                         <a href="{{ path('cigogne.item.public_view', { 'codeListing': code, 'itemId': item.id } ) }}">
+                            {{ 'cigogne.listing.item.too_late_to_pick'|trans }}
+                         </a>
+                      </div>
+                     {% endif %}
 	
 	
 	
