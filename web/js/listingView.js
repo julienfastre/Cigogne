@@ -72,6 +72,8 @@ function basketController($scope, binder, formServiceInstance) {
     
     $scope.serviceGifts = [];
     
+    $scope.totalMoney = 0;
+    
     binder.gogo('from basketController');
     /**
      * the form service
@@ -86,7 +88,7 @@ function basketController($scope, binder, formServiceInstance) {
             total = moneyGift.amount + total;
         });
         
-        return total;
+        $scope.totalMoney = total;
     };
     
     

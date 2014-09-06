@@ -9,14 +9,14 @@
             
             <ul id="moneyGiftList">
                 <li ng-repeat="moneyGift in moneyGifts" class="item">
-                    <span>{{ '{{moneyGift.title}}' }}</span> 
-                    <span>{{ '{{moneyGift.amount | currency:"€"}}' }}</span> 
-                    <span><a ng-click="deleteItem(moneyGift.uuid)">
+                    <span class="title">{{ '{{moneyGift.title}}' }}</span> 
+                    <span class="amount">{{ '{{moneyGift.amount | currency:"€"}}' }}</span> 
+                    <span class="delete"><a ng-click="deleteItem(moneyGift.uuid)">
                             <img src="{{asset('img/1362970997_error.png')}}" 
                                  alt="{{ 'cigogne.listing.view.basket_delete'}}" 
                                  title="{{ 'cigogne.listing.view.basket_delete'}}" 
                                  class="delete"/>
-                        </a>
+                       </a></span>
                 </li>
 
             </ul>
@@ -26,15 +26,15 @@
             
             <ul id="natureGiftList">
                 <li ng-repeat="natureGift in natureGifts" class="item">
-                    <span>{{ '{{natureGift.title}}' }}</span> 
-                    <span>{{ '{{natureGift.message}}' }}</span> 
-                    <span>{{ '{{natureGift.quantity}}' }}</span>
-                    <span><a ng-click="deleteItem(natureGift.uuid)">
+                    <span class="title">{{ '{{natureGift.title}}' }}</span> 
+                    <span class="message">{{ '{{natureGift.message}}' }}</span> 
+                    <span class="quantity">{{ '{{natureGift.quantity}}' }}</span>
+                    <span class="delete"><a ng-click="deleteItem(natureGift.uuid)">
                             <img src="{{asset('img/1362970997_error.png')}}" 
                                  alt="{{ 'cigogne.listing.view.basket_delete'}}" 
                                  title="{{ 'cigogne.listing.view.basket_delete'}}" 
                                  class="delete" />
-                        </a>
+                       </a></span>
                 </li>
             
             </ul>
@@ -43,20 +43,20 @@
             
             <ul id="natureGiftList">
                 <li ng-repeat="serviceGift in serviceGifts" class="item">
-                    <span>{{ '{{serviceGift.title}}' }}</span> 
-                    <span>{{ '{{serviceGift.message}}' }}</span> 
-                    <span>{{ '{{serviceGift.quantity}}' }}</span>
-                    <span><a ng-click="deleteItem(serviceGift.uuid)">
+                    <span class="title">{{ '{{serviceGift.title}}' }}</span> 
+                    <span class="message">{{ '{{serviceGift.message}}' }}</span> 
+                    <span class="quantity">{{ '{{serviceGift.quantity}}' }}</span>
+                    <span class="delete"><a ng-click="deleteItem(serviceGift.uuid)">
                             <img src="{{asset('img/1362970997_error.png')}}" 
                                  alt="{{ 'cigogne.listing.view.basket_delete'}}" 
                                  title="{{ 'cigogne.listing.view.basket_delete'}}" 
                                  class="delete" />
-                        </a>
+                       </a></span>
                 </li>
             
             </ul>
 
-            <p class="invisible total" id="basket_money_total" >{{ 'cigogne.listing.view.total_money' | trans}} {{ '{{getTotalMoneyGifts() | currency:"€"}}' }}</p>
+            <p class="invisible total" id="basket_money_total" >{{ 'cigogne.listing.view.total_money' | trans}} {{ '{{totalMoney | currency:"€"}}' }}</p>
 
             <div class="medium primary btn">
                <a href="{{ path('cigogne.basket.confirm', {'code': code }) }}">Valider</a>

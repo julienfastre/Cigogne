@@ -34,7 +34,7 @@
 		<p>{{ 'cigogne.basket.confirmed.message_has_been_sent'|trans({ '%email%': basket.email })|raw }}</p>
 		
 		{%  if totalMoney > 0 %}
-		<p>{{ 'cigogne.basket.confirmed.make_transfer_IBAN'|trans({ '%amount%' : totalMoney, '%IBAN%': list.creator.paymentBankAccountNumber})   }}
+               <p>{{ 'cigogne.basket.confirmed.make_transfer_IBAN'|trans({ '%amount%' : totalMoney, '%IBAN%': list.creator.paymentBankAccountNumber})   }}</p>
 		{%  endif %}
 		
 		{{ include('FastreCigogneBundle:Basket:presentation.html.twig', {

@@ -22,3 +22,5 @@ parameters:
     swift_tenant:       your_swift_tenant_name
     swift_container_public_url: 'http://your_container_public.url'
 
+    mail_from:       email_address_for_site_owner
+

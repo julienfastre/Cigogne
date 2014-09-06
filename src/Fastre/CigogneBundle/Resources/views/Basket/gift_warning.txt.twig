@@ -1,0 +1,53 @@
+{{ 'cigogne.basket.confirmed.warning'|trans( { '%name%' : basket.name, '%email%' : basket.email, '%list%' : list.name } ) }}
+
+		
+{%  if totalMoney > 0 %}
+{{ 'cigogne.basket.confirmed.receive_IBAN'|trans({ '%amount%' : totalMoney, '%IBAN%': list.creator.paymentBankAccountNumber})   }}
+{%  endif %}
+
+{% if basket.message is not empty %}
+Ils vous communiquent le message suivant : 
+---------------------------------------------
+    {{ basket.message }}
+---------------------------------------------
+{% endif %}
+
+
+Détail des cadeaux :
+=====================
+
+{% if giftMoneys | length > 0 %}
+{{ basket.name|capitalize }} donne de l'argent pour...
+------------------------------------------------------
+{% for giftMoney in giftMoneys %}- {{giftMoney.amount| number_format(2, ',', ' ')}} € : {{giftMoney.item.title}}
+{% endfor %}
+
+{% endif %}
+
+{% if giftNatures | length > 0 %}
+{{ basket.name|capitalize }} apporte les objets suivants...
+-----------------------------------------------------------
+
+{% for giftNature in giftNatures %}- {{giftNature.quantity}} :  {{giftNature.item.title}}{% if giftNature.message is not empty %} 
+   Un message : 
+   {{ giftNature.message }}
+{% endif %}
+{% endfor %}
+
+{% endif %}
+
+{% if giftServices | length > 0 %}    
+{{ basket.name|capitalize }} rendra ces services :
+---------------------------------------------------
+
+{% for giftService in giftServices %}- {{giftService.quantity}}: {{giftService.item.title}},{% if giftService.message is not empty %}
+   Votre message :
+   {{ giftService.message }}
+{% endif %}
+{% endfor %}
+
+
+{% endif %}
+
+Soit... 
+{{totalMoney | number_format(2, ',', ' ')}}€ pour {{giftMoneys | length }} objet(s), {{giftNatures | length }} dons d'objets et {{giftServices | length }} services.

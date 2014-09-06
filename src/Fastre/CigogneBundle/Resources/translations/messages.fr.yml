@@ -77,13 +77,20 @@ cigogne:
       form_invalid: Vos données sont invalides, merci de les vérifier.
       invalid_basket_id : L'identifiant du panier est invalide.
       post: Confirmer
+      is_empty: Votre panier est vide
     confirmed:
       title: Confirmation de vos cadeaux
       thanks: Merci pour vos cadeaux!
       message_has_been_sent: Un message a été envoyé à l'adresse <strong>%email%</strong> avec le détail de vos cadeaux.
       make_transfer_IBAN: Vous pouvez virer €%amount% sur le compte %IBAN%.
       to_homepage: Retour à l'accueil
-
+      #utilisé dans email de confirmation à l'acheteur
+      find_html: 'Retrouvez vos contributions ici : %url%'
+      #utilisé dans l'email de confirmation au propriétaire de la liste
+      warning: %name% (%email%) vous offre des cadeaux de votre liste %list% !
+      receive_IBAN: €%amount% seront versés sur votre compte IBAN %IBAN%.
+      warning_subject: Des cadeaux pour vous !
+      
     form:
       name: Votre nom et prénom
       email: Une adresse de couriel
