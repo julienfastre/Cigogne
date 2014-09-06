@@ -28,7 +28,7 @@ class ListingController extends Controller {
     
     public function getListingAction($_format, $id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         
         $list = $em->getRepository('FastreCigogneBundle:Listing')->find($id);
         
@@ -53,7 +53,7 @@ class ListingController extends Controller {
         //split code into array
         $codeArray = preg_split("/[\s,]+/", $codeString, 3);
         
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         
         foreach($codeArray as $word ) {
             $q = $em->createQuery('SELECT l from FastreCigogneBundle:Listing l JOIN l.codes c where c.word like :word');
@@ -98,7 +98,7 @@ class ListingController extends Controller {
         $code = trim($code);
         
         //get the list
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $q = $em->createQuery('SELECT l from FastreCigogneBundle:Listing l JOIN l.codes c where c.word like :code');
         $q->setParameter('code', $code);
         
