@@ -132,7 +132,7 @@ class BasketController extends Controller
             $messageToClient = \Swift_Message::newInstance()
                     ->setSubject($trans->trans('cigogne.basket.confirmed.title'))
                     ->setFrom($this->container->getParameter('mail_from'))
-                    ->setTo($list->getCreator()->getEmail())
+                    ->setTo($basket->getEmail())
                     ->setBody($emailTextToClient)
             ;
             $sending1 = $this->get('mailer')->send($messageToClient);
@@ -146,7 +146,7 @@ class BasketController extends Controller
             $messageToListCreator = \Swift_Message::newInstance()
                     ->setSubject($trans->trans('cigogne.basket.confirmed.warning_subject'))
                     ->setFrom($this->container->getParameter('mail_from'))
-                    ->setTo($basket->getEmail())
+                    ->setTo($list->getCreator()->getEmail())
                     ->setBody($emailTextToListCreator)
             ;
             $this->get('mailer')->send($messageToListCreator);
