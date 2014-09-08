@@ -6,7 +6,7 @@
 {%  endif %}
 
 {% if basket.message is not empty %}
-Ils vous communiquent le message suivant : 
+Il vous communique le message suivant : 
 ---------------------------------------------
     {{ basket.message }}
 ---------------------------------------------
@@ -29,7 +29,7 @@ Détail des cadeaux :
 -----------------------------------------------------------
 
 {% for giftNature in giftNatures %}- {{giftNature.quantity}} :  {{giftNature.item.title}}{% if giftNature.message is not empty %} 
-   Un message : 
+   Son message : 
    {{ giftNature.message }}
 {% endif %}
 {% endfor %}
@@ -41,7 +41,7 @@ Détail des cadeaux :
 ---------------------------------------------------
 
 {% for giftService in giftServices %}- {{giftService.quantity}}: {{giftService.item.title}},{% if giftService.message is not empty %}
-   Votre message :
+   Son message :
    {{ giftService.message }}
 {% endif %}
 {% endfor %}
