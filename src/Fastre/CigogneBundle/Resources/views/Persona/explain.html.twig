@@ -3,19 +3,32 @@
 {% block title %}{{ 'cigogne.persona_explain' | trans }}{% endblock title %}
 
 {# empty the block persona login #}
-{% block personalogin %}{% endblock personalogin %}
+{% block personalogin %}
+<nav class="columns twelve">
+               <ul class="main-menu">
+                  <li><a href="{{ path('homepage') }}">{{ 'cigogne.home'|trans }}</a></li>
+               </ul>
+</nav>
+
+{% endblock personalogin %}
 
 {% block content %}
-   <div class="row">
-      <div class="column twelve">
-         <p>{{ persona_login_button() }}</p>
+   <div class="row explain-page">
+      <div class="column twelve" style="text-align:center;">
+         <h2>Nous utilisons Persona (de Mozilla) pour gérer l'authentification.<br/></h2>
+         <ul class="top-menu">
+                    {% if not app.user %} 
+                        <li style="text-align: center;"> {{ persona_login_button() }}</li>
+                        
+                    {% else %}
+                        <li style="text-align:center;">Vous êtes connecté, {{app.user.label}}, <a href="{{ path('cigogne.listing.list') }}">{{ 'cigogne.my_lists'|trans }}</a></li>
+                        <li><a href="{{url('cigogne.logout') }}">{% trans %}cigogne.logout{% endtrans %}</a></li>
+                    {% endif %}
+                </ul>
+                <h2><a href="https://login.persona.org/about">Découvrez pourquoi nous avons choisi Persona</a></h2>
+                <p>Et comment ça fonctionne...</p>
       </div>
    </div>
-   <div class="row">
-      <div class="column twelve">
-         {{ 'persona.explain'|trans({}, 'persona') }}
-         
-      </div>
-   </div>
+
    
 {% endblock content %}

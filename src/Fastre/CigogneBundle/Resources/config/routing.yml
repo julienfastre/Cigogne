@@ -2,6 +2,10 @@ homepage:
     pattern:  /
     defaults: { _controller: FastreCigogneBundle:Default:index }
     
+cigogne.page:
+   pattern: /page/{page}
+   defaults: { _controller: FastreCigogneBundle:Default:page }
+    
 cigogne.list.pick_from_code:
   pattern: /list/pick_from_code
   defaults: { _controller: FastreCigogneBundle:Listing:pickFromCode }

@@ -7603,6 +7603,11 @@ table.rounded > tbody:first-child tr:first-child td {
   text-align: right;
 }
 
+/* line 2, ../../compass/sass/_explain-page.scss */
+.explain-page h1, .explain-page h2, .explain-page h3 {
+  font-family: "Open Sans", sans-serif;
+}
+
 /* line 5, ../../compass/sass/_custom.scss */
 body {
   margin-left: auto;
