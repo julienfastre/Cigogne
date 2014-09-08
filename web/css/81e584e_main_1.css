@@ -7624,3 +7624,10 @@ body {
   margin-top: 0.2em;
   bottom: -0.5em;
 }
+
+/* line 19, ../../compass/sass/_custom.scss */
+ul.list {
+  list-style-type: square;
+  list-position: outside;
+  padding-left: 2em;
+}

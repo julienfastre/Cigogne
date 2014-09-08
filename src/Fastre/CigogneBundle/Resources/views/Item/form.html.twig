@@ -4,12 +4,64 @@
 
 {% block content %}
    <div class="row">
-      <div class="column twelve">
+      <div class="columns twelve">
+         
+         <div class="btn medium primary">
+            <a href="{{ path('cigogne.listing.update', { 'id': listingId } ) }}">{{ 'cigogne.item.form.back_to_listing'|trans }}</a>
+         </div>
+         
          {{ form_start(form) }}
+
+         <div class="field">
+            {{ form_label(form.title, 'cigogne.item.form.title', { 'label_attr' : { 'class' : '' } } ) }}
+            {{ form_widget(form.title, { 'attr' : { 'class' : 'input' } } ) }}
+         </div>
+         
+         <div class="field">
+            {{ form_label(form.description, 'cigogne.item.form.description', { 'label_attr' : { 'class' : '' } } ) }}
+            {{ form_widget(form.description, { 'attr' : { 'class' : 'textarea input' } } ) }}
+         </div>
+         
+         <div class="field">
+            {{ form_label(form.type, 'cigogne.item.form.type', { 'label_attr' : { 'class' : '' } } ) }}
+            {{ form_widget(form.type, { 'attr' : { 'class' : ' ' } } ) }}
+         </div>
+         
+         <div class="field">
+            {{ form_label(form.quantity, 'cigogne.item.form.quantity', { 'label_attr' : { 'class' : '' } } ) }}
+            {{ form_widget(form.quantity, { 'attr' : { 'class' : ' input narrow' } } ) }}
+         </div>
+         
+         <div class="field">
+            {{ form_label(form.price, 'cigogne.item.form.price', { 'label_attr' : { 'class' : '' } } ) }}
+            {{ form_widget(form.price, { 'attr' : { 'class' : ' input narrow' } } ) }}
+         </div>
+         
+         <div class="field">
+            {{ form_label(form.furniture, 'cigogne.item.form.furniture', { 'label_attr' : { 'class' : '' } } ) }}
+            {{ form_widget(form.furniture, { 'attr' : { 'class' : ' ' } } ) }}
+         </div>
+         
+         <div class="field">
+            {{ form_label(form.good, 'cigogne.item.form.good', { 'label_attr' : { 'class' : '' } } ) }}
+            {{ form_widget(form.good, { 'attr' : { 'class' : ' ' } } ) }}
+         </div>
+         
+         <div class="">
+            {{ form_label(form.photo, 'cigogne.item.form.photo', { 'label_attr' : { 'class' : '' } } ) }}
+            {{ form_widget(form.photo, { 'attr' : { 'class' : ' ' } } ) }}
+         </div>
+         
+         {% if item.photo is not null %}
+            <div class="image_item">
+               <img src="{{ container_url ~ '/' ~ item.photo.fileName }}" class="image_item" />
+            </div>
+         {% endif %}
          
          {{ form_rest(form) }}
-         
-         <button type="submit">{{ 'cigogne.item.new.submit'|trans }}</button>
+         <div class="btn medium secondary">
+            <button type="submit">{{ 'cigogne.item.new.submit'|trans }}</button>
+         </div>
          
          {{ form_end(form) }}
          

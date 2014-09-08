@@ -4,7 +4,7 @@
 
 {% block content %}
    <div class="row">
-      <div class="column twelve">
+      <div class="columns twelve">
          
          {% if list is defined %}
             <h1>{{ 'cigogne.listing.form.title'|trans( {'%name%' : list.name }) }}</h1>
@@ -13,6 +13,22 @@
          {% endif %}
 
          {{ form_start(form) }}
+         
+         <div class="field">
+            {{ form_label(form.name, 'cigogne.listing.form.name', { 'label_attr' : { 'class' : 'inline' } } ) }}
+            {{ form_widget(form.name, { 'attr' : { 'class' : 'wide input' } } ) }}
+         </div>
+         
+         <div class="field">
+            {{ form_label(form.description, 'cigogne.listing.form.description', { 'label_attr' : { 'class' : '' } } ) }}
+            {{ form_widget(form.description, { 'attr' : { 'class' : 'textarea input' } } ) }}
+         </div>
+         
+         <div class="field">
+            {{ form_label(form.codes, 'cigogne.listing.form.codes', { 'label_attr' : { 'class' : 'inline' } } ) }}
+            {{ form_widget(form.codes, { 'attr' : { 'class' : 'wide input' } } ) }}
+            <div class="label light">{{ 'cigogne.listing.form.codes_expl'|trans }}</div>
+         </div>
 
          {{ form_rest(form) }}
          
@@ -21,14 +37,14 @@
          {{ form_end(form) }}
          
          <div class="items">
+            
+         {% if list is defined %}
          
             <p>
                <a href="{{ path('cigogne.item.new', { 'listingId' : list.id }) }}">
                   {{ 'cigogne.listing.form.new_item'|trans }}
                </a>
             </p>
-         
-         {% if list is defined %}
             {% for item in list.items %}
             
                {% include 'FastreCigogneBundle:Listing:form_item.html.twig' with {'item': item, 'listing': list } %}

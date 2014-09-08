@@ -1,16 +1,35 @@
 {% extends "FastreCigogneBundle::layout.html.twig" %}
 
-{% block title %}{{ 'cigogne.persona_explain' | trans }}{% endblock title %}
+{% block title %}{{ 'cigogne.registerform.title' | trans }}{% endblock title %}
 
 {# empty the block persona login #}
 {% block personalogin %}{% endblock personalogin %}
 
 {% block content %}
    <div class="row">
+      <div class="columns twelve">
       {{ form_start(form) }}
+      <div class="field">
+         {{ form_label(form.label, 'cigogne.registerform.label'|trans, { 'label_attr' : { 'class' : 'inline' } } ) }}
+         {{ form_widget(form.label, { 'attr' : { 'class' : 'input normal' } } ) }}
+      </div>
+
+      <div class="">
+         <label class="radio checked">
+            {{ form_widget(form.paymentBankAccepted, { 'attr' : { 'class' : '' } } ) }}<span></span>
+            {{ 'cigogne.registerform.paymentBankAccepted'|trans }}
+         </label>
+      </div>
+         
+      <div class="field">
+         {{ form_label(form.paymentBankAccountNumber, 'cigogne.registerform.accountNumber', { 'label_attr' : { 'class' : 'inline' } } ) }}
+         {{ form_widget(form.paymentBankAccountNumber, { 'attr' : { 'class' : 'input normal' } } ) }}
+      </div>
+      
       {{ form_rest(form) }}
-      <button type="submit">{{ 'cigogne.register.send'|trans }}</button>
+      <button type="submit">{{ 'cigogne.registerform.send'|trans }}</button>
       {{ form_end(form) }}
+      </div>
    </div>
    
 {% endblock content %}

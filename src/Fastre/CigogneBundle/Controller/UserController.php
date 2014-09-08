@@ -44,7 +44,7 @@ class UserController extends Controller
                       ->authenticate($user);
             
             $this->get('session')->getFlashBag()->add('notice', 
-                    $this->get('translator')->trans('cigogne.register.welcome')
+                    $this->get('translator')->trans('cigogne.welcome')
                     );
             
             return $this->redirect($this->generateUrl('cigogne.listing.list'));

@@ -1,0 +1,42 @@
+{% extends "FastreCigogneBundle::layout.html.twig" %}
+
+{% block title %}A propos de ce site{% endblock title %}
+
+{% block content %}
+   <div class="explain-page">
+      <div class="row">
+         <div class="columns twelve">
+            <h2>Vous faites un cadeau&nbsp;?</h2>
+            <p>Super&nbsp;! Les parents se réjouissent !</p>
+            <p>Ces derniers ont dû vous fournir un mot-code&nbsp;: un code confidentiel
+               qui vous permettra d'accéder à la liste. Entrez ce code <a href="{{ path('homepage') }}">
+               sur la page d'accueil</a> et faites votre choix parmi leurs demandes.</p>
+            <h2>Trois types de cadeaux</h2>
+            <p>Sur ce site, trois types de cadeaux sont possibles&nbsp;:
+            </p>
+            <ul class="list">
+               <li>
+                  <strong>Donner de l'argent</strong> par virement bancaire<br/>
+                  Vous pourrez donner de l'argent pour financier un bien. Lorsque
+                  vous aurez terminé votre choix, un numéro de compte IBAN vous sera
+                  communiqué&nbsp;: vous n'aurez plus qu'à introduire le virement.
+               </li>
+               <li>
+                  <strong>Faire un don</strong> en nature<br/>
+                  Choisissez l'objet selon les recommandations des parents. N'hésitez
+                  pas à entrer en contact avec eux pour obtenir plus d'informations.<br/>
+                  Une fois que vous l'aurez obtenu, déposez-le... en nature :-)
+               </li>
+               <li>
+                  <strong>Rendre un service</strong><br/>
+                  Quelques fois, les parents ont besoin d'un petit coup de main, 
+                  de quelques heures de présence, ... Ils vous indiqueront leurs besoins
+                  et les modalités pratiques pour les aider.
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   
+   
+{% endblock content %}

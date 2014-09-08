@@ -33,8 +33,8 @@
 
          <ul class="three_up tiles buttons">
              <li class="button" class="who_are_we"><a href="{{ path('cigogne.page', { 'page' : 'about'} ) }}">{% trans %}cigogne.homepage.who_are_we{% endtrans %}</a></li>
-             <li class="button" class="future_parent"><a href="{{path('cigogne.persona_explain') }}">{% trans %}cigogne.homepage.future_parent{% endtrans %}</a></li>
-             <li class="button" class="make_a_gift"><a href="#">{% trans %}cigogne.homepage.make_a_gift{% endtrans %}</a></li>
+             <li class="button" class="future_parent"><a href="{{path('cigogne.page', {'page' : 'future-parent' } ) }}">{% trans %}cigogne.homepage.future_parent{% endtrans %}</a></li>
+             <li class="button" class="make_a_gift"><a href="{{ path('cigogne.page', { 'page' : 'make-a-gift' } ) }}">{% trans %}cigogne.homepage.make_a_gift{% endtrans %}</a></li>
          </ul>
       </div>
    </div>

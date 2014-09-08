@@ -6,6 +6,8 @@ cigogne:
   logout: Se déconnecter
   my_lists: Vos listes
   home: Accueil
+  persona_explain: Explication sur la connexion
+  welcome: Bienvenu sur ce site !
   type:
     item_hidden:
       does_not_exist: L'item sélectionné n'existe pas dans la base de donnée.
@@ -20,6 +22,12 @@ cigogne:
     make_a_gift: Vous faites un cadeau ?
     slogan: Des listes de naissances sympa
     write_code: Inscrivez le code fourni par les futurs parents
+  registerform:
+    title: S'enregister sur le site
+    label: Nom d'utilisateur
+    send: Confirmer
+    paymentBankAccepted: Accepte les payements par virement IBAN
+    accountNumber: Numéro de compte IBAN
   listing:
     pick_from_code:
       not_found: La liste n'a pas été trouvée. Vérifiez l'orthographe du mot code qui vous a été envoyé.
@@ -43,11 +51,39 @@ cigogne:
        new_item: Ajouter un article
        update_item: Modifier l'article
        title: Mettre à jour votre liste
+       new: Nouvelle liste
+       name: Nom de la liste
+       description: Présentation en quelques mots
+       codes: Mots-code de la liste
+       codes_expl: Indiquez le ou les mots-codes, séparés par des virgules, qui permettront d'accéder à la liste.
     list:
       my_lists: Vos listes de naissance
       description: Description
       update: Mettre à jour
-
+      create_first_list: Créer votre première liste
+  item:
+     new:
+         title: Nouvel objet
+         submit: Ajouter
+     item_added: Objet ajouté
+     item_updated: Objet mis à jour
+     form:
+         title: Titre
+         description: Description
+         type: Type
+         quantity: Quantité attendue
+         price: Prix attendu
+         furniture: Mode de fourniture
+         good: Première ou deuxième main ?
+         photo: Photo
+         type_good: Objet à recevoir
+         type_service: Service à prester
+         furniture_money: Demander de l'argent pour financer l'objet (virement IBAN)
+         furniture_service: Demander un service
+         furniture_nature: Recevoir l'objet en nature (don)
+         good_new: Première main
+         good_second: Seconde main
+         back_to_listing: Retour à la liste
   gift:
     form:
       common:
@@ -100,8 +136,9 @@ cigogne:
     payement_methods:
       bitcoin: Bitcoin
       paypal: Paypal
-      transfer: Virement Bancaire IBAN
+      transfer: Virement Bancaire IBAN     
   controller:
     gift:
       invalid_form: Formulaire non valide
       basket_not_exist: Le panier n'existe pas
+     

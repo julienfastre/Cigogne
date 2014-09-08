@@ -23,8 +23,8 @@ class ItemType extends AbstractType
               ->add('description', 'textarea')
               ->add('type', 'choice', array(
                   'choices' => array(
-                      Item::TYPE_GOOD => 'cigogne.form.item.type_good',
-                      Item::TYPE_SERVICE => 'cigogne.form.item.type_service'
+                      Item::TYPE_GOOD => 'cigogne.item.form.type_good',
+                      Item::TYPE_SERVICE => 'cigogne.item.form.type_service'
                   ),
                   'multiple' => false,
                   'expanded' => true
@@ -35,18 +35,19 @@ class ItemType extends AbstractType
               ->add('price', 'money')
               ->add('furniture', 'choice', array(
                   'choices' => array(
-                      Item::FURNITURE_MONEY => 'cigogne.form.item.furniture_money',
-                      Item::FURNITURE_NATURE => 'cigogne.form.item.furniture_nature',
-                      Item::FURNITURE_SERVICE => 'cigogne.form.tem.furniture_service'
+                      Item::FURNITURE_MONEY => 'cigogne.item.form.furniture_money',
+                      Item::FURNITURE_NATURE => 'cigogne.item.form.furniture_nature',
+                      Item::FURNITURE_SERVICE => 'cigogne.item.form.furniture_service'
                   ),
                   'multiple' => true,
                   'expanded' => true
               ))
               ->add('good', 'choice', array(
                   'choices' => array(
-                      Item::GOOD_NEW => 'cigogne.form.item.good_new',
-                      Item::GOOD_SECOND_HAND => 'cigogne.form.item.good_second'
+                      Item::GOOD_NEW => 'cigogne.item.form.good_new',
+                      Item::GOOD_SECOND_HAND => 'cigogne.item.form.good_second'
                   ),
+                  'preferred_choices' => array(Item::GOOD_NEW),
                   'expanded' => true,
                   'multiple' => true
               ))

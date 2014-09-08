@@ -16,6 +16,12 @@ body {
    bottom: -0.5em;
 }
 
+ul.list {
+   list-style-type: square;
+   list-position: outside;
+   padding-left: 2em;
+}
+
 ul.errors li {
    @extend .label;
    @extend .danger;
