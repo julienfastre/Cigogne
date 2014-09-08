@@ -34,8 +34,11 @@
     <body>
         <div id="header" class="row">
            {% block personalogin %}
-            <nav class="column twelve">
-                <ul id="top-menu">
+            <nav class="columns twelve">
+               <ul class="main-menu">
+                  <li><a href="{{ path('homepage') }}">{{ 'cigogne.home'|trans }}</a></li>
+               </ul>
+                <ul class="top-menu">
                     {% if not app.user %} 
                         <li>{{ 'cigogne.already_a_list_?'|trans }} {{ persona_login_button() }}</li>
                         <li>{% trans %}cigogne.future_parent_?{% endtrans %} <a href="{{url('cigogne.persona_explain') }}">{% trans %}cigogne.register{% endtrans %}</a></li>
@@ -50,13 +53,13 @@
             
         <div id="flash-messages" class="row">
             {% for flashMessage in app.session.flashbag.get('notice') %}
-                <div class="flash-notice column eight centered primary alert">
+                <div class="flash-notice columns eight centered primary alert">
                         {{ flashMessage }}
                 </div>
             {% endfor %}
 
             {% for flashMessage in app.session.flashbag.get('warn') %}
-                <div class="flash-warn column eight centered danger alert">
+                <div class="flash-warn columns eight centered danger alert">
                         {{ flashMessage }}
                 </div>
             {% endfor %}

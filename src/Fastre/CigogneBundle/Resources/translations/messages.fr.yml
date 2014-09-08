@@ -5,6 +5,7 @@ cigogne:
   connect: Se connecter
   logout: Se déconnecter
   my_lists: Vos listes
+  home: Accueil
   type:
     item_hidden:
       does_not_exist: L'item sélectionné n'existe pas dans la base de donnée.
@@ -17,7 +18,7 @@ cigogne:
     who_are_we: Qui sommes-nous ?
     future_parent: Futur Parent ? Créez votre liste de naissance !
     make_a_gift: Vous faites un cadeau ?
-    slogan: Pour les parents qui ne mettent pas au monde des produits commerciaux.
+    slogan: Des listes de naissances sympa
     write_code: Inscrivez le code fourni par les futurs parents
   listing:
     pick_from_code:

@@ -1,5 +1,5 @@
 <div ng-controller="basketController" >
-        <div id="basket" >
+        <div id="basket" class="preparation" >
             
             <h1>{{ 'cigogne.listing.view.basket_title' | trans }}</h1>
             
@@ -26,15 +26,17 @@
             
             <ul id="natureGiftList">
                 <li ng-repeat="natureGift in natureGifts" class="item">
-                    <span class="title">{{ '{{natureGift.title}}' }}</span> 
-                    <span class="message">{{ '{{natureGift.message}}' }}</span> 
-                    <span class="quantity">{{ '{{natureGift.quantity}}' }}</span>
+                   <span class="quantity">{{ '{{natureGift.quantity}}' }}</span> 
+                   <span class="title">{{ '{{natureGift.title}}' }}</span> 
+                     
+                    
                     <span class="delete"><a ng-click="deleteItem(natureGift.uuid)">
                             <img src="{{asset('img/1362970997_error.png')}}" 
                                  alt="{{ 'cigogne.listing.view.basket_delete'}}" 
                                  title="{{ 'cigogne.listing.view.basket_delete'}}" 
                                  class="delete" />
                        </a></span>
+                  <span class="message">{{ '{{natureGift.message}}' }}</span>
                 </li>
             
             </ul>
@@ -43,15 +45,17 @@
             
             <ul id="natureGiftList">
                 <li ng-repeat="serviceGift in serviceGifts" class="item">
+                   <span class="quantity">{{ '{{serviceGift.quantity}}' }}</span>
                     <span class="title">{{ '{{serviceGift.title}}' }}</span> 
-                    <span class="message">{{ '{{serviceGift.message}}' }}</span> 
-                    <span class="quantity">{{ '{{serviceGift.quantity}}' }}</span>
+                    
+                    
                     <span class="delete"><a ng-click="deleteItem(serviceGift.uuid)">
                             <img src="{{asset('img/1362970997_error.png')}}" 
                                  alt="{{ 'cigogne.listing.view.basket_delete'}}" 
                                  title="{{ 'cigogne.listing.view.basket_delete'}}" 
                                  class="delete" />
                        </a></span>
+                    <span class="message">{{ '{{serviceGift.message}}' }}</span> 
                 </li>
             
             </ul>

@@ -7483,39 +7483,49 @@ table.rounded > tbody:first-child tr:first-child td {
 }
 
 /* line 1, ../../compass/sass/_basket.scss */
-#basket {
+.preparation {
   padding: 1em;
   border: 1px solid #EAEAEA;
   background-color: #F7F7F7;
 }
 /* line 9, ../../compass/sass/_basket.scss */
-#basket h1 {
+.preparation h1 {
   font-size: 30px;
 }
 /* line 13, ../../compass/sass/_basket.scss */
-#basket h2 {
+.preparation h2 {
   font-size: 26px;
 }
 /* line 17, ../../compass/sass/_basket.scss */
-#basket p.total {
+.preparation p.total {
   font-weight: bold;
 }
 /* line 25, ../../compass/sass/_basket.scss */
-#basket img.delete {
+.preparation span.quantity, .preparation span.amount {
+  font-weight: bold;
+}
+/* line 29, ../../compass/sass/_basket.scss */
+.preparation span.message {
+  display: block;
+  font-size: 10px;
+  padding-left: 1.5em;
+}
+/* line 35, ../../compass/sass/_basket.scss */
+.preparation img.delete {
   max-height: 1em;
   max-width: 1em;
 }
 
-/* line 33, ../../compass/sass/_basket.scss */
+/* line 43, ../../compass/sass/_basket.scss */
 .confirm ul, .confirmed ul {
   list-style-type: disc;
   list-style-position: outside;
 }
-/* line 37, ../../compass/sass/_basket.scss */
+/* line 47, ../../compass/sass/_basket.scss */
 .confirm ul li, .confirmed ul li {
   margin-left: 3em;
 }
-/* line 39, ../../compass/sass/_basket.scss */
+/* line 49, ../../compass/sass/_basket.scss */
 .confirm ul li .message, .confirmed ul li .message {
   display: block;
   font-style: italic;
@@ -7524,21 +7534,21 @@ table.rounded > tbody:first-child tr:first-child td {
   border: 1px solid #EAEAEA;
   background-color: #F7F7F7;
 }
-/* line 47, ../../compass/sass/_basket.scss */
+/* line 57, ../../compass/sass/_basket.scss */
 .confirm ul li .message .legend, .confirmed ul li .message .legend {
   font-weight: bold;
   font-style: normal;
 }
-/* line 55, ../../compass/sass/_basket.scss */
+/* line 65, ../../compass/sass/_basket.scss */
 .confirm .amount.list, .confirm .quantity.list, .confirmed .amount.list, .confirmed .quantity.list {
   min-width: 9em;
   text-align: right;
 }
-/* line 60, ../../compass/sass/_basket.scss */
+/* line 70, ../../compass/sass/_basket.scss */
 .confirm .amount, .confirm .quantity, .confirmed .amount, .confirmed .quantity {
   font-weight: bold;
 }
-/* line 66, ../../compass/sass/_basket.scss */
+/* line 76, ../../compass/sass/_basket.scss */
 .confirm form label.aligned, .confirmed form label.aligned {
   min-width: 15em;
   text-align: right;
@@ -7572,12 +7582,31 @@ table.rounded > tbody:first-child tr:first-child td {
   background-color: #58b2fa;
 }
 
-/* line 9, ../../compass/sass/_custom.scss */
+/* line 3, ../../compass/sass/_header.scss */
+#header nav ul.main-menu {
+  float: left;
+}
+/* line 6, ../../compass/sass/_header.scss */
+#header nav ul.top-menu {
+  float: right;
+}
+/* line 8, ../../compass/sass/_header.scss */
+#header nav ul.top-menu li {
+  text-align: right;
+}
+
+/* line 5, ../../compass/sass/_custom.scss */
+body {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 10, ../../compass/sass/_custom.scss */
 .invisible {
   display: none;
 }
 
-/* line 13, ../../compass/sass/_custom.scss */
+/* line 14, ../../compass/sass/_custom.scss */
 .persona-button {
   margin-top: 0.2em;
   bottom: -0.5em;

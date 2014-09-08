@@ -72,7 +72,7 @@ function basketController($scope, binder, formServiceInstance) {
     
     $scope.serviceGifts = [];
     
-    $scope.totalMoney = 0;
+    $scope.totalMoney = 10;
     
     binder.gogo('from basketController');
     /**
@@ -82,13 +82,15 @@ function basketController($scope, binder, formServiceInstance) {
     
     
         
-    $scope.getTotalMoneyGifts = function() {
+    $scope.countTotalMoneyGifts = function() {
+       console.log('countotalmoneygifts is executing');
         var total = 0;
         angular.forEach($scope.moneyGifts, function(moneyGift) {
-            total = moneyGift.amount + total;
+            total = parseFloat(moneyGift.amount.replace(",", ".")) + total;
         });
         
         $scope.totalMoney = total;
+        console.log($scope.totalMoney, "total money is ...");
     };
     
     
@@ -101,6 +103,7 @@ function basketController($scope, binder, formServiceInstance) {
             switch (item.type) {
                 case 'money':
                     $scope.moneyGifts.push(item);
+                    $scope.countTotalMoneyGifts();
                     break;
                 case 'nature':
                     $scope.natureGifts.push(item);
@@ -326,6 +329,7 @@ function basketController($scope, binder, formServiceInstance) {
         processMoney();
         processNature();
         processService();
+        countTotalMoneyGifts();
         
     };
     

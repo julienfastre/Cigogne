@@ -1,4 +1,4 @@
-#basket {
+.preparation {
       padding: 1em;
       border: 1px solid #EAEAEA;
       background-color: #F7F7F7;
@@ -20,6 +20,16 @@
       
       ul {
          
+      }
+      
+      span.quantity, span.amount {
+         font-weight: bold;
+      }
+      
+      span.message {
+         display: block;
+         font-size: $small;
+         padding-left: 1.5em;
       }
       
       img.delete {
