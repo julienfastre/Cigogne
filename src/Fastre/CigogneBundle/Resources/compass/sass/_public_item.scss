@@ -27,6 +27,15 @@
             }
       }
       
+      .asked, .remaining {
+         .expl {
+            font-variant: small-caps;
+         }
+         .amount, .quantity {
+            font-weight: bold;
+         }
+      }
+      
       
    }
    }

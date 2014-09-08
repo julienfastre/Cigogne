@@ -71,7 +71,7 @@
 
     <div class="column eight item_wrapper">
 	    
-          <h1>{{listing.name}}</h1>
+         <h1>{{ listing.name|capitalize }}</h1>
 	    <p>{% trans with {'%name%': listing.creator.username} %}cigogne.listing.view.list_of_{% endtrans %}</p>
 
 	
@@ -97,7 +97,7 @@
                      </div>
                      {% endif %}
                      
-                      <h3 class="item_title">{{item.title}}</h3>
+                      <h3 class="item_title">{{ item.title|capitalize }}</h3>
 	
 	                <p class="item_description">{{item.description}}</p>
 	

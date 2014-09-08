@@ -7581,6 +7581,14 @@ table.rounded > tbody:first-child tr:first-child td {
 .publicView .item_wrapper .item form .append .adjoined.btn:hover {
   background-color: #58b2fa;
 }
+/* line 31, ../../compass/sass/_public_item.scss */
+.publicView .item_wrapper .item .asked .expl, .publicView .item_wrapper .item .remaining .expl {
+  font-variant: small-caps;
+}
+/* line 34, ../../compass/sass/_public_item.scss */
+.publicView .item_wrapper .item .asked .amount, .publicView .item_wrapper .item .asked .quantity, .publicView .item_wrapper .item .remaining .amount, .publicView .item_wrapper .item .remaining .quantity {
+  font-weight: bold;
+}
 
 /* line 3, ../../compass/sass/_header.scss */
 #header nav ul.main-menu {
