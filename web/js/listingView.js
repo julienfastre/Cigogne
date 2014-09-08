@@ -86,7 +86,11 @@ function basketController($scope, binder, formServiceInstance) {
        console.log('countotalmoneygifts is executing');
         var total = 0;
         angular.forEach($scope.moneyGifts, function(moneyGift) {
-            total = parseFloat(moneyGift.amount.replace(",", ".")) + total;
+            try {
+               total = parseFloat(moneyGift.amount.replace(",", ".")) + total;
+            } catch(e) {
+               
+            }
         });
         
         $scope.totalMoney = total;

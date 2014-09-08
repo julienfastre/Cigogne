@@ -101,7 +101,7 @@
 	
 	                <p class="item_description">{{item.description}}</p>
 	
-                      {% if item.getRemainPossibleToGive(service) <= 0 or item.getRemainPossibleToGive(nature) <= 0 or item.getRemainPossibleToGive(money) <= 0 %}
+                      {% if item.getRemainPossibleToGive(service) > 0 or item.getRemainPossibleToGive(nature) > 0 or item.getRemainPossibleToGive(money) > 0 %}
                       <div class="medium secondary btn pick-btn">
                          <a href="{{ path('cigogne.item.public_view', { 'codeListing': code, 'itemId': item.id } ) }}">
                             {{ 'cigogne.listing.item.pick'|trans }}
