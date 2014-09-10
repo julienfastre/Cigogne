@@ -1,5 +1,6 @@
 Fastre\CigogneBundle\Entity\Listing:
   type: entity
+  repositoryClass: Fastre\CigogneBundle\EntityRepository\ListingRepository
   id:
     id:
       type: integer

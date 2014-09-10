@@ -3,6 +3,7 @@
 namespace Fastre\CigogneBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Fastre\CigogneBundle\EntityRepository\ListingRepository;
 
 /**
  * Fastre\CigogneBundle\Entity\Code
@@ -47,7 +48,7 @@ class Code
      */
     public function setWord($word)
     {
-        $this->word = $word;
+        $this->word = ListingRepository::sanitizeCode($word);
     
         return $this;
     }
