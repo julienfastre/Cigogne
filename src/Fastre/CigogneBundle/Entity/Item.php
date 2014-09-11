@@ -371,7 +371,8 @@ class Item
           case self::FURNITURE_MONEY : 
              return $this->getPrice() - $this->getReceived();
           case self::FURNITURE_NATURE : 
-             if ($this->getPrice() === 0) { $price = 1; } else { $price = $this->getPrice();}
+             $price = ($this->getPrice() == 0) ? 1 : $this->getPrice();
+//             
              return ceil(($price * $this->getQuantity() - $this->getReceived()) / $price);
           case self::FURNITURE_SERVICE :
              return $this->getQuantity() - $this->getReceived();
