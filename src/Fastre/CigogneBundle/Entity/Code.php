@@ -26,7 +26,7 @@ class Code
     private $listing;
     
     public function __construct($word) {
-        $this->word = $word;
+        $this->setWord($word);
     }
 
 

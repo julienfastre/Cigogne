@@ -16,6 +16,7 @@ use Fastre\CigogneBundle\Entity\Gift\GiftNature;
 use Fastre\CigogneBundle\Form\Gift\GiftNatureType;
 use Fastre\CigogneBundle\Entity\Gift\GiftService;
 use Fastre\CigogneBundle\Form\Gift\GiftServiceType;
+use Fastre\CigogneBundle\EntityRepository\ListingRepository;
 
 
 
@@ -57,7 +58,7 @@ class ListingController extends Controller {
 
           } catch (NonUniqueResultException $e) {
               //redirect to first page
-              $message = $this->get('translator')->trans('cigogne.listing.pick_from_code.not_found');
+              $message = $this->get('translator')->trans('cigogne.listing.pick_from_code.multiple_lists_found_should_not_happen');
               $this->get('session')->getFlashBag()->add('warn', $message);
               return $this->redirect(
                       $this->generateUrl("homepage")
@@ -67,7 +68,7 @@ class ListingController extends Controller {
           }
 
           if ($l !== null) {
-              $code = $word;
+              $code = ListingRepository::sanitizeCode($word);
           }
                 
 
@@ -88,19 +89,19 @@ class ListingController extends Controller {
     }
     
     public function getListingFromCodeAction($code, Request $request) {
-        //sanitize code
-        $code = trim($code);
-        
         //get the list
         $em = $this->getDoctrine()->getManager();
-        $q = $em->createQuery('SELECT l from FastreCigogneBundle:Listing l JOIN l.codes c where c.word like :code');
-        $q->setParameter('code', $code);
         
         try {
-           $l = $q->getSingleResult();
+           $l = $em->getRepository('FastreCigogneBundle:Listing')
+                   ->getListingByCode($code);
                     
         } catch (Exception $e) {
-            //redirect to first page
+            throw $e;
+        }
+        
+        if ($l === NULL) {
+           //redirect to first page
             $message = $this->get('translator')->trans('cigogne.listing.pick_from_code.not_found');
             $this->get('session')->getFlashBag()->add('warn', $message);
             return $this->redirect(
