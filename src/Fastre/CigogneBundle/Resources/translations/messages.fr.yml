@@ -101,6 +101,7 @@ cigogne:
         quantity_placeholder: Quantité offerte
         asked: Quantité demandée
         remaining: Quantité restante à offrir
+        message: Un message
       service:
         give: Rendre ce service
         message: Message éventuel
