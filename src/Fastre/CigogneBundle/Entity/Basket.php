@@ -157,7 +157,7 @@ class Basket
      */
     public function setMessage($message)
     {
-        $this->message = $message;
+        $this->message = ( $message === NULL) ? '' : $message ;
     
         return $this;
     }

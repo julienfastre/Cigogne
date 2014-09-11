@@ -12,44 +12,52 @@
          
          {{ form_start(form) }}
 
-         <div class="field">
+         <div class="field {% if not form.title.vars.valid %}warning{% endif %}">
             {{ form_label(form.title, 'cigogne.item.form.title', { 'label_attr' : { 'class' : '' } } ) }}
             {{ form_widget(form.title, { 'attr' : { 'class' : 'input' } } ) }}
+            {{ form_errors(form.title) }}
          </div>
          
-         <div class="field">
+         <div class="field {% if not form.description.vars.valid %}warning{% endif %}">
             {{ form_label(form.description, 'cigogne.item.form.description', { 'label_attr' : { 'class' : '' } } ) }}
             {{ form_widget(form.description, { 'attr' : { 'class' : 'textarea input' } } ) }}
+            {{ form_errors(form.description) }}
          </div>
          
-         <div class="field">
+         <div class="field {% if not form.type.vars.valid %}warning{% endif %}">
             {{ form_label(form.type, 'cigogne.item.form.type', { 'label_attr' : { 'class' : '' } } ) }}
             {{ form_widget(form.type, { 'attr' : { 'class' : ' ' } } ) }}
+            {{ form_errors(form.type) }}
          </div>
          
-         <div class="field">
+         <div class="field {% if not form.quantity.vars.valid %}warning{% endif %}">
             {{ form_label(form.quantity, 'cigogne.item.form.quantity', { 'label_attr' : { 'class' : '' } } ) }}
             {{ form_widget(form.quantity, { 'attr' : { 'class' : ' input narrow' } } ) }}
+            {{ form_errors(form.quantity) }}
          </div>
          
-         <div class="field">
+         <div class="field {% if not form.price.vars.valid %}warning{% endif %}">
             {{ form_label(form.price, 'cigogne.item.form.price', { 'label_attr' : { 'class' : '' } } ) }}
             {{ form_widget(form.price, { 'attr' : { 'class' : ' input narrow' } } ) }}
+            {{ form_errors(form.price) }}
          </div>
          
-         <div class="field">
+         <div class="field {% if not form.furniture.vars.valid %}warning{% endif %}">
             {{ form_label(form.furniture, 'cigogne.item.form.furniture', { 'label_attr' : { 'class' : '' } } ) }}
             {{ form_widget(form.furniture, { 'attr' : { 'class' : ' ' } } ) }}
+            {{ form_errors(form.furniture) }}
          </div>
          
-         <div class="field">
+         <div class="field {% if not form.good.vars.valid %}warning{% endif %}">
             {{ form_label(form.good, 'cigogne.item.form.good', { 'label_attr' : { 'class' : '' } } ) }}
             {{ form_widget(form.good, { 'attr' : { 'class' : ' ' } } ) }}
+            {{ form_errors(form.good) }}
          </div>
          
-         <div class="">
+         <div class="{% if not form.photo.vars.valid %}warning{% endif %}">
             {{ form_label(form.photo, 'cigogne.item.form.photo', { 'label_attr' : { 'class' : '' } } ) }}
             {{ form_widget(form.photo, { 'attr' : { 'class' : ' ' } } ) }}
+            {{ form_errors(form.photo) }}
          </div>
          
          {% if item.photo is not null %}

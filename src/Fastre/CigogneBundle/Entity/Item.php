@@ -37,7 +37,7 @@ class Item
     /**
      * @var float
      */
-    private $price;
+    private $price = 0;
 
     /**
      * @var array $furniture
@@ -414,20 +414,20 @@ class Item
          case self::TYPE_GOOD :
             //don't ask to give the good as a service
             if (in_array(self::FURNITURE_SERVICE, $this->getFurniture())){
-               $context->buildViolation('cigogne.item.a_good_may_not_be_given as_a_service')
+               $context->buildViolation('cigogne.item.form.a_good_may_not_be_given_as_a_service')
                       ->atPath('furniture')
                       ->addViolation();
             }
             //give the price if you ask for money
             if ($this->getPrice() == 0 
                     && in_array(self::FURNITURE_MONEY, $this->getFurniture())){
-               $context->buildViolation('cigogne.item.give_a_price')
+               $context->buildViolation('cigogne.item.form.give_a_price')
                        ->atPath('price')
                        ->addViolation();
             }
             //fill at least one of 'good' possibility ('new' or 'second hand')
             if (count($this->getGood()) === 0){
-               $context->buildViolation('cigogne.good.required')
+               $context->buildViolation('cigogne.item.form.required_new_or_second_hand')
                        ->atPath('good')
                        ->addViolation();
             }
@@ -436,25 +436,25 @@ class Item
            //a service may not be 'new' or 'second hand'
            if (in_array(self::GOOD_NEW, $this->getGood()) 
                    OR in_array(self::GOOD_SECOND_HAND, $this->getGood())) {
-              $context->buildViolation('cigogne.item.a_service_may_not_be_new_nor_second_hand')
+              $context->buildViolation('cigogne.item.form.a_service_may_not_be_new_nor_second_hand')
                       ->atPath('good')
                       ->addViolation();
            }
            //a service may not be given as moyen
            if (in_array(self::FURNITURE_MONEY, $this->getFurniture())){
-              $context->buildViolation('cigogne.item.a_service_may_not_be_paid')
+              $context->buildViolation('cigogne.item.form.a_service_may_not_be_paid')
                       ->atPath('furniture')
                       ->addViolation();
            }
            //a service may not be given in nature
            if (in_array(self::FURNITURE_NATURE, $this->getFurniture())) {
-              $context->buildViolation('cigogne.item.a_service_may_not_be_nature')
+              $context->buildViolation('cigogne.item.form.a_service_may_not_be_nature')
                       ->atPath('furniture')
                       ->addViolation();
            }
            //furniture service must be checked
            if (!in_array(self::FURNITURE_SERVICE, $this->getFurniture())){
-              $context->buildViolation('cigogne.item.service_must_be_checked')
+              $context->buildViolation('cigogne.item.form.service_must_be_checked')
                       ->atPath('furniture')
                       ->addViolation();
            }

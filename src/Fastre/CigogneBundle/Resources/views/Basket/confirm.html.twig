@@ -30,6 +30,16 @@
 	<div class="column twelve">
 	
 		<h1>Confirmation de vos cadeaux</h1>
+            
+            {% if basket.elements|length == 0 %}
+               <div class="">
+                  <p style="text-align:center;">
+                     <a href="{{ path('cigogne.listing.see', {'code': code, 'rand' : random() } ) }}">
+                        {{ 'cigogne.basket.confirm.choose_gifts_before'|trans }}
+                     </a>
+                  </p>
+               </div>
+            {% else %}
 		
 		{{ include('FastreCigogneBundle:Basket:presentation.html.twig', {
 		   'giftMoneys': giftMoneys,
@@ -37,23 +47,28 @@
 		   'giftServices' : giftServices
 		   }
 		) }}
+            
+            {% endif %}
 		
 		<p><a href="{{ url('cigogne.listing.see', {'code': code, 'rand' : random() } ) }}">Modifier</a></p>
 		
+            {% if basket.elements|length > 0 %}
 		<form method="POST" action="#" >
 
-               <div class="field">
+               <div class="field {% if not basketForm.name.vars.valid %}danger{% endif %}">
                   {{form_label(basketForm.name, null, { 'label_attr' : { 'class' : 'inline aligned' } } ) }} 
                   {{ form_widget(basketForm.name, { 'attrs': {'class': 'input '} }) }}
+                  {{ form_errors(basketForm.name) }}
                </div>
                
-               <div class="field">
+               <div class="field {% if not basketForm.email.vars.valid %}danger{% endif %}">
                   {{form_label(basketForm.email, null, { 'label_attr' : { 'class' : 'inline aligned' } } ) }} 
                   {{ form_widget(basketForm.email, { 'attrs': {'class': 'input '} }) }}
+                  {{ form_errors(basketForm.email) }}
                </div>
                
                {{form_label(basketForm.message, null, { 'label_attr' : { 'class' : ' ' } } ) }}
-               <div class="field">
+               <div class="field {% if not basketForm.message.vars.valid %}danger{% endif %}">
                    
                    {{ form_widget(basketForm.message, { 'attrs': {'class': 'input textarea'} }) }}
                </div>
@@ -62,6 +77,7 @@
                   {{ form_label(basketForm.payment) }}
                </div>
                   {{ form_widget(basketForm.payment) }}
+                  {{ form_errors(basketForm.payment) }}
 
 		  {{ form_rest(basketForm) }}
 		  
@@ -69,6 +85,7 @@
                <button type="submit">{{ 'cigogne.basket.confirm.post'|trans }}</button>
               </div>
 		</form>
+            {% endif %}
 	</div>
 </div>
 

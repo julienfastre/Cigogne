@@ -27,7 +27,8 @@ class BasketController extends Controller
       if (count($basket->getElements()) <= 0) {
          $this->get('session')
                  ->getFlashBag()
-                 ->add('notice', 'cigogne.basket.confirm.is_empty');
+                 ->add('warn', $this->get('translator')->trans(
+                         'cigogne.basket.confirm.is_empty'));
       }
 
       $em = $this->getDoctrine()->getEntityManager();
@@ -167,6 +168,7 @@ class BasketController extends Controller
                   'giftServices' => $giftService,
                   'giftNatures' => $giftNature,
                   'totalMoney' => $totalMoney,
+                  'basket' => $basket,
                   'basketForm' => $basketForm->createView(),
                   'code' => $code
       ));

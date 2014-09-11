@@ -45,7 +45,7 @@ cigogne:
       back_to_list: Retour à la liste de %listingCreator%
       or_go_on: Ou continuer
       pick: Offrir
-      too_late_to_pick: Trop tard pour offrir...
+      too_late_to_pick: Cadeau déjà promis
     form:
        submit: Mettre à jour
        new_item: Ajouter un article
@@ -111,6 +111,7 @@ cigogne:
     confirm:
       title: Récapitulatif de vos cadeaux
       is_empty: Votre panier est vide.
+      choose_gifts_before: Choisissez quelques cadeaux avant de confirmer votre panier.
       form_invalid: Vos données sont invalides, merci de les vérifier.
       invalid_basket_id : L'identifiant du panier est invalide.
       post: Confirmer

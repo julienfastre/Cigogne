@@ -28,10 +28,28 @@ Fastre\CigogneBundle\Entity\Item:
          - NotNull: ~
       price:
          - Range: 
-            min: 1
+            min: 0
             max: 10000
          - NotNull: ~
       furniture:
          - Count:
             min: 1
             max: 10
+            
+Fastre\CigogneBundle\Entity\Basket:
+   getters:
+      name:
+         - NotBlank: ~
+         - NotNull: ~
+         - Length:
+            min: 5
+            max: 100
+      message:
+         - Length: 
+            min: 0
+            max: 7000
+      email:
+         - Email:
+            strict: true
+         - NotNull: ~
+

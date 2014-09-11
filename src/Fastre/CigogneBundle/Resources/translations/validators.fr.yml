@@ -1,0 +1,10 @@
+cigogne:
+   item:
+      form:
+         a_good_may_not_be_given_as_a_service: Un bien ne peut pas être dispensé comme un service
+         give_a_price: Renseignez un prix différent de 0
+         required_new_or_second_hand: Lorsque vous choisissez un bien, vous devez indiquez si vous le souhaitez en première ou deuxième main
+         a_service_may_not_be_new_nor_second_hand: Un service ne peut pas être indiqué comme de première ou deuxième main
+         a_service_may_not_be_paid: Un service ne peut pas être payé...
+         a_service_may_not_be_nature: Un service ne peut pas être donné en nature
+         service_must_be_checked: Cochez la case 'service'
