@@ -7453,12 +7453,26 @@ table.rounded > tbody:first-child tr:first-child td {
   width: 66.25%;
 }
 /* line 7, ../../compass/sass/_listing.scss */
+.listing .listingof {
+  text-align: right;
+  font-family: 'leckerlioneregular';
+  font-size: 0.5em;
+  color: #3085d6;
+}
+/* line 14, ../../compass/sass/_listing.scss */
+.listing div.list-description {
+  padding: 1em;
+  margin-top: 1.5em;
+  border: 1px solid #EAEAEA;
+  background-color: #F7F7F7;
+}
+/* line 21, ../../compass/sass/_listing.scss */
 .listing .item_list {
   -moz-column-count: 2;
   -webkit-column-count: 2;
   column-count: 2;
 }
-/* line 15, ../../compass/sass/_listing.scss */
+/* line 29, ../../compass/sass/_listing.scss */
 .listing .item_list .item {
   padding: 1em;
   margin-top: 1.5em;
@@ -7467,7 +7481,7 @@ table.rounded > tbody:first-child tr:first-child td {
   display: inline-block;
   width: 100%;
 }
-/* line 25, ../../compass/sass/_listing.scss */
+/* line 39, ../../compass/sass/_listing.scss */
 .listing .item_list .item .image_item {
   max-width: 100%;
   max-height: 12em;
@@ -7475,7 +7489,7 @@ table.rounded > tbody:first-child tr:first-child td {
   margin-right: auto;
   text-align: center;
 }
-/* line 33, ../../compass/sass/_listing.scss */
+/* line 47, ../../compass/sass/_listing.scss */
 .listing .item_list .item .pick-btn {
   width: 100%;
   text-align: center;

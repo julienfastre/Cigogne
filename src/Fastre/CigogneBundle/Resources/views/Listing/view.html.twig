@@ -69,10 +69,18 @@
    </div>
     
 
-    <div class="column eight item_wrapper">
+    <div class="columns eight item_wrapper">
 	    
-         <h1>{{ listing.name|capitalize }}</h1>
-	    <p>{% trans with {'%name%': listing.creator.username} %}cigogne.listing.view.list_of_{% endtrans %}</p>
+         <h1>
+            {{ listing.name|capitalize }}
+            <span class="listingof"> >> {% trans with {'%name%': listing.creator.label|capitalize } %}cigogne.listing.view.list_of_{% endtrans %}</span>
+         </h1>
+	    
+          <div class="list-description">
+            <p>
+               {{ listing.description|nl2br }}
+            </p>
+          </div>
 
 	
 	    {#  

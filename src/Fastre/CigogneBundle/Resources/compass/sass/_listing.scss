@@ -4,6 +4,20 @@
       width: columns(8);
    }
    
+   .listingof {
+      text-align: right;
+      font-family: 'leckerlioneregular';
+      font-size: 0.5em;
+      color: $primary-color;
+   }
+   
+   div.list-description {
+      padding: 1em;
+      margin-top: 1.5em;
+      border: 1px solid #EAEAEA;
+      background-color: #F7F7F7;
+   }
+   
    .item_list {
       
       -moz-column-count: 2;
