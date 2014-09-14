@@ -369,7 +369,7 @@ class Item
     {
        switch ($furniture) {
           case self::FURNITURE_MONEY : 
-             return $this->getPrice() - $this->getReceived();
+             return $this->getPrice()*$this->getQuantity()  - $this->getReceived();
           case self::FURNITURE_NATURE : 
              $price = ($this->getPrice() == 0) ? 1 : $this->getPrice();
 //             
