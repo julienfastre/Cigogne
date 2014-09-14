@@ -72,7 +72,7 @@ cigogne:
          description: Description
          type: Type
          quantity: Quantité attendue
-         price: Prix attendu
+         price: Prix unitaire
          furniture: Mode de fourniture
          good: Première ou deuxième main ?
          photo: Photo
@@ -96,6 +96,8 @@ cigogne:
         amount_placeholder: Montant que vous voulez offrir
         asked: Montant demandé
         remaining: Montant restant à offrir
+        quantity: Quantité
+        unit_price: Prix unitaire
       nature:
         give: Donner
         quantity_placeholder: Quantité offerte

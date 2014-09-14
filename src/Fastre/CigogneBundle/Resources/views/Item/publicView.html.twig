@@ -75,8 +75,15 @@
                      
                      {% form_theme form.amount _self %}
                      <p>
+                        <span class="asked_quantity"><span class="expl">{{ 'cigogne.gift.form.money.quantity'|trans }}&nbsp;:</span>
+                           <span class="quantity">{{ item.quantity }}</span></span>
+                           <br/>
                         <span class="asked"><span class="expl">{{ 'cigogne.gift.form.money.asked'|trans }}</span> 
-                           <span class="amount">{{ item.price| number_format(2, ',', ' ') }}&nbsp;€</span></span>
+                           <span class="amount">{{ item.price| number_format(2, ',', ' ') }}&nbsp;€</span> 
+                           <span class="expl">({{ 'cigogne.gift.form.money.unit_price'|trans }})</span> x
+                           <span class="quantity">{{ item.quantity }}</span> = 
+                           <span class="amount">{{ (item.price * item.quantity)|number_format(2, ',', ' ') }}&nbsp;€</span>
+                        </span>
                            <br/>
                         <span class="remaining"><span class="expl">{{ 'cigogne.gift.form.money.remaining' | trans }}</span> 
                            <span class="amount">{{ item.getRemainPossibleToGive(money)| number_format(2, ',', ' ') }}&nbsp;€</span></span>
@@ -127,8 +134,8 @@
                      <span class="asked"><span class="expl">{{ 'cigogne.gift.form.nature.asked'|trans }}</span> 
                         <span class="quantity">{{ item.quantity }}</span></span>
                         <br/>
-                           <span class="remaining"><span class="expl">{{ 'cigogne.gift.form.nature.remaining' | trans }}</span> 
-                              <span class="quantity">{{ item.getRemainPossibleToGive(nature) }}</span></span>
+                     <span class="remaining"><span class="expl">{{ 'cigogne.gift.form.nature.remaining' | trans }}</span> 
+                        <span class="quantity">{{ item.getRemainPossibleToGive(nature) }}</span></span>
                   </p>
                   <div class="prepend field append">
                         {{ form_label(form.quantity, null, {'label_attr': {'class': 'adjoined' } } ) }} 
@@ -179,8 +186,8 @@
                      <span class="asked"><span class="expl">{{ 'cigogne.gift.form.nature.asked'|trans }}</span> 
                         <span class="quantity">{{ item.quantity }}</span></span>
                         <br/>
-                           <span class="remaining"><span class="expl">{{ 'cigogne.gift.form.nature.remaining' | trans }}</span> 
-                              <span class="quantity">{{ item.getRemainPossibleToGive(service) }}</span></span>
+                     <span class="remaining"><span class="expl">{{ 'cigogne.gift.form.nature.remaining' | trans }}</span> 
+                        <span class="quantity">{{ item.getRemainPossibleToGive(service) }}</span></span>
                   </p>
 
                   <div class="field">

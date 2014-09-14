@@ -7596,11 +7596,11 @@ table.rounded > tbody:first-child tr:first-child td {
   background-color: #58b2fa;
 }
 /* line 31, ../../compass/sass/_public_item.scss */
-.publicView .item_wrapper .item .asked .expl, .publicView .item_wrapper .item .remaining .expl {
+.publicView .item_wrapper .item .asked .expl, .publicView .item_wrapper .item .remaining .expl, .publicView .item_wrapper .item .asked_quantity .expl {
   font-variant: small-caps;
 }
 /* line 34, ../../compass/sass/_public_item.scss */
-.publicView .item_wrapper .item .asked .amount, .publicView .item_wrapper .item .asked .quantity, .publicView .item_wrapper .item .remaining .amount, .publicView .item_wrapper .item .remaining .quantity {
+.publicView .item_wrapper .item .asked .amount, .publicView .item_wrapper .item .asked .quantity, .publicView .item_wrapper .item .remaining .amount, .publicView .item_wrapper .item .remaining .quantity, .publicView .item_wrapper .item .asked_quantity .amount, .publicView .item_wrapper .item .asked_quantity .quantity {
   font-weight: bold;
 }
 
