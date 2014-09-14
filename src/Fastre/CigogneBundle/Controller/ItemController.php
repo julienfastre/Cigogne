@@ -51,7 +51,8 @@ class ItemController extends Controller
             $em->flush();
             
             $this->get('session')->getFlashBag()
-                    ->add('notice', 'cigogne.item.item_added');
+                    ->add('notice', $this->get('translator')
+                            ->trans('cigogne.item.item_added'));
             
             return $this->redirect(
                     $this->generateUrl('cigogne.listing.update',
@@ -106,7 +107,7 @@ class ItemController extends Controller
             $em->flush();
             
             $this->get('session')->getFlashBag()
-                    ->add('notice', 'cigogne.item.item_updated');
+                    ->add('notice', $this->get('translator')->trans('cigogne.item.item_updated'));
             
             return $this->redirect(
                     $this->generateUrl('cigogne.listing.update',

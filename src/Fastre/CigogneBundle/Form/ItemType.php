@@ -32,7 +32,7 @@ class ItemType extends AbstractType
               ->add('quantity', 'integer', array(
                   
               ))
-              ->add('price', 'money')
+              ->add('price', 'number')
               ->add('furniture', 'choice', array(
                   'choices' => array(
                       Item::FURNITURE_MONEY => 'cigogne.item.form.furniture_money',

@@ -132,6 +132,16 @@ has_error danger
         {{ form_widget(form.control_digit, { 'attr': { 'class': 'input belgian_national_number_control_digit' } } ) }}
     {% endspaceless %}
 {% endblock %}  
+
+{# test de transformation vers champ de type number
+{% block money_widget -%}
+   {% set type = type|default('number') %}
+   {% if attr.step is not defined %}{% set attr = { 'step' : 'any' } %}{% endif %}
+   {{ dump(attr) }}
+   {{ block('form_widget_simple') }}
+   {# {{ money_pattern|replace({ '{{ widget }}': block('form_widget_simple') })|raw }} 
+{%- endblock money_widget %}
+#}
         
         
 {% block form_errors %}
